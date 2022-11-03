@@ -1,14 +1,12 @@
-#include <SFML/Graphics.hpp>
-#include <string>
-#include <iostream>
-#include <SFML/Audio.hpp>
+#include "stdafx.h"
+#include "Textausgabe.h"
 
 
 using namespace sf;
 using namespace std;
 
 int main() {
-
+    Textausgabe whatever;
     RenderWindow window(VideoMode(1920 / 2, 1080 / 2), "Hold On!");
     window.setFramerateLimit(30);
 
@@ -17,6 +15,7 @@ int main() {
 
 
         window.clear();
+
         window.display();
     }
 }
