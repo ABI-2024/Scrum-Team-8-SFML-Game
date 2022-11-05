@@ -3,3 +3,4 @@
 #include <string>
 #include <iostream>
 #include <SFML/Audio.hpp>
+#include "Textausgabe.h"
