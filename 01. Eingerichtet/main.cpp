@@ -13,7 +13,6 @@ int main() {
     RenderWindow window(VideoMode(1920 / 1.5, 1080 / 1.5), "Hold On!");
     window.setFramerateLimit(30);
 
-    RenderWindow* p_window = &window;
     Ressource essen("Essen", 1);
     Ressource wasser("Wasser", 1);
 
@@ -22,8 +21,8 @@ int main() {
 
         window.clear();
 
-        essen.darstellen(p_window);
-        wasser.darstellen(p_window);
+        essen.darstellen(&window);
+        wasser.darstellen(&window);
 
         window.display();
 
