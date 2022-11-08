@@ -19,7 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Datum.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Textausgabe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Datum.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Textausgabe.h" />
     <ClCompile Include="Ressource.cpp" />
   </ItemGroup>
   <ItemGroup>
