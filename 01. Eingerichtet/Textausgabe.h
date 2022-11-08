@@ -13,11 +13,10 @@ private:
 	int from;
 	bool cont;
 	int maxlines;
-	Text ausgabe;
 public:
 	Textausgabe();
 	~Textausgabe();
-	bool darstellen(RenderWindow*);		//Eine Methode, welche regulär am Ende der main aufgerufen werden 
+	bool display(RenderWindow*);		//Eine Methode, welche regulär am Ende der main aufgerufen werden 
 											//soll und wenn Text vorhanden ist, diesen teilweise ausgeben soll
 	void einlesen(std::string);				//Eine Möglichkeit den auszugebenen String zu setzen
 	

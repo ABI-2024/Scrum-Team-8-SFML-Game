@@ -1,5 +1,6 @@
 #include "Textausgabe.h"
 #include "stdafx.h"
+
 using namespace std;
 using namespace sf;
 
@@ -15,30 +16,30 @@ Textausgabe::Textausgabe() {
 
 
 void Textausgabe::einlesen(std::string insert) {
-	text = "";
-	for (int i = 0; i < insert.length(); i++) {
+	
+	if (insert.length() == 0) {
+		text = "leer";
+	}
+	else {
+		text = "";
+		for (int i = 0; i < insert.length(); i++) {
 
-		if (insert[i] == '§') {
-			text = text + "\n";
-		}
-		else {
-			text = text + insert[i];
+			if (insert[i] == '§') {
+				text = text + "\n";
+			}
+			else {
+				text = text + insert[i];
 
+			}
 		}
 	}
-	/*
-	text = new string[amount];
-	for (int i = 0; i < amount; i++) {
-		text[i] = insert[i];
-	}
-	*/
 }
 
-bool Textausgabe::darstellen(RenderWindow* window) {		//Ausgabe des Textfeldes samt Texthintergrund
+bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt Texthintergrund
 	if (text == "leer") {
 		return false;
 	}
-	else {							//Muss noch die ausgabe regeln mit mehr als 5 Zeilen und dass 5 Zeilen ausgegeben werden
+	else {							
 
 		Texture txtfeldbg;
 		txtfeldbg.loadFromFile("ressources/grafics/textfeld.png");
@@ -46,12 +47,14 @@ bool Textausgabe::darstellen(RenderWindow* window) {		//Ausgabe des Textfeldes s
 		txtbg.setScale(1, 1);
 		txtbg.setPosition(5, 475);
 		Font font;
-		font.loadFromFile("ressources/fonts/arcadeclassic.ttf");
-		ausgabe = Text("", font);
+		font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
+		Text ausgabe("", font);
+
+		ausgabe.setLetterSpacing(0.5f);
 		ausgabe.setFillColor(Color(100, 50, 30, 255));
 		ausgabe.setPosition(40, 500);
 
-		if (tics >= 1 && cont == true) {
+		if (tics >= 3 && cont == true) {
 
 			ausgeg++;
 			tics = 0;
@@ -80,10 +83,9 @@ bool Textausgabe::darstellen(RenderWindow* window) {		//Ausgabe des Textfeldes s
 				return false;
 			}
 		}
-		else if (maxlines != 6) {
+		else if (maxlines != 5) {
 
 			ausgabe.setString(text.substr(from, ausgeg - from));
-			cout << text.substr(from, ausgeg - from);
 			if (tics == 0) cout << "\nfrom: " << from << "  to: " << ausgeg;
 		}
 		else {
