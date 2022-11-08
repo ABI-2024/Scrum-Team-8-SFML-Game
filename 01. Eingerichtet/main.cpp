@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+#include "Ressource.h"
 
 using namespace sf;
 using namespace std;
@@ -12,13 +12,23 @@ int main() {
 	window.setFramerateLimit(30);
 
 
-	while (window.isOpen()) {
+
+    Ressource essen("Essen", 1);
+    Ressource wasser("Wasser", 1);
+
 
 		
 
-		window.clear();
-		Date.display(&window);
-		txtausgabe.display(&window);
-		window.display();
-	}
+    while (window.isOpen()) {
+
+        window.clear();
+        
+        Date.display(&window);
+        essen.darstellen(&window);
+        wasser.darstellen(&window);
+	    	txtausgabe.display(&window);
+        
+        window.display();
+
+    }
 }

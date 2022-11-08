@@ -22,6 +22,7 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Datum.cpp">
+    <ClCompile Include="Ressource.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -33,6 +34,7 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Datum.h">
+    <ClInclude Include="Ressource.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
