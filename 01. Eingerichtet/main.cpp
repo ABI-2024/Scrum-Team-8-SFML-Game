@@ -4,6 +4,8 @@
 using namespace sf;
 using namespace std;
 
+
+
 int main() {
 	Textausgabe txtausgabe;
 	Datum Date(1, 1, 1999, 1);
@@ -11,10 +13,14 @@ int main() {
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
 
-
-
     Ressource essen("Essen", 1);
     Ressource wasser("Wasser", 1);
+
+
+    RenderWindow window(VideoMode(1920 / 2, 1080 / 2), "Hold On!");
+    window.setFramerateLimit(30);
+    while (window.isOpen()) {
+
 
 
 		

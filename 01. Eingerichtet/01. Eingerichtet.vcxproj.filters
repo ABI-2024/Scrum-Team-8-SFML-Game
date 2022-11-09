@@ -18,6 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+
+    <ClCompile Include="ereignis.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
     <ClCompile Include="Textausgabe.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>

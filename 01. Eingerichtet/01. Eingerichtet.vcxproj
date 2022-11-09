@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Datum.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ereignis.cpp" />
     <ClCompile Include="Textausgabe.cpp" />
   </ItemGroup>
   <ItemGroup>
