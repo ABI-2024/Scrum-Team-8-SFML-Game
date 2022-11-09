@@ -1,47 +1,33 @@
-using namespace std;
-
-#include <iostream>
-#include <string>
+#include "stdafx.h"
 #include <ctime>
 #include <fstream> 
 #include <stdlib.h> 
 
+using namespace std;
 
 
-struct dscontent {
-	string text;
-	string antwort[3];
-
-
-
-};
 
 string newevent() {
-	string datastore = "events.csv";
+	string datastore = "ressources/events.csv";
 
 	srand((unsigned)time(0));
 
-	ifstream filec;
-	filec.open(datastore, ios::in);
+	ifstream file;
+	file.open(datastore, ios::in);
 	struct dscontent data;
 
 	string temp;
 	int max = 0;
 
-	for (int i = 0; !filec.eof(); i++) {
-		getline(filec, temp, '\n');
-		max++;
-	}
+	getline(file, temp, '\n');
+	max = stoi(temp);
+
 
 	int rnd = (rand() % max);
 
-	filec.close();
-	ifstream file;
-	file.open(datastore, ios::in);
-
 	for (int i = 0; !file.eof(); i++) {
 
-		if (i==rnd) {
+		if (i == rnd) {
 			getline(file, temp, ';');
 			data.text = temp;
 
@@ -54,8 +40,9 @@ string newevent() {
 			getline(file, temp, '\n');
 			data.antwort[2] = temp;
 
-		} else{ getline(file, temp, '\n'); }
-		
+		}
+		else { getline(file, temp, '\n'); }
+
 	}
 
 	// Klasse Ressource aufrufen (später mit Zufallszahl)

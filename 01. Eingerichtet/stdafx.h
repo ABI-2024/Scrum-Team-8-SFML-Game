@@ -5,3 +5,5 @@
 #include <SFML/Audio.hpp>
 #include "Textausgabe.h"
 #include "Datum.h"
+#include "Ereignis.h"
+#include "Ressource.h"

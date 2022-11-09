@@ -54,19 +54,16 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 		ausgabe.setFillColor(Color(100, 50, 30, 255));
 		ausgabe.setPosition(40, 500);
 
-		if (tics >= 3 && cont == true) {
+		if (tics >= 1 && cont == true) {
 
 			ausgeg++;
 			tics = 0;
-			cout << "\npremax - ";
 			if (text[ausgeg] == '\n') {
 
 				maxlines++;
-				cout << " - maxlines: " << maxlines;
 			}
 		}
-		if (ausgeg >= text.length()) {
-			cout << "F1";	//Ende der Ausgabe
+		if (ausgeg >= text.length()) {	//Ende der Ausgabe
 
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			cont = false;
@@ -86,10 +83,9 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 		else if (maxlines != 5) {
 
 			ausgabe.setString(text.substr(from, ausgeg - from));
-			if (tics == 0) cout << "\nfrom: " << from << "  to: " << ausgeg;
+
 		}
 		else {
-			cout << "F5";
 			cont = false;
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			if (Keyboard::isKeyPressed(Keyboard::Space)) {

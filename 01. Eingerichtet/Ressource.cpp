@@ -1,4 +1,7 @@
-#include "Ressource.h"
+#include "stdafx.h"
+
+using namespace std;
+using namespace sf;
 
 int Ressource::typc = 1;
 
@@ -37,15 +40,15 @@ void Ressource::darstellen(RenderWindow* window){
 	Texture textur;
 
 	Font font;
-	font.loadFromFile("ressources/arcadeclassic.ttf");
+	font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
 
 	Text text("", font);
 
 	if (typ == 1) {
-		textur.loadFromFile("ressources/apfel.png");
+		textur.loadFromFile("ressources/grafics/apfel.png");
 	}
 	else if (typ == 2) {
-		textur.loadFromFile("ressources/wasser.png");
+		textur.loadFromFile("ressources/grafics/wasser.png");
 	}
 
 	Sprite sprite;
@@ -58,7 +61,7 @@ void Ressource::darstellen(RenderWindow* window){
 		sprite.setPosition(Vector2f(10, 10));
 		sprite.scale(Vector2f(0.05, 0.05));
 
-		text.setPosition(55, 4);
+		text.setPosition(55, 7);
 	}
 
 	else if (typ == 2) {
@@ -66,10 +69,10 @@ void Ressource::darstellen(RenderWindow* window){
 		sprite.setPosition(Vector2f(140, 5));
 		sprite.scale(Vector2f(0.125, 0.125));
 
-		text.setPosition(185, 4);
+		text.setPosition(185, 7);
 	}
 
-	text.setCharacterSize(50);
+	text.setCharacterSize(40);
 	text.setString(to_string(anzahl) + "X");
 	
 	window->draw(sprite);
