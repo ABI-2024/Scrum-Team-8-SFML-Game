@@ -200,7 +200,7 @@ void Datum::updateWochentag() {		//verrechnet die wtid (WochentagID) und wandelt
 	case 6:
 		wochentag = "Samstag";
 		break;
-	case 7:
+	case 0:
 		wochentag = "Sonntag";
 		break;
 	default:

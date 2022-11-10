@@ -1,66 +1,43 @@
-65
-1.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-2.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-3.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-4.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-5.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-6.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-7.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-8.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-9.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-10.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-11.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-12.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-13.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-14.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-15.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-16.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-17.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-18.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-19.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-20.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-21.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-22.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-23.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-24.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-25.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-26.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-27.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-28.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-29.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-30.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-31.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-32.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-33.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-34.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-35.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-36.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-37.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-38.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-39.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-40.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-41.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-42.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-43.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-44.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-45.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-46.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-47.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-48.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-49.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-50.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-51.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-52.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-53.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-54.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-55.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-56.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-57.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-58.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-59.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-60.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-61.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-62.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-63.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-64.Zeile : 1§2§3§4§5§6§7§8;a;b;c
-65.Zeile : 1§2§3§4§5§6§7§8;a;b;c
+1;;;
+Hallo Herr Schwaiger,§Diese Textausgabe funktioniert mit jeweils 5 Zeilen§§§Nach welchen dann nach dem betätigen der Leertaste...§Weiterer Text ausgegeben werden kann, bis alles ausgegeben wurde,§was zu sagen war. §Die angezeigten Ressourcen können, ebenso wie das Datum, §verändert werden.§Hier werden sie in fortwährendem Durchlauf gezeigt.;a;b;c
+2.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+3.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+4.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+5.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+6.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+7.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+8.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+9.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+10.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+11.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+12.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+13.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+14.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+15.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+16.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+17.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+18.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+19.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+20.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+21.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+22.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+23.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+24.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+25.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+26.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+27.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+28.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+29.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+30.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+31.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+32.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+33.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+34.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+35.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+36.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+37.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+38.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+39.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+40.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+41.Zeile§2§3§4§5§6§7§8§9§10;a;b;c
+42.Zeile§2§3§4§5§6§7§8§9§10;a;b;c

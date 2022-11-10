@@ -32,8 +32,8 @@ void Ressource::setmenge(float menge){
 	this->menge = menge;
 }
 
-void Ressource::addmenge(float) {
-	menge += menge;
+void Ressource::addmenge(float menge) {
+	this->menge += menge;
 }
 
 void Ressource::darstellen(RenderWindow* window){
