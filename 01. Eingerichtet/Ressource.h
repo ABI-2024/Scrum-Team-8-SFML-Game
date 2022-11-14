@@ -9,21 +9,21 @@ using namespace sf;
 class Ressource
 {
 private:
-	static int typc;
+	static int typc;				//Attribute der Klasse
 	int typ;
 	string name;
 	float menge;
 
 public:
 
-	~Ressource();
+	~Ressource();					//Destruktor und Konstruktor
 	Ressource(string, float);
-	float getmenge();
+	float getmenge();				//Get und Set Methoden
 	string getname();
 	void setname(string);
 	void setmenge(float);
-	void addmenge(float);
-	void darstellen(RenderWindow*);
+	void addmenge(float);			//Zum Ändern der Menge
+	void darstellen(RenderWindow*); // Ausgabe der Werte in der oberen linken Ecke
 
 };
 

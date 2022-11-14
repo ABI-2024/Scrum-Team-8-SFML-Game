@@ -11,8 +11,8 @@ int main() {
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
 	int counter = 0;
-	Ressource essen("Essen", 1);
-	Ressource wasser("Wasser", 20);
+	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
+	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 
 	while (window.isOpen()) {
 
