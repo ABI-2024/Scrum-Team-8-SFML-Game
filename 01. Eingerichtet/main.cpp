@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include <random>
+#define maxsongs 1
 
 using namespace sf;
 using namespace std;
@@ -11,8 +13,14 @@ int main() {
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
 	int counter = 0;
-	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
+
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
+	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
+
+
+	Music hintergrundmusik;
+
+
 	txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 
@@ -53,11 +61,26 @@ int main() {
 		wasser.darstellen(&window);
 		if (!txtausgabe.display(&window)) {
 			txtausgabe.einlesen(newevent());
-			
+
 		}
 
 		window.display();
 
 
+
+		//Music checker
+		if (hintergrundmusik.getStatus() != Music::Playing) {
+			hintergrundmusik.stop();
+
+			std::random_device rd; // obtain a random number from hardware
+			std::mt19937 gen(rd()); // seed the generator
+			std::uniform_int_distribution<> distr(1, maxsongs); // define the range
+
+
+			if (!hintergrundmusik.openFromFile("ressources/audio/music" + to_string(distr(gen)) + ".wav")) {
+				return -1;
+			}
+			hintergrundmusik.play();
+		}
 	}
 }
