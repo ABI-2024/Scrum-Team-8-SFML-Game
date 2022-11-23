@@ -13,7 +13,7 @@ int main() {
 	int counter = 0;
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
-
+	txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 
 		if (essen.getmenge() == 99) {
@@ -53,6 +53,7 @@ int main() {
 		wasser.darstellen(&window);
 		if (!txtausgabe.display(&window)) {
 			txtausgabe.einlesen(newevent());
+			
 		}
 
 		window.display();

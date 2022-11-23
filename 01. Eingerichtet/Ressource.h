@@ -11,7 +11,7 @@ class Ressource
 private:
 	static int typc;				//Attribute der Klasse
 	int typ;
-	string name;
+	string name;					//interner Name der Ressource und ebenfalls der Name der zugehörigen Grafik
 	int menge;
 
 public:

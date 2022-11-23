@@ -78,14 +78,16 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			}
 		}
 		if (ausgeg >= text.length()) {	//Ende der Ausgabe
-
+			
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			cont = false;
 			if (exit == char(1)) {
 				//Aufruf der Einlese-Funktion?
+
 				this->keyboardInsertion();
+
 			}
-			if (exit == char(0)) {
+			else if (exit == char(0)) {
 				if (Keyboard::isKeyPressed(Keyboard::Space)) {
 
 					ausgabe.setString("");
@@ -152,7 +154,7 @@ Textausgabe::~Textausgabe() {
 
 
 void Textausgabe::setResult(int a, int b, int c) {
-	
+	exit = char(1);
 	result[0] = a;
 	result[1] = b;
 	result[2] = c;
@@ -163,22 +165,34 @@ void Textausgabe::keyboardInsertion() {
 
 	if (Keyboard::isKeyPressed(Keyboard::Num1)) {
 		int ret = result[0];
+		exit = char(2);
+		result[0] = 0;
+		result[1] = 0;
+		result[2] = 0;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Num2)) {
 		int ret = result[1];
+		exit = char(2);
+		result[0] = 0;
+		result[1] = 0;
+		result[2] = 0;
 	}
 	else if (result[2] != 0) {
 		if (Keyboard::isKeyPressed(Keyboard::Num3)) {
 			int ret = result[2];
+			exit = char(2);
+			result[0] = 0;
+			result[1] = 0;
+			result[2] = 0;
 		}
 	}
 	else {
+		
 		return;
 	}
-	result[0] = 0;
-	result[1] = 0;
-	result[2] = 0;
+	
 	//Aufruf eines set-Events der Zeile ret
+
 }
 
 
