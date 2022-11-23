@@ -3,20 +3,20 @@
 using namespace std;
 using namespace sf;
 
-int Ressource::typc = 1;
+int Ressource::typc = 0;
 
 Ressource::~Ressource() {											//Destruktor
-
+	return;
 }
 
-Ressource::Ressource(string name, float menge) {					//Konstruktor
+Ressource::Ressource(string name, int menge) {					//Konstruktor
 	this->name = name;
 	this->menge = menge;
 	typ = typc;
 	typc++;
 }
 
-float Ressource::getmenge(){										//get und set Methoden
+int Ressource::getmenge(){										//get und set Methoden
 	return menge;
 }
 
@@ -28,11 +28,11 @@ void Ressource::setname(string name) {
 	this->name = name;
 }
 
-void Ressource::setmenge(float menge){
+void Ressource::setmenge(int menge){
 	this->menge = menge;
 }
 
-void Ressource::addmenge(float menge) {								//Änderung der Werte
+void Ressource::addmenge(int menge) {								//Änderung der Werte
 	this->menge += menge;
 }
 
@@ -43,34 +43,20 @@ void Ressource::darstellen(RenderWindow* window){
 	font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
 
 	Text text("", font);
-
-	if (typ == 1) {													//Textur für Essen
-		textur.loadFromFile("ressources/grafics/apfel.png");
-	}
-	else if (typ == 2) {											//Textur für Wasser
-		textur.loadFromFile("ressources/grafics/wasser.png");
-	}
-
-	Sprite sprite; 
+	
+	textur.loadFromFile("ressources/grafics/" + name + ".png"); //Laden der jeweiligen Textur
+	Sprite sprite;
 	sprite.setTexture(textur);
 
 	int anzahl = menge;
 
-	if (typ == 1) {													//Laden der Sprites und deren größe für Essen
 
-		sprite.setPosition(Vector2f(10, 10));
-		sprite.scale(Vector2f(0.05, 0.05));
 
-		text.setPosition(55, 7);
-	}
+	sprite.setPosition(Vector2f(10 + 170 * typ, 10));
+	sprite.scale(Vector2f(0.1, 0.1));								//Laden der Sprite und scaierung, Position abhängig von dem Index (typ)
 
-	else if (typ == 2) {											//Sprites für Wasser
+	text.setPosition(70 + 170 * typ, 7);
 
-		sprite.setPosition(Vector2f(140, 5));
-		sprite.scale(Vector2f(0.125, 0.125));
-
-		text.setPosition(185, 7);
-	}
 
 	text.setCharacterSize(40);										//Anzeigen der konkreten Menge mit einem X und der richtigen Schriftgröße
 	text.setString(to_string(anzahl) + "X");
