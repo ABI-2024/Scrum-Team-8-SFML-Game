@@ -59,6 +59,7 @@ void Ressource::darstellen(RenderWindow* window){
 
 
 	text.setCharacterSize(40);										//Anzeigen der konkreten Menge mit einem X und der richtigen Schriftgröße
+	text.setFillColor(Color(0, 0, 0, 255));
 	text.setString(to_string(anzahl) + "X");
 	
 	window->draw(sprite);											//finale ausgabe

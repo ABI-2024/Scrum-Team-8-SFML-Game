@@ -18,6 +18,9 @@ private:
 	//(muss sich unter ressources/grafics befinden mit einer skalierung von 1270 zu 240)
 
 
+	sf::Sound soundeffect;
+	SoundBuffer buffer;
+
 //zu dem Tastatur einlesen und Aufrufen der Folgeevents
 	int result[3];
 

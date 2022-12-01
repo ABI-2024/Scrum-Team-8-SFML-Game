@@ -1,12 +1,16 @@
 #include "stdafx.h"
-#include <random>
-#define maxsongs 1
+
 
 using namespace sf;
 using namespace std;
 
 
 int main() {
+	Sprite test;
+	Texture testtxture;
+	testtxture.loadFromFile("ressources/grafics/background.png");
+	test.setTexture(testtxture);
+	test.setPosition(0, 0);
 	Textausgabe txtausgabe;
 	Datum date(1, 1, 1999, 1);
 	bool g = true, f = true;
@@ -17,9 +21,7 @@ int main() {
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
 
-
-	Music hintergrundmusik;
-
+	Audio music;
 
 	txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
@@ -55,7 +57,7 @@ int main() {
 		}
 		counter++;
 		window.clear();
-
+		window.draw(test);
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
@@ -66,21 +68,8 @@ int main() {
 
 		window.display();
 
-
-
-		//Music checker
-		if (hintergrundmusik.getStatus() != Music::Playing) {
-			hintergrundmusik.stop();
-
-			std::random_device rd; // obtain a random number from hardware
-			std::mt19937 gen(rd()); // seed the generator
-			std::uniform_int_distribution<> distr(1, maxsongs); // define the range
-
-
-			if (!hintergrundmusik.openFromFile("ressources/audio/music" + to_string(distr(gen)) + ".wav")) {
-				return -1;
-			}
-			hintergrundmusik.play();
-		}
+		
+		music.update();
+	
 	}
 }
