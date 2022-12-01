@@ -16,6 +16,7 @@
     <ClCompile Include="Textausgabe.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Grafik.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Datum.h">
@@ -31,6 +32,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Ereignis.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Grafik.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
