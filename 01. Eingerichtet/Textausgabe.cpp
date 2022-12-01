@@ -16,6 +16,9 @@ Textausgabe::Textausgabe() {
 	result[0] = 0;
 	result[1] = 0;
 	result[2] = 0;
+	buffer.loadFromFile("ressources/audio/typesound.wav");
+	soundeffect.setBuffer(buffer);
+	soundeffect.setVolume(3);
 }
 
 void Textausgabe::setBackground(std::string bg) {
@@ -78,11 +81,14 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			}
 		}
 		if (ausgeg >= text.length()) {	//Ende der Ausgabe
+
+			if (soundeffect.getStatus() == Sound::Playing) {
+				soundeffect.pause();
+			}
 			
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			cont = false;
 			if (exit == char(1)) {
-				//Aufruf der Einlese-Funktion?
 
 				this->keyboardInsertion();
 
@@ -116,9 +122,15 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 		else if (maxlines != 5) {
 
 			ausgabe.setString(text.substr(from, ausgeg - from));
+			if (soundeffect.getStatus() != Sound::Playing) {
+				soundeffect.play();
+			}
 
 		}
 		else {
+			if (soundeffect.getStatus() == Sound::Playing) {
+				soundeffect.pause();
+			}
 			cont = false;
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			if (Keyboard::isKeyPressed(Keyboard::Space)) {
@@ -150,8 +162,6 @@ Textausgabe::~Textausgabe() {
 
 
 //Einlesen der Antwortmöglickeiten durch die Tastatur
-
-
 
 void Textausgabe::setResult(int a, int b, int c) {
 	exit = char(1);
@@ -194,7 +204,6 @@ void Textausgabe::keyboardInsertion() {
 	//Aufruf eines set-Events der Zeile ret
 
 }
-
 
 //Allwertige, vereinfachte Einlesefunktion
 // 

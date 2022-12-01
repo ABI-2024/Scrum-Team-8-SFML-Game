@@ -1,12 +1,15 @@
 #include "stdafx.h"
-#include <random>
-#define maxsongs 1
+
 
 using namespace sf;
 using namespace std;
 
 
 int main() {
+
+	Texture testtxture;
+	testtxture.loadFromFile("ressources/grafics/background.png");
+
 	Textausgabe txtausgabe;
 	Datum date(1, 1, 1999, 1);
 	bool g = true, f = true;
@@ -17,49 +20,23 @@ int main() {
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
 
-
-	Music hintergrundmusik;
-
+	Audio music;
 
 	txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 
-		if (essen.getmenge() == 99) {
-			g = false;
-		}
-		else if (essen.getmenge() == 1) {
-			g = true;
-		}
-		if (wasser.getmenge() == 99) {
-			f = true;
-		}
-		else if (wasser.getmenge() == 1) {
-			f = false;
-		}
-		if (f) {
-			wasser.addmenge(-1);
-		}
-		else {
-			wasser.addmenge(1);
-		}
-		if (g) {
-			essen.addmenge(1);
-		}
-		else {
-			essen.addmenge(-1);
-		}
-		if (counter >= 20) {
-			date.add(1);
-			date.update();
-			counter = 0;
-		}
+
+		date.update();
+
 		counter++;
 		window.clear();
-
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
-		if (!txtausgabe.display(&window)) {
+
+
+		if (!txtausgabe.display(&window)) {	//temporäre aufruf der neuen events
+			date.add(1);
 			txtausgabe.einlesen(newevent());
 
 		}
@@ -67,20 +44,7 @@ int main() {
 		window.display();
 
 
+		music.update();
 
-		//Music checker
-		if (hintergrundmusik.getStatus() != Music::Playing) {
-			hintergrundmusik.stop();
-
-			std::random_device rd; // obtain a random number from hardware
-			std::mt19937 gen(rd()); // seed the generator
-			std::uniform_int_distribution<> distr(1, maxsongs); // define the range
-
-
-			if (!hintergrundmusik.openFromFile("ressources/audio/music" + to_string(distr(gen)) + ".wav")) {
-				return -1;
-			}
-			hintergrundmusik.play();
-		}
 	}
 }

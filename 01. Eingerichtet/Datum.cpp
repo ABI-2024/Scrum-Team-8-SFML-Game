@@ -173,7 +173,7 @@ void Datum::display(sf::RenderWindow* window) {		//Zeigt das Datum mit Wochentag
 	Text ausgabe(wochentag + ", den " + to_string(tag) + "." + to_string(monat) + "." + to_string(jahr), font);
 	ausgabe.setCharacterSize(20);
 	ausgabe.setLetterSpacing(0.3f);
-	ausgabe.setFillColor(Color(255, 255, 255, 255));
+	ausgabe.setFillColor(Color(0, 0, 0, 255));
 	ausgabe.setPosition(500, 15);
 
 	window->draw(ausgabe);
