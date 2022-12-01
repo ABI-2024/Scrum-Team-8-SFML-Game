@@ -89,7 +89,6 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			cont = false;
 			if (exit == char(1)) {
-				//Aufruf der Einlese-Funktion?
 
 				this->keyboardInsertion();
 

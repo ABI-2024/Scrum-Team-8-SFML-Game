@@ -6,11 +6,10 @@ using namespace std;
 
 
 int main() {
-	Sprite test;
+
 	Texture testtxture;
 	testtxture.loadFromFile("ressources/grafics/background.png");
-	test.setTexture(testtxture);
-	test.setPosition(0, 0);
+
 	Textausgabe txtausgabe;
 	Datum date(1, 1, 1999, 1);
 	bool g = true, f = true;
@@ -26,50 +25,26 @@ int main() {
 	txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 
-		if (essen.getmenge() == 99) {
-			g = false;
-		}
-		else if (essen.getmenge() == 1) {
-			g = true;
-		}
-		if (wasser.getmenge() == 99) {
-			f = true;
-		}
-		else if (wasser.getmenge() == 1) {
-			f = false;
-		}
-		if (f) {
-			wasser.addmenge(-1);
-		}
-		else {
-			wasser.addmenge(1);
-		}
-		if (g) {
-			essen.addmenge(1);
-		}
-		else {
-			essen.addmenge(-1);
-		}
-		if (counter >= 20) {
-			date.add(1);
-			date.update();
-			counter = 0;
-		}
+
+		date.update();
+
 		counter++;
 		window.clear();
-		window.draw(test);
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
-		if (!txtausgabe.display(&window)) {
+
+
+		if (!txtausgabe.display(&window)) {	//temporäre aufruf der neuen events
+			date.add(1);
 			txtausgabe.einlesen(newevent());
 
 		}
 
 		window.display();
 
-		
+
 		music.update();
-	
+
 	}
 }

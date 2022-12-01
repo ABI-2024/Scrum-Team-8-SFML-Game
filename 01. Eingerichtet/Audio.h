@@ -18,7 +18,7 @@ public:
 	Music* getMusicObject();
 	void changeSong(string filename);
 	void songRadio();
-	void nextSong();
+	void skipSong();
 	//void setIntensity(int iIntensity);
 	void setVolume(float volume);
 };
