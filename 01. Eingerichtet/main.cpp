@@ -15,6 +15,8 @@ int main() {
 
 	int counter = 0;
 
+	Grafik propaganda("propaganda_test");
+
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 
@@ -24,6 +26,8 @@ int main() {
 	background.loadFromFile("ressources/grafics/hintergrund_tag.png");
 
 	Sprite hintergrund(background);
+
+	txtausgabe.einlesen(newevent());
 
 	while (window.isOpen()) {
 
@@ -56,17 +60,26 @@ int main() {
 		//	date.update();
 		//	counter = 0;
 		//}
-		counter++;
+		/*counter++;*/
+
+
+
 		window.clear();
 
 		window.draw(hintergrund);
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
-		//if (!txtausgabe.display(&window)) {
-		//	txtausgabe.einlesen(newevent());
-		//	
-		//}
+
+
+		if (!txtausgabe.display(&window)) {
+			propaganda.newimage("ses");
+			txtausgabe.einlesen(newevent());
+			
+		}
+		else {
+			propaganda.darstellen(&window);
+		}
 
 		window.display();
 
