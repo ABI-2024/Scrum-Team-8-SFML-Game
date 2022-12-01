@@ -30,17 +30,14 @@ string ereignisse::newevent(int eventindex) {
 	else { rnd = eventindex; }
 
 	for (int i = 0; !file.eof(); i++) {
-
 		if (i == rnd) {
 			getline(file, temp, ';');
 			text = temp;
 
 			getline(file, temp, ';');
 			antworten[0] = temp;
-
 			getline(file, temp, ';');
 			antworten[1] = temp;
-
 			getline(file, temp, ';');
 			antworten[2] = temp;
 
@@ -80,6 +77,8 @@ string ereignisse::newevent(int eventindex) {
 	}
 
 	// Klasse Ressource aufrufen (später mit Zufallszahl)
+	
+
 
 	file.close();
 	return text;
@@ -97,3 +96,23 @@ void ereignisse::setRessourcePointers(Ressource* objekte[2]) {
 	water = objekte[0];
 	food = objekte[1];
 };
+
+
+
+void ereignisse::processAntwort(int index) {
+	if (index == 1) {
+		water->addmenge(-(rand() % awater[1] + awater[0]));
+		food->addmenge(-(rand() % afood[1] + afood[0]));
+	}
+
+	if (index == 2) {
+		water->addmenge(-(rand() % bwater[1] + bwater[0]));
+		food->addmenge(-(rand() % bfood[1] + bfood[0]));
+	}
+
+	if (index == 3) {
+		water->addmenge(-(rand() % cwater[1] + cwater[0]));
+		food->addmenge(-(rand() % cfood[1] + cfood[0]));
+	}
+	ereignisse::newevent(0);
+}

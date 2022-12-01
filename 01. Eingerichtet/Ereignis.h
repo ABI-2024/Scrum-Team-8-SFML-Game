@@ -20,6 +20,7 @@ public:
 	string getAntwort(int);
 	string newevent(int);
 	void setRessourcePointers(Ressource* objekte[2]);
+	void processAntwort(int);
 
 
 };
