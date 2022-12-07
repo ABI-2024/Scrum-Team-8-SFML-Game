@@ -22,7 +22,7 @@ int main() {
 
 	Audio music;
 
-	txtausgabe.setResult(100, 200, 300);
+	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 
 
@@ -38,6 +38,7 @@ int main() {
 		if (!txtausgabe.display(&window)) {	//temporäre aufruf der neuen events
 			date.add(1);
 			txtausgabe.einlesen(newevent());
+			essen.addmenge(42);
 
 		}
 

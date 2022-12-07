@@ -11,7 +11,7 @@ Textausgabe::Textausgabe() {
 	cont = true;
 	from = 0;
 	maxlines = 0;
-	exit = true;
+	exit = char(0);
 	txtbackground = "textfeld.png";
 	result[0] = 0;
 	result[1] = 0;
@@ -69,14 +69,30 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 		ausgabe.setPosition(40, 500);
 
 		if (cont) {
-			tics++;
-			if (tics >= 1) {
+			if (Keyboard::isKeyPressed(Keyboard::Space)) {				//schaut, ob die Leertaste gedrückt ist und skippt, wenn nötig die langsame Textausgabe
 
+				while (ausgeg <= text.length()) {
+					if (text[ausgeg] == '\n') {
+
+						maxlines++;
+						
+						break;
+					}
+					ausgeg++;
+				}
 				ausgeg++;
-				tics = 0;
-				if (text[ausgeg] == '\n') {
+			}
+			else {														//Die normale Animation, wenn es keinen schnelldurchlauf gibt
+				tics++;
+				if (tics >= 1) {
 
-					maxlines++;
+					tics = 0;
+					if (text[ausgeg] == '\n') {
+
+						maxlines++;
+					}
+
+					ausgeg++;
 				}
 			}
 		}
@@ -85,7 +101,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			if (soundeffect.getStatus() == Sound::Playing) {
 				soundeffect.pause();
 			}
-			
+
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			cont = false;
 			if (exit == char(1)) {
@@ -94,7 +110,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 			}
 			else if (exit == char(0)) {
-				if (Keyboard::isKeyPressed(Keyboard::Space)) {
+				if (Keyboard::isKeyPressed(Keyboard::Enter)) {
 
 					ausgabe.setString("");
 					text = "leer";
@@ -120,7 +136,6 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 		}
 		else if (maxlines != 5) {
-
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			if (soundeffect.getStatus() != Sound::Playing) {
 				soundeffect.play();
@@ -133,17 +148,16 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			}
 			cont = false;
 			ausgabe.setString(text.substr(from, ausgeg - from));
-			if (Keyboard::isKeyPressed(Keyboard::Space)) {
+			if (Keyboard::isKeyPressed(Keyboard::Enter)) {
 				maxlines = 0;
 
-				from = ausgeg + 1;
-				ausgeg++;
+				from = ausgeg ;
 				cont = true;
 			}
 
 		}
 
-
+		cout << maxlines;
 		window->draw(txtbg);
 		window->draw(ausgabe);
 		return true;
@@ -197,10 +211,10 @@ void Textausgabe::keyboardInsertion() {
 		}
 	}
 	else {
-		
+
 		return;
 	}
-	
+
 	//Aufruf eines set-Events der Zeile ret
 
 }
