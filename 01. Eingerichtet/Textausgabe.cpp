@@ -75,6 +75,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 					if (text[ausgeg] == '\n') {
 
 						maxlines++;
+						
 						break;
 					}
 					ausgeg++;
@@ -149,14 +150,13 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			if (Keyboard::isKeyPressed(Keyboard::Enter)) {
 				maxlines = 0;
 
-				from = ausgeg + 1;
-				ausgeg++;
+				from = ausgeg ;
 				cont = true;
 			}
 
 		}
 
-
+		cout << maxlines;
 		window->draw(txtbg);
 		window->draw(ausgabe);
 		return true;
