@@ -86,12 +86,13 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 				tics++;
 				if (tics >= 1) {
 
-					ausgeg++;
 					tics = 0;
 					if (text[ausgeg] == '\n') {
 
 						maxlines++;
 					}
+
+					ausgeg++;
 				}
 			}
 		}
