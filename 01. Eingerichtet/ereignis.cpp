@@ -92,11 +92,6 @@ string ereignisse::getAntwort(int index) {
 	return antworten[index+1];
 }
 
-void ereignisse::setRessourcePointers(Ressource* objekte[2]) {
-	water = objekte[0];
-	food = objekte[1];
-};
-
 
 
 void ereignisse::processAntwort(int index) {
