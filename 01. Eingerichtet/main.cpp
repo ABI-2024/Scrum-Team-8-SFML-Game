@@ -31,35 +31,35 @@ int main() {
 
 	while (window.isOpen()) {
 
-		//if (essen.getmenge() == 99) {
-		//	g = false;
-		//}
-		//else if (essen.getmenge() == 1) {
-		//	g = true;
-		//}
-		//if (wasser.getmenge() == 99) {
-		//	f = true;
-		//}
-		//else if (wasser.getmenge() == 1) {
-		//	f = false;
-		//}
-		//if (f) {
-		//	wasser.addmenge(-1);
-		//}
-		//else {
-		//	wasser.addmenge(1);
-		//}
-		//if (g) {
-		//	essen.addmenge(1);
-		//}
-		//else {
-		//	essen.addmenge(-1);
-		//}
-		//if (counter >= 20) {
-		//	date.add(1);
-		//	date.update();
-		//	counter = 0;
-		//}
+		if (essen.getmenge() == 99) {
+			g = false;
+		}
+		else if (essen.getmenge() == 1) {
+			g = true;
+		}
+		if (wasser.getmenge() == 99) {
+			f = true;
+		}
+		else if (wasser.getmenge() == 1) {
+			f = false;
+		}
+		if (f) {
+			wasser.addmenge(-1);
+		}
+		else {
+			wasser.addmenge(1);
+		}
+		if (g) {
+			essen.addmenge(1);
+		}
+		else {
+			essen.addmenge(-1);
+		}
+		if (counter >= 20) {
+			date.add(1);
+			date.update();
+			counter = 0;
+		}
 		/*counter++;*/
 
 
