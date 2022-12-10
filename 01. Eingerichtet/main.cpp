@@ -1,10 +1,15 @@
 #include "stdafx.h"
 
+
 using namespace sf;
 using namespace std;
 
 
 int main() {
+
+	Texture testtxture;
+	testtxture.loadFromFile("ressources/grafics/background.png");
+
 	Textausgabe txtausgabe;
 	Datum date(1, 1, 1999, 1);
 
@@ -15,67 +20,33 @@ int main() {
 
 	int counter = 0;
 
-	Grafik propaganda("propaganda_test");
 
-	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
-	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
+	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT Ã„NDERN!
+	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT Ã„NDERN!
 
-	txtausgabe.setResult(100, 200, 300);
+	Audio music;
 
-	Texture background; // hintergrund
-	background.loadFromFile("ressources/grafics/hintergrund_tag.png");
-
-	Sprite hintergrund(background);
-
-	txtausgabe.einlesen(newevent());
-
+	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 
-		if (essen.getmenge() == 99) {
-			g = false;
-		}
-		else if (essen.getmenge() == 1) {
-			g = true;
-		}
-		if (wasser.getmenge() == 99) {
-			f = true;
-		}
-		else if (wasser.getmenge() == 1) {
-			f = false;
-		}
-		if (f) {
-			wasser.addmenge(-1);
-		}
-		else {
-			wasser.addmenge(1);
-		}
-		if (g) {
-			essen.addmenge(1);
-		}
-		else {
-			essen.addmenge(-1);
-		}
-		if (counter >= 20) {
-			date.add(1);
-			date.update();
-			counter = 0;
-		}
-		/*counter++;*/
 
+		date.update();
 
-
+		counter++;
 		window.clear();
 
-		window.draw(hintergrund);
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
 
 
-		if (!txtausgabe.display(&window)) {
-			propaganda.newimage("ses");
+
+		if (!txtausgabe.display(&window)) {	//temporÃ¤re aufruf der neuen events
+			date.add(1);
+
 			txtausgabe.einlesen(newevent());
-			
+			essen.addmenge(42);
+
 		}
 		else {
 			propaganda.darstellen(&window);
@@ -83,6 +54,8 @@ int main() {
 
 		window.display();
 
+
+		music.update();
 
 	}
 }
