@@ -186,33 +186,38 @@ void Textausgabe::setResult(int a, int b, int c) {
 }
 
 void Textausgabe::keyboardInsertion() {
-
-	if (Keyboard::isKeyPressed(Keyboard::Num1)) {
-		int ret = result[0];
-		exit = char(2);
-		result[0] = 0;
-		result[1] = 0;
-		result[2] = 0;
-	}
-	else if (Keyboard::isKeyPressed(Keyboard::Num2)) {
-		int ret = result[1];
-		exit = char(2);
-		result[0] = 0;
-		result[1] = 0;
-		result[2] = 0;
-	}
-	else if (result[2] != 0) {
-		if (Keyboard::isKeyPressed(Keyboard::Num3)) {
-			int ret = result[2];
+	if (result[1] != 0) { //schaut ob es nur eine Antwortmöglichkeit / Folge gibt, setzt sonst die einzige mögichkeit direkt die Folge
+		if (Keyboard::isKeyPressed(Keyboard::Num1)) {
+			int ret = result[0];
 			exit = char(2);
 			result[0] = 0;
 			result[1] = 0;
 			result[2] = 0;
 		}
+		else if (Keyboard::isKeyPressed(Keyboard::Num2)) {
+			int ret = result[1];
+			exit = char(2);
+			result[0] = 0;
+			result[1] = 0;
+			result[2] = 0;
+		}
+		else if (result[2] != 0) {
+			if (Keyboard::isKeyPressed(Keyboard::Num3)) {
+				int ret = result[2];
+				exit = char(2);
+				result[0] = 0;
+				result[1] = 0;
+				result[2] = 0;
+			}
+		}
+		else {
+
+			return;
+		}
 	}
 	else {
-
-		return;
+		int ret = result[0];
+		exit = char(0);
 	}
 
 	//Aufruf eines set-Events der Zeile ret

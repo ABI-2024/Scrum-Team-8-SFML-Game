@@ -1,53 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Datum.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Ereignis.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Textausgabe.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Ressource.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Textausgabe.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Grafik.cpp" />
-    <ClCompile Include="Audio.cpp">
+    <ClCompile Include="Grafik.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Ereignis.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Datum.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Headerdateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Datum.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Ressource.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Textausgabe.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="Audio.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Ereignis.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Grafik.h">
-    <ClInclude Include="Audio.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Ressource.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Textausgabe.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Quelldateien">
-      <UniqueIdentifier>{763df9d8-4103-43aa-bb8e-e81dd0a25625}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headerdateien">
-      <UniqueIdentifier>{ca87d2f7-3200-4595-aaa2-d9d7d54272ec}</UniqueIdentifier>
+      <UniqueIdentifier>{661e19a3-7968-4ea6-bc42-9ef970d49122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{ebf3ead8-86e9-4424-94f5-11519f397311}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

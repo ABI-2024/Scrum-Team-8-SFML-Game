@@ -28,7 +28,7 @@ int main() {
 
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
-
+		
 
 		date.update();
 
@@ -44,13 +44,11 @@ int main() {
 		if (!txtausgabe.display(&window)) {	//temporäre aufruf der neuen events
 			date.add(1);
 
-			txtausgabe.einlesen(newevent());
+			
 			essen.addmenge(42);
 
 		}
-		else {
-			propaganda.darstellen(&window);
-		}
+		
 
 		window.display();
 

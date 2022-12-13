@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-string ereignisse::newevent(int eventindex) {
+string Ereignis::newevent(int eventindex) {
 	string datastore = "ressources/events.csv";
 
 	srand((unsigned)time(0));
@@ -84,17 +84,17 @@ string ereignisse::newevent(int eventindex) {
 	return text;
 }
 
-string ereignisse::getText() {
+string Ereignis::getText() {
 	return text;
 }
 
-string ereignisse::getAntwort(int index) {
+string Ereignis::getAntwort(int index) {
 	return antworten[index+1];
 }
 
 
 
-void ereignisse::processAntwort(int index) {
+void Ereignis::processAntwort(int index) {
 	if (index == 1) {
 		water->addmenge(-(rand() % awater[1] + awater[0]));
 		food->addmenge(-(rand() % afood[1] + afood[0]));
@@ -109,5 +109,5 @@ void ereignisse::processAntwort(int index) {
 		water->addmenge(-(rand() % cwater[1] + cwater[0]));
 		food->addmenge(-(rand() % cfood[1] + cfood[0]));
 	}
-	ereignisse::newevent(0);
+	Ereignis::newevent(0);
 }

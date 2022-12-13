@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.h"
 
-class ereignisse {
+class Ereignis {
 private:
 	static string text;
 	static string antworten[3];
