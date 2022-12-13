@@ -16,6 +16,7 @@
     <ClCompile Include="Textausgabe.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Grafik.cpp" />
     <ClCompile Include="Audio.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -36,6 +37,7 @@
     <ClInclude Include="Ereignis.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Grafik.h">
     <ClInclude Include="Audio.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>

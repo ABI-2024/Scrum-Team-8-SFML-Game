@@ -12,13 +12,17 @@ int main() {
 
 	Textausgabe txtausgabe;
 	Datum date(1, 1, 1999, 1);
+
 	bool g = true, f = true;
+
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
+
 	int counter = 0;
 
-	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
-	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
+
+	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT Ã„NDERN!
+	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT Ã„NDERN!
 
 	Audio music;
 
@@ -30,16 +34,22 @@ int main() {
 
 		counter++;
 		window.clear();
+
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
 
 
-		if (!txtausgabe.display(&window)) {	//temporäre aufruf der neuen events
+
+		if (!txtausgabe.display(&window)) {	//temporÃ¤re aufruf der neuen events
 			date.add(1);
+
 			txtausgabe.einlesen(newevent());
 			essen.addmenge(42);
 
+		}
+		else {
+			propaganda.darstellen(&window);
 		}
 
 		window.display();

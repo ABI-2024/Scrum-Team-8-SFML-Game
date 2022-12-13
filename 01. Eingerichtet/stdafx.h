@@ -7,4 +7,5 @@
 #include "Datum.h"
 #include "Ereignis.h"
 #include "Ressource.h"
+#include "Grafik.h"
 #include "Audio.h"

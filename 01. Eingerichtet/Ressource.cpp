@@ -6,7 +6,7 @@ using namespace sf;
 int Ressource::typc = 0;
 
 Ressource::~Ressource() {											//Destruktor
-	return;
+
 }
 
 Ressource::Ressource(string name, int menge) {					//Konstruktor
