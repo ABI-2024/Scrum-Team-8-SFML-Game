@@ -4,15 +4,19 @@
 using namespace std;
 using namespace sf;
 
-Textausgabe::Textausgabe() {
-	text = "leer";
-	ausgeg = 0;
-	tics = 0;
-	cont = true;
-	from = 0;
-	maxlines = 0;
-	exit = char(0);
-	txtbackground = "textfeld.png";
+
+string Textausgabe::text = "leer";
+int Textausgabe::ausgeg = 0;
+int Textausgabe::tics = 0;
+bool Textausgabe::cont = true;
+int Textausgabe::from = 0;
+int Textausgabe::maxlines = 0;
+char Textausgabe::exit = char(0);
+string Textausgabe::txtbackground = "textfeld.png";
+Sound Textausgabe::soundeffect = Sound();
+SoundBuffer Textausgabe::buffer = SoundBuffer();
+int* Textausgabe::result = new int[3];
+void Textausgabe::init() {
 	result[0] = 0;
 	result[1] = 0;
 	result[2] = 0;
@@ -20,7 +24,6 @@ Textausgabe::Textausgabe() {
 	soundeffect.setBuffer(buffer);
 	soundeffect.setVolume(3);
 }
-
 void Textausgabe::setBackground(std::string bg) {
 	txtbackground = bg;
 }
@@ -75,7 +78,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 					if (text[ausgeg] == '\n') {
 
 						maxlines++;
-						
+
 						break;
 					}
 					ausgeg++;
@@ -106,7 +109,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			cont = false;
 			if (exit == char(1)) {
 
-				this->keyboardInsertion();
+				keyboardInsertion();
 
 			}
 			else if (exit == char(0)) {
@@ -151,7 +154,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			if (Keyboard::isKeyPressed(Keyboard::Enter)) {
 				maxlines = 0;
 
-				from = ausgeg ;
+				from = ausgeg;
 				cont = true;
 			}
 
@@ -165,10 +168,6 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 }
 
-
-Textausgabe::~Textausgabe() {
-	return;
-}
 
 
 
@@ -229,7 +228,7 @@ void Textausgabe::keyboardInsertion() {
 //Wenn followup = 0 ist, fällt jedes einlesen von Tastatureingaben und somit jede Folge darauf nicht statt:
 //standardinput sollte sein: (<auszugebener Text>, <Zeile des Folgeereignis 1>,<des 2.>, <des 3. ( = 0, wenn es nur 2 gibt)>, <1> (die 1 für eine folgendes Texteinlesen))
 void Textausgabe::uniInsertion(string text, int resultA, int resultB, int resultC) {
-	this->einlesen(text);
+	einlesen(text);
 	if (resultA != 0) {
 
 		exit = char(1);

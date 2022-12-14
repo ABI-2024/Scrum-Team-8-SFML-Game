@@ -1,5 +1,7 @@
 #pragma once
-#include "stdafx.h"
+#include "Textausgabe.h"
+#include "Ressource.h"
+#include <string>
 
 class Ereignis {
 private:
@@ -16,10 +18,10 @@ private:
 	static Ressource* food;
 
 public:
-	string getText();
-	string getAntwort(int);
-	string newevent(int);
-	void processAntwort(int);
+	static string getText();
+	static string getAntwort(int);
+	static string newevent(int);
+	static void processAntwort(int);
 
 
 };

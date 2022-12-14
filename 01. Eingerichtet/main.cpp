@@ -6,11 +6,11 @@ using namespace std;
 
 
 int main() {
-
+	Textausgabe::init();
 	Texture testtxture;
 	testtxture.loadFromFile("ressources/grafics/background.png");
 
-	Textausgabe txtausgabe;
+	
 	Datum date(1, 1, 1999, 1);
 
 	bool g = true, f = true;
@@ -41,11 +41,11 @@ int main() {
 
 
 
-		if (!txtausgabe.display(&window)) {	//temporäre aufruf der neuen events
+		if (Textausgabe::display(&window)) {	//temporäre aufruf der neuen events
 			date.add(1);
 
 			
-			essen.addmenge(42);
+			Ereignis::newevent(0);
 
 		}
 		

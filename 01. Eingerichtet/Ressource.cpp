@@ -53,9 +53,9 @@ void Ressource::darstellen(RenderWindow* window){
 
 
 	sprite.setPosition(Vector2f(10 + 170 * typ, 10));
-	sprite.scale(Vector2f(0.1, 0.1));								//Laden der Sprite und scaierung, Position abhängig von dem Index (typ)
+	sprite.scale(Vector2f(0.1f, 0.1f));								//Laden der Sprite und scaierung, Position abhängig von dem Index (typ)
 
-	text.setPosition(70 + 170 * typ, 7);
+	text.setPosition(70.f + 170.f * typ, 7.f);
 
 
 	text.setCharacterSize(40);										//Anzeigen der konkreten Menge mit einem X und der richtigen Schriftgröße
