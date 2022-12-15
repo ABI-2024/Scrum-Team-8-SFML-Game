@@ -23,6 +23,11 @@ private:
 
 
 public:
-
+	Person(Datum* bday, short age, char gender, std::string name);
+	~Person();
+	void update();
+	void hurt(int dmg);
+	void psyDmg(int dmg);
+	void calAge(Datum* date);
 };
 

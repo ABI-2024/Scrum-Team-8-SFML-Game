@@ -74,7 +74,6 @@ void Datum::update() {				//verrechnet den adder mit dem effektiven Datum und üb
 	}
 
 	calculatable = ((jahr) * 100 + monat) * 100 + tag;
-	cout << calculatable << endl;
 }
 
 string Datum::getWT() {
@@ -102,6 +101,10 @@ void Datum::display(sf::RenderWindow* window) {		//Zeigt das Datum mit Wochentag
 	ausgabe.setPosition(500, 15);
 
 	window->draw(ausgabe);
+}
+
+unsigned int Datum::getCalculatable() {
+	return this->calculatable;
 }
 
 void Datum::updateWochentag() {		//verrechnet die wtid (WochentagID) und wandelt den wochentag zu dem passenden um

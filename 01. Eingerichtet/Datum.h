@@ -24,6 +24,7 @@ public:
 	void update();
 	void updateWochentag();
 	string getWT();
+	unsigned int getCalculatable();
 	int getJahr();
 	int getMonat();
 	int getTag();
