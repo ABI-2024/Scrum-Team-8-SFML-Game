@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 string Ereignis::text;
 string Ereignis::antworten[3];
 int Ereignis::awater[2];
@@ -16,6 +15,7 @@ int Ereignis::cwater[2];
 int Ereignis::cfood[2];
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
+Textausgabe* Ereignis::txt;
 
 
 
@@ -86,10 +86,9 @@ string Ereignis::newevent(int eventindex) {
 		else { getline(file, temp, '\n'); }
 
 	}
-
 	// Klasse Ressource aufrufen (später mit Zufallszahl)
 	
-
+	txt->uniInsertion(text, 1, 2, 3)
 
 	file.close();
 	return text;
@@ -106,19 +105,30 @@ string Ereignis::getAntwort(int index) {
 
 
 void Ereignis::processAntwort(int index) {
+
 	if (index == 1) {
-		water->addmenge(-(rand() % awater[1] + awater[0]));
-		food->addmenge(-(rand() % afood[1] + afood[0]));
+		water->addmenge(rand() % (awater[1] - awater[0]) + awater[0]);
+		food->addmenge(rand() % (afood[1] - afood[0]) + afood[0]);
 	}
 
 	if (index == 2) {
-		water->addmenge(-(rand() % bwater[1] + bwater[0]));
-		food->addmenge(-(rand() % bfood[1] + bfood[0]));
+		water->addmenge(rand() % (bwater[1] - bwater[0]) + awater[0]);
+		food->addmenge(rand() % (afood[1] - afood[0]) + afood[0]);
+	}
 	}
 
 	if (index == 3) {
-		water->addmenge(-(rand() % cwater[1] + cwater[0]));
-		food->addmenge(-(rand() % cfood[1] + cfood[0]));
+		water->addmenge(rand() % cwater[1] + cwater[0]);
+		food->addmenge(rand() % cfood[1] + cfood[0]);
 	}
 	Ereignis::newevent(0);
+}
+
+void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
+	water = nwater;
+	food = nfood;
+}
+
+void Ereignis::setTxt(Textausgabe* ntxt) {
+	txt = ntxt;
 }

@@ -17,11 +17,15 @@ private:
 	static Ressource* water;
 	static Ressource* food;
 
+	static Textausgabe* txt;
+
 public:
 	static string getText();
 	static string getAntwort(int);
 	static string newevent(int);
 	static void processAntwort(int);
+	static void setRessources(Ressource*, Ressource*);
+	static void setTxt(Textausgabe*);
 
 
 };
