@@ -4,6 +4,7 @@
 using namespace sf;
 using namespace std;
 
+string EndCheck(Ressource essen, Ressource wasser); //Überprüfung zum Gameover
 
 int main() {
 	
