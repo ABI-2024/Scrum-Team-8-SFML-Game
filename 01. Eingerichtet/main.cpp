@@ -5,6 +5,8 @@ using namespace sf;
 using namespace std;
 
 string EndCheck(Ressource essen, Ressource wasser); //Überprüfung zum Gameover
+void EndLose(RenderWindow*, Audio* audio);										//Trigger vom Endscreen bei Niederlage
+void End(RenderWindow*, Audio* audio);											//Trigger vom Normalem Endscreen
 
 int main() {
 	

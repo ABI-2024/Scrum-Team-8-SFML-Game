@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
-#include <SFML/Audio.hpp>
+#include "Audio.h"
+#include "Datum.h"
 #include "Ressource.h"
 
 string EndCheck(Ressource essen, Ressource wasser) {
@@ -13,5 +14,26 @@ string EndCheck(Ressource essen, Ressource wasser) {
 		return "Wasser";
 	}
 
+	else {
+		return "ok";
+	}
+}
+
+void EndLose(RenderWindow* window, Audio* audio) {
+
+	int counter = 0;
+
+	window->clear();
+	window->display();
+
+
+
+	while (counter < 300) {
+		counter++;
+	}
+
+}
+
+void End(RenderWindow* window, Audio* audio) {
 
 }
