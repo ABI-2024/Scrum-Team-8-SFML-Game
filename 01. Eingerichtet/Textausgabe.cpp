@@ -4,34 +4,43 @@
 using namespace std;
 using namespace sf;
 
+Textausgabe::Textausgabe() {
+	text = "leer";
+	ausgeg = 0;
+	tics = 0;
+	cont = true;
+	from = 0;
+	maxlines = 0;
+	done = leave_after_enter;
+	txtbackground = "textfeld.png";
 
-string Textausgabe::text = "leer";
-int Textausgabe::ausgeg = 0;
-int Textausgabe::tics = 0;
-bool Textausgabe::cont = true;
-int Textausgabe::from = 0;
-int Textausgabe::maxlines = 0;
-char Textausgabe::exit = char(0);
-string Textausgabe::txtbackground = "textfeld.png";
-Sound Textausgabe::soundeffect = Sound();
-SoundBuffer Textausgabe::buffer = SoundBuffer();
-int* Textausgabe::result = new int[3];
-void Textausgabe::init() {
-	result[0] = 0;
-	result[1] = 0;
-	result[2] = 0;
+	awnser = 0;
 	buffer.loadFromFile("ressources/audio/typesound.wav");
 	soundeffect.setBuffer(buffer);
 	soundeffect.setVolume(3);
+
+	Texture* txtfeldbg = new Texture;
+	txtfeldbg->loadFromFile("ressources/grafics/" + txtbackground);
+	txtbg = Sprite(*txtfeldbg);
+	txtbg.setScale(1, 1);
+	txtbg.setPosition(5, 475);
+	Font* font = new Font;
+	font->loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
+	ausgabe = Text("", *font);
+
+	ausgabe.setLetterSpacing(0.5f);
+	ausgabe.setFillColor(Color(100, 50, 30, 255));
+	ausgabe.setPosition(40, 500);
 }
+
 void Textausgabe::setBackground(std::string bg) {
 	txtbackground = bg;
 }
 
-void Textausgabe::setExit(char insert) {					//Der char gibt an, ob ein Einlesen von Antwortmöglichkeiten auf die Ausgabe folgen soll
-	exit = insert;										// 0 => es gibt keine Folgeaktion von der Textausgabe extern
-}														// 1 => es gibt eine Folgeaktion
-														// 2 => die Folgeaktion ist vollständig durchgeführt
+void Textausgabe::setExit(leave insert) {					//Der enum gibt an, ob ein Einlesen von Antwortmöglichkeiten auf die Ausgabe folgen soll
+	done = insert;										// leave_after_enter => es gibt keine Folgeaktion von der Textausgabe extern
+}														// wait_for_input => es gibt eine Folgeaktion
+														// leave_immediatly => die Folgeaktion ist vollständig durchgeführt
 
 void Textausgabe::einlesen(std::string insert) {		//ließt den Text in die Textausgabe ein
 	if (insert.length() == 0) {
@@ -57,19 +66,6 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 		return false;
 	}
 	else {
-
-		Texture txtfeldbg;
-		txtfeldbg.loadFromFile("ressources/grafics/" + txtbackground);
-		Sprite txtbg(txtfeldbg);
-		txtbg.setScale(1, 1);
-		txtbg.setPosition(5, 475);
-		Font font;
-		font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
-		Text ausgabe("", font);
-
-		ausgabe.setLetterSpacing(0.5f);
-		ausgabe.setFillColor(Color(100, 50, 30, 255));
-		ausgabe.setPosition(40, 500);
 
 		if (cont) {
 			if (Keyboard::isKeyPressed(Keyboard::Space)) {				//schaut, ob die Leertaste gedrückt ist und skippt, wenn nötig die langsame Textausgabe
@@ -107,12 +103,12 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 			ausgabe.setString(text.substr(from, ausgeg - from));
 			cont = false;
-			if (exit == char(1)) {
+			if (done == wait_for_input) {
 
 				keyboardInsertion();
 
 			}
-			else if (exit == char(0)) {
+			else if (done == leave_after_enter) {
 				if (Keyboard::isKeyPressed(Keyboard::Enter)) {
 
 					ausgabe.setString("");
@@ -122,11 +118,15 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 					cont = true;
 					from = 0;
 					maxlines = 0;
+					Ereignis::processAntwort(awnser);
+					
 					return false;
+					
 				}
 			}
 			else {
-				exit = char(0);
+				
+				done = leave_after_enter;
 				ausgabe.setString("");
 				text = "leer";
 				ausgeg = 0;
@@ -134,7 +134,10 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 				cont = true;
 				from = 0;
 				maxlines = 0;
+				Ereignis::processAntwort(awnser);
+				
 				return false;
+				
 			}
 
 		}
@@ -160,7 +163,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 		}
 
-		cout << maxlines;
+
 		window->draw(txtbg);
 		window->draw(ausgabe);
 		return true;
@@ -176,68 +179,52 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 //Einlesen der Antwortmöglickeiten durch die Tastatur
 
-void Textausgabe::setResult(int a, int b, int c) {
-	exit = char(1);
-	result[0] = a;
-	result[1] = b;
-	result[2] = c;
-	return;
-}
+
 
 void Textausgabe::keyboardInsertion() {
-	if (result[1] != 0) { //schaut ob es nur eine Antwortmöglichkeit / Folge gibt, setzt sonst die einzige mögichkeit direkt die Folge
-		if (Keyboard::isKeyPressed(Keyboard::Num1)) {
-			int ret = result[0];
-			exit = char(2);
-			result[0] = 0;
-			result[1] = 0;
-			result[2] = 0;
-		}
-		else if (Keyboard::isKeyPressed(Keyboard::Num2)) {
-			int ret = result[1];
-			exit = char(2);
-			result[0] = 0;
-			result[1] = 0;
-			result[2] = 0;
-		}
-		else if (result[2] != 0) {
-			if (Keyboard::isKeyPressed(Keyboard::Num3)) {
-				int ret = result[2];
-				exit = char(2);
-				result[0] = 0;
-				result[1] = 0;
-				result[2] = 0;
-			}
-		}
-		else {
-
-			return;
+	//schaut ob es nur eine Antwortmöglichkeit / Folge gibt, setzt sonst die einzige mögichkeit direkt die Folge
+	
+	if (Keyboard::isKeyPressed(Keyboard::Num1)) {
+		awnser = 1;
+		done = leave_immediatly;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Num2)) {
+		awnser = 2;
+		done = leave_immediatly;
+		
+	}
+	else if (awnser > 2) {
+		if (Keyboard::isKeyPressed(Keyboard::Num3)) {
+			awnser = 3;
+			done = leave_immediatly;
+		
 		}
 	}
 	else {
-		int ret = result[0];
-		exit = char(0);
+		return;
 	}
-
-	//Aufruf eines set-Events der Zeile ret
-
 }
+
+
 
 //Allwertige, vereinfachte Einlesefunktion
 // 
 //Wenn followup = 0 ist, fällt jedes einlesen von Tastatureingaben und somit jede Folge darauf nicht statt:
 //standardinput sollte sein: (<auszugebener Text>, <Zeile des Folgeereignis 1>,<des 2.>, <des 3. ( = 0, wenn es nur 2 gibt)>, <1> (die 1 für eine folgendes Texteinlesen))
-void Textausgabe::uniInsertion(string text, int resultA, int resultB, int resultC) {
+void Textausgabe::uniInsertion(string text, int awnsers) {
 	einlesen(text);
-	if (resultA != 0) {
+	awnser = awnsers;
 
-		exit = char(1);
+	if (awnser == 0 || awnser == 1) {
+		done = leave_after_enter;
 	}
 	else {
-		exit = char(0);
+		done = wait_for_input;
 	}
-	result[0] = resultA;
-	result[1] = resultB;
-	result[2] = resultC;
+	return;
+}
+
+Textausgabe::~Textausgabe() {
+
 	return;
 }
