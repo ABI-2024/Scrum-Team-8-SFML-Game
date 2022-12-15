@@ -20,7 +20,10 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Audio.cpp">
-      <Filter>Headerdateien</Filter>
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Person.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +46,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Textausgabe.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

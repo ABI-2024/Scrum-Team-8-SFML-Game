@@ -6,11 +6,11 @@ using namespace std;
 
 
 int main() {
-
-	Texture testtxture;
-	testtxture.loadFromFile("ressources/grafics/background.png");
-
-	Textausgabe txtausgabe;
+	
+	Texture bgtxture;
+	bgtxture.loadFromFile("ressources/grafics/background.png");
+	Sprite background(bgtxture);
+	
 	Datum date(1, 1, 1999, 1);
 
 	bool g = true, f = true;
@@ -23,7 +23,7 @@ int main() {
 
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
-
+	Textausgabe txt;
 	Audio music;
 
 	//txtausgabe.setResult(100, 200, 300);
@@ -34,20 +34,23 @@ int main() {
 
 		counter++;
 		window.clear();
-
+		window.draw(background);
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
 
 
-
-		if (!txtausgabe.display(&window)) {	//temporäre aufruf der neuen events
+		if (!txt.display(&window)) {
+			txt.einlesen(Ereignis::newevent(0));
 			date.add(1);
-
-			
-			essen.addmenge(42);
-
 		}
+		//if (Textausgabe::display(&window)) {	//temporäre aufruf der neuen events
+		//	date.add(1);
+
+		//	
+		//	Ereignis::newevent(0);
+
+		//}
 		
 
 		window.display();

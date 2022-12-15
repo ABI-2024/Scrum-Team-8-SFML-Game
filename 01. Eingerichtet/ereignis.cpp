@@ -1,10 +1,21 @@
-#include "stdafx.h"
+#include "Ereignis.h"
 #include <ctime>
 #include <fstream> 
 #include <stdlib.h> 
 
 using namespace std;
 
+
+string Ereignis::text;
+string Ereignis::antworten[3];
+int Ereignis::awater[2];
+int Ereignis::afood[2];
+int Ereignis::bwater[2];
+int Ereignis::bfood[2];
+int Ereignis::cwater[2];
+int Ereignis::cfood[2];
+Ressource* Ereignis::water;
+Ressource* Ereignis::food;
 
 
 
@@ -34,7 +45,7 @@ string Ereignis::newevent(int eventindex) {
 			getline(file, temp, ';');
 			text = temp;
 
-			getline(file, temp, ';');
+		/*	getline(file, temp, ';');
 			antworten[0] = temp;
 			getline(file, temp, ';');
 			antworten[1] = temp;
@@ -69,7 +80,8 @@ string Ereignis::newevent(int eventindex) {
 			getline(file, temp, ';');
 			cfood[0] = stoi(temp);
 			getline(file, temp, '\n');
-			cfood[1] = stoi(temp);
+			cfood[1] = stoi(temp);*/
+			
 
 		}
 		else { getline(file, temp, '\n'); }

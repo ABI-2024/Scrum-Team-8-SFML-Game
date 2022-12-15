@@ -17,6 +17,7 @@ Datum::Datum(int itag, int imonat, int ijahr, int iwtid) {		//Parameterkonstrukt
 	jahr = ijahr;
 	wtid = iwtid % 7;
 	adder = 0;
+	calculatable = ((jahr) * 100 + monat) * 100 + tag;
 	this->updateWochentag();		//Ruft die funktion auf um den Wochentag aufgrund des wtid (wochentagindex) zu aktualisieren, welcher leichter zu verändern ist als ein string
 }
 Datum::~Datum() {
@@ -36,7 +37,7 @@ void Datum::update() {				//verrechnet den adder mit dem effektiven Datum und üb
 	while (!done) {
 		switch (monat)
 		{
-		case 1:
+		case 1:case 3: case 5: case 7: case 8: case 10: case 12:
 			if (tag > 31) {
 				tag -= 31;
 				monat++;
@@ -54,16 +55,8 @@ void Datum::update() {				//verrechnet den adder mit dem effektiven Datum und üb
 				done = true;
 			}
 			break;
-		case 3:
-			if (tag > 31) {
-				tag -= 31;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 4:
+
+		case 4: case 6: case 9:	case 11:
 			if (tag > 30) {
 				tag -= 30;
 				monat++;
@@ -72,84 +65,15 @@ void Datum::update() {				//verrechnet den adder mit dem effektiven Datum und üb
 				done = true;
 			}
 			break;
-		case 5:
-			if (tag > 31) {
-				tag -= 31;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 6:
-			if (tag > 30) {
-				tag -= 30;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 7:
-			if (tag > 31) {
-				tag -= 31;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 8:
-			if (tag > 31) {
-				tag -= 31;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 9:
-			if (tag > 30) {
-				tag -= 30;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 10:
-			if (tag > 31) {
-				tag -= 31;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 11:
-			if (tag > 30) {
-				tag -= 30;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
-		case 12:
-			if (tag > 31) {
-				tag -= 31;
-				monat++;
-			}
-			else {
-				done = true;
-			}
-			break;
+
 		default:
 			monat -= 12;
 			jahr++;
 			break;
 		}
 	}
+
+	calculatable = ((jahr) * 100 + monat) * 100 + tag;
 }
 
 string Datum::getWT() {
@@ -166,7 +90,7 @@ int Datum::getTag() {
 }
 
 void Datum::display(sf::RenderWindow* window) {		//Zeigt das Datum mit Wochentag in der Mitte am oberen Bildschirmrand an
-	
+
 	Font font;
 	font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
 
@@ -177,6 +101,10 @@ void Datum::display(sf::RenderWindow* window) {		//Zeigt das Datum mit Wochentag
 	ausgabe.setPosition(500, 15);
 
 	window->draw(ausgabe);
+}
+
+unsigned int Datum::getCalculatable() {
+	return this->calculatable;
 }
 
 void Datum::updateWochentag() {		//verrechnet die wtid (WochentagID) und wandelt den wochentag zu dem passenden um
