@@ -24,6 +24,7 @@
     <ClCompile Include="Grafik.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ereignis.cpp" />
+    <ClCompile Include="Person.cpp" />
     <ClCompile Include="Textausgabe.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="Datum.h" />
     <ClInclude Include="Ereignis.h" />
     <ClInclude Include="Grafik.h" />
+    <ClInclude Include="Person.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Textausgabe.h" />
     <ClCompile Include="Ressource.cpp" />

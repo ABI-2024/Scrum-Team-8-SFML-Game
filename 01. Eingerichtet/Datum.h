@@ -12,6 +12,7 @@ private:
 	int jahr;
 	int adder;
 	int wtid;
+	unsigned int calculatable; //eine pure Integer-Version des Datums um leichter Reichnen zu können
 	string wochentag;
 
 public:
@@ -23,6 +24,7 @@ public:
 	void update();
 	void updateWochentag();
 	string getWT();
+	unsigned int getCalculatable();
 	int getJahr();
 	int getMonat();
 	int getTag();
