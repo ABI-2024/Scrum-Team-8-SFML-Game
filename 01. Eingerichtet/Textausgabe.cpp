@@ -45,13 +45,15 @@ void Textausgabe::setExit(leave insert) {					//Der enum gibt an, ob ein Einlese
 
 void Textausgabe::einlesen(std::string insert) {		//ließt den Text in die Textausgabe ein
 	if (insert.length() == 0) {
+		
 		text = "leer";
 	}
 	else {
 		text = "";
 		for (int i = 0; i < insert.length(); i++) {
-
-			if (insert[i] == '§') {
+			
+			if (insert[i] == '#') {
+				
 				text = text + "\n";
 			}
 			else {
@@ -214,6 +216,7 @@ void Textausgabe::keyboardInsertion() {
 //standardinput sollte sein: (<auszugebener Text>, <Zeile des Folgeereignis 1>,<des 2.>, <des 3. ( = 0, wenn es nur 2 gibt)>, <1> (die 1 für eine folgendes Texteinlesen))
 void Textausgabe::uniInsertion(string text, int awnsers) {
 	einlesen(text);
+	
 
 	awnser = awnsers;
 

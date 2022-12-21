@@ -26,6 +26,9 @@ int main() {
 	Textausgabe txt;
 	Audio music;
 
+	Ereignis::setTxt(&txt);
+	Ereignis::setRessources(&essen, &wasser);
+
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 		
@@ -41,7 +44,7 @@ int main() {
 
 
 		if (!txt.display(&window)) {
-			txt.einlesen(Ereignis::newevent(0));
+			Ereignis::newevent(0);
 			date.add(1);
 		}
 		//if (Textausgabe::display(&window)) {	//temporäre aufruf der neuen events

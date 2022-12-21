@@ -2,11 +2,12 @@
 #include "Textausgabe.h"
 #include "Ressource.h"
 #include <string>
-
+class Textausgabe;
+class Ressource;
 class Ereignis {
 private:
 	static string text;
-	static string antworten[3];
+	static int antworten;
 	static int awater[2];
 	static int afood[2];
 	static int bwater[2];
@@ -21,7 +22,6 @@ private:
 
 public:
 	static string getText();
-	static string getAntwort(int);
 	static string newevent(int);
 	static void processAntwort(int);
 	static void setRessources(Ressource*, Ressource*);
