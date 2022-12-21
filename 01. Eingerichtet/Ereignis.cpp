@@ -45,7 +45,7 @@ string Ereignis::newevent(int eventindex) {
 			getline(file, temp, ';');
 			text = temp;
 
-		/*	getline(file, temp, ';');
+			getline(file, temp, ';');
 			antworten[0] = temp;
 			getline(file, temp, ';');
 			antworten[1] = temp;
@@ -80,8 +80,7 @@ string Ereignis::newevent(int eventindex) {
 			getline(file, temp, ';');
 			cfood[0] = stoi(temp);
 			getline(file, temp, '\n');
-			cfood[1] = stoi(temp);*/
-			
+			cfood[1] = stoi(temp);
 
 		}
 		else { getline(file, temp, '\n'); }
@@ -89,6 +88,18 @@ string Ereignis::newevent(int eventindex) {
 	}
 	// Klasse Ressource aufrufen (später mit Zufallszahl)
 	
+	int anzahlantworten;
+	if (antworten[2] == "nil") {
+		anzahlantworten = 2;
+	}
+	else if (antworten[1]=="nil") {
+		anzahlantworten = 1;
+	}
+	else if (antworten[0] == "nil") {
+		anzahlantworten = 0;
+	}
+
+
 	txt->uniInsertion(text, 1, 2, 3)
 
 	file.close();
