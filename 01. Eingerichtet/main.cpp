@@ -4,9 +4,9 @@
 using namespace sf;
 using namespace std;
 
-string EndCheck(Ressource essen, Ressource wasser); //Überprüfung zum Gameover
-void EndLose(RenderWindow*, Audio* audio);										//Trigger vom Endscreen bei Niederlage
-void End(RenderWindow*, Audio* audio);											//Trigger vom Normalem Endscreen
+string EndCheck(Ressource essen, Ressource wasser);								//Überprüfung zum Gameover
+void EndLose(RenderWindow*, Audio*);										//Trigger vom Endscreen bei Niederlage
+void End(RenderWindow*, Audio*);											//Trigger vom Normalem Endscreen
 
 int main() {
 	
@@ -29,6 +29,7 @@ int main() {
 	Textausgabe txt;
 	Audio music;
 
+
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 		
@@ -43,10 +44,10 @@ int main() {
 		wasser.darstellen(&window);
 
 
-		if (!txt.display(&window)) {
-			txt.einlesen(Ereignis::newevent(0));
-			date.add(1);
-		}
+		//if (!txt.display(&window)) {
+		//	txt.einlesen(Ereignis::newevent(0));
+		//	date.add(1);
+		//}
 		//if (Textausgabe::display(&window)) {	//temporäre aufruf der neuen events
 		//	date.add(1);
 
@@ -54,6 +55,7 @@ int main() {
 		//	Ereignis::newevent(0);
 
 		//}
+
 		
 
 		window.display();
