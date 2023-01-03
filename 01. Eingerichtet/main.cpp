@@ -6,11 +6,11 @@ using namespace std;
 
 
 int main() {
-	
+
 	Texture bgtxture;
 	bgtxture.loadFromFile("ressources/grafics/background.png");
 	Sprite background(bgtxture);
-	
+
 	Datum date(1, 1, 1999, 1);
 
 	bool g = true, f = true;
@@ -18,20 +18,20 @@ int main() {
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
 
-	int counter = 0;
+	
 
 
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
 	Textausgabe txt;
 	Audio music;
-
+	int counter = 0;
 	Ereignis::setTxt(&txt);
 	Ereignis::setRessources(&essen, &wasser);
-
+	Ereignis::newevent(3);
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
-		
+
 
 		date.update();
 
@@ -44,21 +44,12 @@ int main() {
 
 
 		if (!txt.display(&window)) {
-			Ereignis::newevent(0);
 			date.add(1);
 		}
-		//if (Textausgabe::display(&window)) {	//temporäre aufruf der neuen events
-		//	date.add(1);
-
-		//	
-		//	Ereignis::newevent(0);
-
-		//}
 		
 
+
 		window.display();
-
-
 		music.update();
 
 	}

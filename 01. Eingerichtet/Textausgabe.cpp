@@ -66,6 +66,7 @@ void Textausgabe::einlesen(std::string insert) {		//ließt den Text in die Texta
 
 bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt Texthintergrund
 	if (text == "leer") {
+		
 		return false;
 	}
 	else {
@@ -123,7 +124,6 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 					maxlines = 0;
 					Ereignis::processAntwort(awnser);
 					
-					return false;
 					
 				}
 			}
@@ -138,9 +138,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 				from = 0;
 				maxlines = 0;
 				Ereignis::processAntwort(awnser);
-				
-				return false;
-				
+								
 			}
 
 		}
@@ -149,7 +147,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 			if (soundeffect.getStatus() != Sound::Playing) {
 				soundeffect.play();
 			}
-
+			
 		}
 		else {
 			if (soundeffect.getStatus() == Sound::Playing) {
@@ -173,16 +171,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 }
 
-
-
-
-
-
-
 //Einlesen der Antwortmöglickeiten durch die Tastatur
-
-
-
 
 void Textausgabe::keyboardInsertion() {
 	//schaut ob es nur eine Antwortmöglichkeit / Folge gibt, setzt sonst die einzige mögichkeit direkt die Folge
@@ -212,16 +201,14 @@ void Textausgabe::keyboardInsertion() {
 
 //Allwertige, vereinfachte Einlesefunktion
 // 
-//Wenn followup = 0 ist, fällt jedes einlesen von Tastatureingaben und somit jede Folge darauf nicht statt:
-//standardinput sollte sein: (<auszugebener Text>, <Zeile des Folgeereignis 1>,<des 2.>, <des 3. ( = 0, wenn es nur 2 gibt)>, <1> (die 1 für eine folgendes Texteinlesen))
+//standardinput sollte sein: (<auszugebener Text>, <Anzahl der Antworten (0 oder 1 folgt in der jeweiligen Rückgabe des exakten wertes)>)
 void Textausgabe::uniInsertion(string text, int awnsers) {
 	einlesen(text);
 	
 
 	awnser = awnsers;
-
 	if (awnser == 0 || awnser == 1) {
-		done = leave_after_enter;
+		done = leave_after_enter;		
 	}
 	else {
 		done = wait_for_input;
