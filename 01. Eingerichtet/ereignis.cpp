@@ -86,7 +86,6 @@ void Ereignis::newevent(int eventindex) {
 		else { getline(file, temp, '\n'); }
 
 	}
-	// Klasse Ressource aufrufen (später mit Zufallszahl)
 	
 	
 	txt->uniInsertion(text, antworten);
@@ -103,22 +102,9 @@ string Ereignis::getText() {
 
 void Ereignis::processAntwort(int index) {
 
-	if (index == 0) {
-
-	}
-	else if (index == 1) {
-		water->addmenge(randomIntinRange(minWater[0], maxWater[0]));
-		food->addmenge(randomIntinRange(minFood[0], maxFood[0]));
-	}
-
-	else if (index == 2) {
-		water->addmenge(randomIntinRange(minWater[1], maxWater[1]));
-		food->addmenge(randomIntinRange(minFood[1], maxFood[1]));
-
-	}
-	else if (index == 3) {
-		water->addmenge(randomIntinRange(minWater[2], maxWater[2]));
-		food->addmenge(randomIntinRange(minFood[2], maxFood[2]));
+	if (index > 0 && index <=3) {
+		water->addmenge(randomIntinRange(minWater[index-1], maxWater[index-1]));
+		food->addmenge(randomIntinRange(minFood[index-1], maxFood[index-1]));
 	}
 	Ereignis::newevent(0);
 }
