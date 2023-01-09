@@ -50,37 +50,18 @@ void Ereignis::newevent(int eventindex) {
 			getline(file, temp, ';');
 			antworten = stoi(temp);
 
+			for (int i = 0; i <= 2; i++) {
+				getline(file, temp, ';');
+				minWater[i] = stoi(temp);
+				getline(file, temp, ';');
+				maxWater[i] = stoi(temp);
 
-			getline(file, temp, ';');
-			minWater[0] = stoi(temp);
-			getline(file, temp, ';');
-			maxWater[0] = stoi(temp);
-
-			getline(file, temp, ';');
-			minFood[0] = stoi(temp);
-			getline(file, temp, ';');
-			maxFood[0] = stoi(temp);
-
-			getline(file, temp, ';');
-			minWater[1] = stoi(temp);
-			getline(file, temp, ';');
-			maxWater[1] = stoi(temp);
-
-			getline(file, temp, ';');
-			minFood[1] = stoi(temp);
-			getline(file, temp, ';');
-			maxFood[1] = stoi(temp);
-
-			getline(file, temp, ';');
-			minWater[2] = stoi(temp);
-			getline(file, temp, ';');
-			maxWater[2] = stoi(temp);
-
-			getline(file, temp, ';');
-			minFood[2] = stoi(temp);
-			getline(file, temp, '\n');
-			maxFood[2] = stoi(temp);
-
+				getline(file, temp, ';');
+				minFood[i] = stoi(temp);
+				getline(file, temp, ';');
+				maxFood[i] = stoi(temp);
+			}
+			
 
 		}
 		else { getline(file, temp, '\n'); }
