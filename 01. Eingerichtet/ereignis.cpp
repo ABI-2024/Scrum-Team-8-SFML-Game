@@ -11,6 +11,7 @@ int Ereignis::minWater[3];
 int Ereignis::minFood[3];
 int Ereignis::maxWater[3];
 int Ereignis::maxFood[3];
+int Ereignis::nextevent[3];
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt;
@@ -51,15 +52,21 @@ void Ereignis::newevent(int eventindex) {
 			antworten = stoi(temp);
 
 			for (int i = 0; i <= 2; i++) {
-				getline(file, temp, ';');
+				getline(file, temp, '#');
+				cout << temp;
 				minWater[i] = stoi(temp);
 				getline(file, temp, ';');
 				maxWater[i] = stoi(temp);
 
-				getline(file, temp, ';');
+				getline(file, temp, '#');
 				minFood[i] = stoi(temp);
 				getline(file, temp, ';');
 				maxFood[i] = stoi(temp);
+			}
+
+			for (int i = 0; i <= 2; i++) {
+				getline(file, temp, ';');
+				nextevent[i] = stoi(temp);
 			}
 			
 
@@ -87,7 +94,10 @@ void Ereignis::processAntwort(int index) {
 		water->addmenge(randomIntinRange(minWater[index-1], maxWater[index-1]));
 		food->addmenge(randomIntinRange(minFood[index-1], maxFood[index-1]));
 	}
-	Ereignis::newevent(0);
+	if (nextevent == 0) {
+		Ereignis::newevent(0);
+	} else {Warteschlange::forceNext(nextevent[index]) }
+
 }
 
 void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
