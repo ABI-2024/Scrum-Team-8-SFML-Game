@@ -1,6 +1,7 @@
 #pragma once
 #include "Textausgabe.h"
 #include "Ressource.h"
+#include "Warteschlange.h"
 #include <string>
 class Textausgabe;
 class Ressource;
@@ -13,7 +14,6 @@ private:
 	static int maxWater[3];
 	static int maxFood[3];
 
-
 	static Ressource* water;
 	static Ressource* food;
 
@@ -21,7 +21,7 @@ private:
 
 public:
 	static string getText();
-	static void newevent(int);
+	static void newevent();
 	static void processAntwort(int);
 	static void setRessources(Ressource*, Ressource*);
 	static void setTxt(Textausgabe*);

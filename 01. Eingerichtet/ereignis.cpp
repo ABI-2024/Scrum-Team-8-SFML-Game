@@ -11,16 +11,15 @@ int Ereignis::minWater[3];
 int Ereignis::minFood[3];
 int Ereignis::maxWater[3];
 int Ereignis::maxFood[3];
+
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt;
 
 int randomIntinRange(int a, int b);
 
-void Ereignis::newevent(int eventindex) {
+void Ereignis::newevent() {
 	string datastore = "ressources/events.csv";
-
-	srand((unsigned)time(0));
 
 	ifstream file;
 	file.open(datastore, ios::in);
@@ -37,8 +36,8 @@ void Ereignis::newevent(int eventindex) {
 	int rnd;
 
 	if (eventindex == 0) {
-		rnd = randomIntinRange(1, randomEventNumber); 
-		
+		rnd = randomIntinRange(1, randomEventNumber);
+
 	}
 	else { rnd = eventindex; }
 
@@ -61,18 +60,18 @@ void Ereignis::newevent(int eventindex) {
 				getline(file, temp, ';');
 				maxFood[i] = stoi(temp);
 			}
-			
+
 
 		}
 		else { getline(file, temp, '\n'); }
 
 	}
-	
-	
+
+
 	txt->uniInsertion(text, antworten);
 
 	file.close();
-	
+
 }
 
 string Ereignis::getText() {
@@ -80,14 +79,14 @@ string Ereignis::getText() {
 }
 
 
-
 void Ereignis::processAntwort(int index) {
 
-	if (index > 0 && index <=3) {
-		water->addmenge(randomIntinRange(minWater[index-1], maxWater[index-1]));
-		food->addmenge(randomIntinRange(minFood[index-1], maxFood[index-1]));
+	if (index > 0 && index <= 3) {
+		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
+		food->addmenge(randomIntinRange(minFood[index - 1], maxFood[index - 1]));
 	}
 	Ereignis::newevent(0);
+
 }
 
 void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
@@ -98,9 +97,9 @@ void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
 void Ereignis::setTxt(Textausgabe* ntxt) {
 	txt = ntxt;
 }
- 
+
 int randomIntinRange(int a, int b) {
-	
+
 	std::random_device rd; // obtain a random number from hardware
 	std::mt19937 gen(rd()); // seed the generator
 	if (a > b) {
