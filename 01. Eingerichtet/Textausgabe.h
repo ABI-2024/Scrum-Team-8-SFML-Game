@@ -40,7 +40,7 @@ public:
 
 	void setExit(leave);
 
-	void setBackground(std::string);	//setzt den Hintergrund des Textfeldesm welches in dem grafics-Ordner hinterlegt werden muss
+	void setBackground(std::string, Color);	//setzt den Hintergrund des Textfeldesm welches in dem grafics-Ordner hinterlegt werden muss
 	//(Maﬂe: 1270 : 240)
 
 

@@ -46,10 +46,10 @@ int main() {
 		wasser.darstellen(&window);
 
 
-		//if (!txt.display(&window)) {
-		//	txt.einlesen(Ereignis::newevent(0));
-		//	date.add(1);
-		//}
+		if (!txt.display(&window)) {
+			txt.einlesen(Ereignis::newevent(0));
+			date.add(1);
+		}
 		//if (Textausgabe::display(&window)) {	//temporäre aufruf der neuen events
 		//	date.add(1);
 
@@ -58,7 +58,7 @@ int main() {
 
 		//}
 
-		popup.darstellen(&window);
+		//popup.darstellen(&window);
 
 		window.display();
 

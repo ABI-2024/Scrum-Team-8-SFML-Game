@@ -31,7 +31,7 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text) {
 
 	//hier kann noch ein besonderer screen eingesetzt werden
 
-	text->setBackground("black.png");
+	text->setBackground("black.png", Color::White);
 }
 
 void End(RenderWindow* window, Audio* audio, Textausgabe* text) {
@@ -41,11 +41,11 @@ void End(RenderWindow* window, Audio* audio, Textausgabe* text) {
 	window->display();
 
 
-	sleep(seconds(5));
+	sleep(seconds(0));
 
 
 	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik, die den amerikanischen Sieg vermitte
 	audio->update();
 
-	text->setBackground("black.png");
+	text->setBackground("black.png", Color::White);
 }
