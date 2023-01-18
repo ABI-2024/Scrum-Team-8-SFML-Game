@@ -20,38 +20,32 @@ string EndCheck(Ressource essen, Ressource wasser) {
 	}
 }
 
-void EndLose(RenderWindow* window, Audio* audio) {
-
-	int counter = 0;
+void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text) {
 
 	window->clear();
 	window->display();
 
+	sleep(seconds(5));
 
+	/*audio->changeSong();*/ //einsetzen "trauriger Musik"
 
-	while (counter < 90) { //3 sekündiger Blackscreen
-		counter++;
-	}
+	//hier kann noch ein besonderer screen eingesetzt werden
 
-	//audio->changeSong("music1.wav"); //einsetzen "trauriger Musik"
-
-	////hier kann noch ein besonderer screen eingesetzt werden
+	text->setBackground("black.png");
 }
 
-void End(RenderWindow* window, Audio* audio) {
+void End(RenderWindow* window, Audio* audio, Textausgabe* text) {
 
-	int counter = 0;
 
 	window->clear();
 	window->display();
 
 
+	sleep(seconds(5));
 
-	while (counter < 90) {	//3 sekündiger Blackscreen
-		counter++;
-	}
 
-	/*audio->changeSong("amerika.wav");*/ //einsetzen von Musik, die den amerikanischen Sieg vermitteln
+	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik, die den amerikanischen Sieg vermitte
+	audio->update();
 
-		//hier kann noch ein besonderer screen eingesetzt werden
+	text->setBackground("black.png");
 }

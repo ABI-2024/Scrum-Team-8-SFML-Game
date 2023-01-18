@@ -58,7 +58,7 @@ void Audio::songRadio() {			//setzt einen Zufälligen Song als nächstes, solange 
 
 		tmp = distr(gen);
 		if (tmp != last) {
-			if (!music->openFromFile("ressources/audio/music" + to_string(tmp) + ".wav")) {
+			if (!music->openFromFile("ressources/audio/music" + to_string(tmp) + ".ogg")) {
 				return;
 			}
 			last = tmp;

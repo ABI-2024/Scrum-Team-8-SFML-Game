@@ -7,7 +7,7 @@ Grafik::Grafik(string name) { //Konstruktor und Destruktor
 
 	popup.setTexture(bild);
 
-	popup.setPosition(Vector2f(0, 15)); //Positionierung und setzten
+	popup.setPosition(Vector2f(0, 0)); //Positionierung und setzten
 }
 
 Grafik::~Grafik() {
@@ -21,7 +21,7 @@ void Grafik::newimage(string name) { //get und set Methoden
 
 	popup.setTexture(bild);
 
-	popup.setPosition(Vector2f(0, 15)); //Positionierung und setzten
+	popup.setPosition(Vector2f(0, 0)); //Positionierung und setzten
 }
 
 string Grafik::getname() {

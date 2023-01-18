@@ -5,8 +5,8 @@ using namespace sf;
 using namespace std;
 
 string EndCheck(Ressource essen, Ressource wasser);								//Überprüfung zum Gameover
-void EndLose(RenderWindow*, Audio*);										//Trigger vom Endscreen bei Niederlage
-void End(RenderWindow*, Audio*);											//Trigger vom Normalem Endscreen
+void EndLose(RenderWindow*, Audio*, Textausgabe*);										//Trigger vom Endscreen bei Niederlage
+void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
 
 int main() {
 	
@@ -27,8 +27,10 @@ int main() {
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
 	Textausgabe txt;
+	Grafik popup("ses");
 	Audio music;
 
+	End(&window, &music, &txt);
 
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
@@ -56,7 +58,7 @@ int main() {
 
 		//}
 
-		
+		popup.darstellen(&window);
 
 		window.display();
 
