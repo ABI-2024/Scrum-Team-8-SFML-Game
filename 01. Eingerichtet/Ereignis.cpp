@@ -1,25 +1,24 @@
 #include "Ereignis.h"
-#include <ctime>
+#include <random>
 #include <fstream> 
 #include <stdlib.h> 
 
 using namespace std;
 
 string Ereignis::text;
-string Ereignis::antworten[3];
-int Ereignis::awater[2];
-int Ereignis::afood[2];
-int Ereignis::bwater[2];
-int Ereignis::bfood[2];
-int Ereignis::cwater[2];
-int Ereignis::cfood[2];
+int Ereignis::antworten;
+int Ereignis::minWater[3];
+int Ereignis::minFood[3];
+int Ereignis::maxWater[3];
+int Ereignis::maxFood[3];
+int Ereignis::nextevent[3];
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt;
 
+int randomIntinRange(int a, int b);
 
-
-string Ereignis::newevent(int eventindex) {
+void Ereignis::newevent(int eventindex) {
 	string datastore = "ressources/events.csv";
 
 	srand((unsigned)time(0));
@@ -28,15 +27,19 @@ string Ereignis::newevent(int eventindex) {
 	file.open(datastore, ios::in);
 
 	string temp;
-	int max = 0;
+	int randomEventNumber = 0;
 
+	getline(file, temp, ';');
+	randomEventNumber = stoi(temp);
 	getline(file, temp, '\n');
-	max = stoi(temp);
+	file.close();
+	file.open(datastore, ios::in);
 
 	int rnd;
 
 	if (eventindex == 0) {
-		rnd = (rand() % max);
+		rnd = randomIntinRange(1, randomEventNumber); 
+		
 	}
 	else { rnd = eventindex; }
 
@@ -46,94 +49,67 @@ string Ereignis::newevent(int eventindex) {
 			text = temp;
 
 			getline(file, temp, ';');
-			antworten[0] = temp;
-			getline(file, temp, ';');
-			antworten[1] = temp;
-			getline(file, temp, ';');
-			antworten[2] = temp;
+			antworten = stoi(temp);
 
-			getline(file, temp, ';');
-			awater[0] = stoi(temp);
-			getline(file, temp, ';');
-			awater[1] = stoi(temp);
+			for (int i = 0; i <= 2; i++) {
+				getline(file, temp, '#');
+				cout << temp;
+				minWater[i] = stoi(temp);
+				getline(file, temp, ';');
+				maxWater[i] = stoi(temp);
 
-			getline(file, temp, ';');
-			afood[0] = stoi(temp);
-			getline(file, temp, ';');
-			afood[1] = stoi(temp);
+				getline(file, temp, '#');
+				minFood[i] = stoi(temp);
+				getline(file, temp, ';');
+				maxFood[i] = stoi(temp);
+			}
 
-			getline(file, temp, ';');
-			bwater[0] = stoi(temp);
-			getline(file, temp, ';');
-			bwater[1] = stoi(temp);
-
-			getline(file, temp, ';');
-			bfood[0] = stoi(temp);
-			getline(file, temp, ';');
-			bfood[1] = stoi(temp);
-
-			getline(file, temp, ';');
-			cwater[0] = stoi(temp);
-			getline(file, temp, ';');
-			cwater[1] = stoi(temp);
-
-			getline(file, temp, ';');
-			cfood[0] = stoi(temp);
-			getline(file, temp, '\n');
-			cfood[1] = stoi(temp);
+			for (int i = 0; i <= 2; i++) {
+				getline(file, temp, ';');
+				nextevent[i] = stoi(temp);
+			}
+			
 
 		}
 		else { getline(file, temp, '\n'); }
 
 	}
-	// Klasse Ressource aufrufen (später mit Zufallszahl)
 	
-	int anzahlantworten;
-	if (antworten[2] == "nil") {
-		anzahlantworten = 2;
-	}
-	else if (antworten[1]=="nil") {
-		anzahlantworten = 1;
-	}
-	else if (antworten[0] == "nil") {
-		anzahlantworten = 0;
-	}
-
-
-	txt->uniInsertion(text, 1, 2, 3)
+	
+	txt->uniInsertion(text, antworten);
 
 	file.close();
-	return text;
+	
 }
 
 string Ereignis::getText() {
 	return text;
 }
 
-string Ereignis::getAntwort(int index) {
-	return antworten[index+1];
-}
-
 
 
 void Ereignis::processAntwort(int index) {
 
-	if (index == 1) {
-		water->addmenge(rand() % (awater[1] - awater[0]) + awater[0]);
-		food->addmenge(rand() % (afood[1] - afood[0]) + afood[0]);
+	if (index > 0 && index <=3) {
+		water->addmenge(randomIntinRange(minWater[index-1], maxWater[index-1]));
+		food->addmenge(randomIntinRange(minFood[index-1], maxFood[index-1]));
 	}
 
-	if (index == 2) {
-		water->addmenge(rand() % (bwater[1] - bwater[0]) + awater[0]);
-		food->addmenge(rand() % (afood[1] - afood[0]) + afood[0]);
-	}
+	if (nextevent[index] == 0) {
+		return;
+	} else {
+		
+		ifstream file;
+		file.open("ressources/events.csv", ios::in);
+
+		string temp;
+
+		getline(file, temp, ';');
+		//warteschlange-> stoi(temp)+2+nextevent[index];
+		file.close();
+
 	}
 
-	if (index == 3) {
-		water->addmenge(rand() % cwater[1] + cwater[0]);
-		food->addmenge(rand() % cfood[1] + cfood[0]);
-	}
-	Ereignis::newevent(0);
 }
 
 void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
@@ -143,4 +119,18 @@ void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
 
 void Ereignis::setTxt(Textausgabe* ntxt) {
 	txt = ntxt;
+}
+ 
+int randomIntinRange(int a, int b) {
+	
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 gen(rd()); // seed the generator
+	if (a > b) {
+		std::uniform_int_distribution<> distr(b, a); // define the range
+		return distr(gen);
+	}
+	else {
+		std::uniform_int_distribution<> distr(a, b); // define the range	
+		return distr(gen);
+	}
 }
