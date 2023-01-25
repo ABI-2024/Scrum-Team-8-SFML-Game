@@ -6,19 +6,19 @@ using namespace std;
 
 
 int main() {
-
+	Warteschlange::addQueue(0);
 	Texture bgtxture;
 	bgtxture.loadFromFile("ressources/grafics/background.png");
 	Sprite background(bgtxture);
 
-	Datum date(1, 1, 1999, 1);
+	Datum date(11, 9, 2001, 1);
 
 	bool g = true, f = true;
 
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
 
-	
+
 
 
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
@@ -28,12 +28,15 @@ int main() {
 	int counter = 0;
 	Ereignis::setTxt(&txt);
 	Ereignis::setRessources(&essen, &wasser);
-	Warteschlange::addQueue(3);
-
+	sf::Event ev;
 	Ereignis::newevent();
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
-
+		while (window.pollEvent(ev)) {
+			if (ev.Closed) {
+				window.close();
+			}
+		}
 
 		date.update();
 
@@ -48,7 +51,7 @@ int main() {
 		if (!txt.display(&window)) {
 			date.add(1);
 		}
-		
+
 
 
 		window.display();

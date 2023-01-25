@@ -6,6 +6,7 @@
 class Textausgabe;
 class Ressource;
 class Ereignis {
+
 private:
 	static string text;
 	static int antworten;
@@ -28,4 +29,4 @@ public:
 	static void setTxt(Textausgabe*);
 
 
-};
+}; 

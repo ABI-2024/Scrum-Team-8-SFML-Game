@@ -1,5 +1,5 @@
 #include "Warteschlange.h"
-
+#include <iostream>
 
 int Warteschlange::warteschlange[10] = { 0,0,0,0,0,0,0,0,0,0 };
 bool Warteschlange::secure = false;
@@ -33,7 +33,6 @@ void Warteschlange::forceNext(int next) { //in work r8 now
 }
 
 int Warteschlange::getFirst() {
-
 	int tmp = warteschlange[0];
 	for (int i = 0; i < 9; i++) {
 		warteschlange[i] = warteschlange[i + 1];

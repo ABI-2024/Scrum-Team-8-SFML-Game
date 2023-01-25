@@ -2,7 +2,7 @@
 #include <random>
 #include <fstream> 
 #include <stdlib.h> 
-#include "setEvents.h"
+#include "SetEvents.h"
 
 using namespace std;
 
@@ -44,11 +44,12 @@ void Ereignis::newevent() {
 	}
 	else {
 		rnd = eventindex;
-		}
+	}
 
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
-			if (rnd >= setEvents::getSetEventStartID()) {
+
+			if (/*rnd >= SetEvents::getSetEventStartID()*/0) {
 				getline(file, temp, ';');
 			}
 			getline(file, temp, ';');
@@ -56,27 +57,33 @@ void Ereignis::newevent() {
 
 			getline(file, temp, ';');
 			antworten = stoi(temp);
-
 			for (int i = 0; i <= 2; i++) {
 				getline(file, temp, '#');
 				cout << temp;
 				minWater[i] = stoi(temp);
 				getline(file, temp, ';');
+				cout << "-" << temp << "\n";
 				maxWater[i] = stoi(temp);
 
 				getline(file, temp, '#');
+				cout << temp;
 				minFood[i] = stoi(temp);
 				getline(file, temp, ';');
+				cout << "-" << temp << "\n";
 				maxFood[i] = stoi(temp);
+
 			}
 
 
-			for (int i = 0; i <= 2; i++) {
+
+			for (int i = 0; i < 2; i++) {
 				getline(file, temp, ';');
 				nextevent[i] = stoi(temp);
+				cout << temp << "\n";
 			}
-
-
+			getline(file, temp, '\n');
+			nextevent[2] = stoi(temp);
+			cout << temp << "\n";
 		}
 		else { getline(file, temp, '\n'); }
 
@@ -99,11 +106,25 @@ void Ereignis::processAntwort(int index) {
 	if (index > 0 && index <= 3) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
 		food->addmenge(randomIntinRange(minFood[index - 1], maxFood[index - 1]));
+
+		if (nextevent[index - 1] == 0) {
+			newevent();
+			return;
+		}
+		else {
+
+			ifstream file;
+			file.open("ressources/events.csv", ios::in);
+
+			string temp;
+			getline(file, temp, ';');
+			Warteschlange::forceNext(stoi(temp) + nextevent[index - 1] + 2);
+			file.close();
+			newevent();
+		}
 	}
 
-	if (nextevent == 0) {
-		Ereignis::newevent(0);
-	} else {Warteschlange::forceNext(nextevent[index]) }
+	
 
 
 }
