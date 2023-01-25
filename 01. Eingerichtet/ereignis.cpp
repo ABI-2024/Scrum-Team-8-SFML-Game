@@ -2,6 +2,7 @@
 #include <random>
 #include <fstream> 
 #include <stdlib.h> 
+#include "setEvents.h"
 
 using namespace std;
 
@@ -34,15 +35,20 @@ void Ereignis::newevent() {
 	file.open(datastore, ios::in);
 
 	int rnd;
-
+	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
 		rnd = randomIntinRange(1, randomEventNumber);
 
 	}
-	else { rnd = eventindex; }
+	else {
+		rnd = eventindex;
+		}
 
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
+			if (rnd >= setEvents::getSetEventStartID()) {
+				getline(file, temp, ';');
+			}
 			getline(file, temp, ';');
 			text = temp;
 
@@ -85,7 +91,7 @@ void Ereignis::processAntwort(int index) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
 		food->addmenge(randomIntinRange(minFood[index - 1], maxFood[index - 1]));
 	}
-	Ereignis::newevent(0);
+	Ereignis::newevent();
 
 }
 

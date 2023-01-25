@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+#include "Warteschlange.h"
 
 using namespace sf;
 using namespace std;
@@ -28,7 +28,9 @@ int main() {
 	int counter = 0;
 	Ereignis::setTxt(&txt);
 	Ereignis::setRessources(&essen, &wasser);
-	Ereignis::newevent(3);
+	Warteschlange::addQueue(3);
+
+	Ereignis::newevent();
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 

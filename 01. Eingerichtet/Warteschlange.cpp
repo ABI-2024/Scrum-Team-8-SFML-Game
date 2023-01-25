@@ -5,7 +5,7 @@ int Warteschlange::warteschlange[10] = { 0,0,0,0,0,0,0,0,0,0 };
 bool Warteschlange::secure = false;
 
 void Warteschlange::addQueue(int add) {
-	
+
 	for (int i = 0; i < 9; i++) {
 		if (warteschlange[i] == 0) {
 			warteschlange[i] = add;
@@ -13,9 +13,19 @@ void Warteschlange::addQueue(int add) {
 		}
 	}
 }
-void Warteschlange::forceNext(int next) {
+void Warteschlange::forceNext(int next) { //in work r8 now
 	if (!secure) {
-		warteschlange[0] = next;
+		int tmp = 0;
+		for (int i = -1; i < 9; i++) {
+			if (warteschlange[i + 1] == 0) {
+				warteschlange[i + 1] = next;
+			}
+			else {
+				next = warteschlange[i + 1];
+				warteschlange[i + 1] = next;
+				next = tmp;
+			}
+		}
 	}
 	else {
 		addQueue(next);
@@ -28,6 +38,7 @@ int Warteschlange::getFirst() {
 	for (int i = 0; i < 9; i++) {
 		warteschlange[i] = warteschlange[i + 1];
 	}
+	warteschlange[9] = 0;
 	return tmp;
 }
 
@@ -41,7 +52,7 @@ void Warteschlange::forceAt(int index, int event) {
 }
 
 void Warteschlange::queueAfter(int index, int event) {
-	for (int i = index-1; i < 9; i++) {
+	for (int i = index - 1; i < 9; i++) {
 		if (warteschlange[i] == 0) {
 			warteschlange[i] = event;
 			break;

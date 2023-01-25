@@ -25,6 +25,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ereignis.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="SetEvents.cpp" />
     <ClCompile Include="Textausgabe.cpp" />
     <ClCompile Include="Warteschlange.cpp" />
   </ItemGroup>
@@ -34,6 +35,7 @@
     <ClInclude Include="Ereignis.h" />
     <ClInclude Include="Grafik.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="SetEvents.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Textausgabe.h" />
     <ClCompile Include="Ressource.cpp" />
