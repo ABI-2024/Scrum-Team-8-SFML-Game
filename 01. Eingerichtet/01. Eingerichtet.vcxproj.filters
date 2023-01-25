@@ -25,6 +25,12 @@
     <ClCompile Include="Person.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Warteschlange.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SetEvents.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Datum.h">
@@ -49,6 +55,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Person.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Warteschlange.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SetEvents.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
