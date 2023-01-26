@@ -5,7 +5,7 @@ using namespace sf;
 using namespace std;
 
 string EndCheck(Ressource essen, Ressource wasser);								//Überprüfung zum Gameover
-void EndLose(RenderWindow*, Audio*, Textausgabe*);										//Trigger vom Endscreen bei Niederlage
+void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);										//Trigger vom Endscreen bei Niederlage
 void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
 
 int main() {
@@ -30,7 +30,7 @@ int main() {
 	Grafik popup("ses");
 	Audio music;
 
-	End(&window, &music, &txt);
+	EndLose(&window, &music, &txt, &date);
 
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
