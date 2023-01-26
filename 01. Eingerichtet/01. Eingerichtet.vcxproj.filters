@@ -31,6 +31,9 @@
     <ClCompile Include="SetEvents.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="CSVcontrol.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Datum.h">
@@ -61,6 +64,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="SetEvents.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CSVcontrol.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

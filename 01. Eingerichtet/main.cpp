@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Warteschlange.h"
+#include "CSVcontrol.h"
 
 using namespace sf;
 using namespace std;
@@ -10,7 +11,7 @@ int main() {
 	Texture bgtxture;
 	bgtxture.loadFromFile("ressources/grafics/background.png");
 	Sprite background(bgtxture);
-
+	CSVcontrol::loadConfig();
 	Datum date(11, 9, 2001, 1);
 
 	bool g = true, f = true;

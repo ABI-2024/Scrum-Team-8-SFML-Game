@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="CSVcontrol.cpp" />
     <ClCompile Include="Datum.cpp" />
     <ClCompile Include="Grafik.cpp" />
     <ClCompile Include="main.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
+    <ClInclude Include="CSVcontrol.h" />
     <ClInclude Include="Datum.h" />
     <ClInclude Include="Ereignis.h" />
     <ClInclude Include="Grafik.h" />

@@ -12,6 +12,7 @@ int Ereignis::minWater[3];
 int Ereignis::minFood[3];
 int Ereignis::maxWater[3];
 int Ereignis::maxFood[3];
+short Ereignis::phase = 0;
 
 int Ereignis::nextevent[3];
 
@@ -22,54 +23,57 @@ Textausgabe* Ereignis::txt;
 int randomIntinRange(int a, int b);
 
 void Ereignis::newevent() {
-	string datastore = "ressources/events.csv";
-
+	
 	ifstream file;
-	file.open(datastore, ios::in);
-
 	string temp;
-	int randomEventNumber = 0;
-
-	getline(file, temp, ';');
-	randomEventNumber = stoi(temp);
-	getline(file, temp, '\n');
-	file.close();
-	file.open(datastore, ios::in);
-
 	int rnd;
 	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
-		rnd = randomIntinRange(1, randomEventNumber);
+		file.open("ressources/events.csv", ios::in);
+
+		int phaseDependantEventEnd = 0;
+		int phaseDependantEventNumber = 0;
+		for (int i = 0; i <= phase; i++) {
+			getline(file, temp, ';');
+
+			phaseDependantEventEnd += stoi(temp);
+			phaseDependantEventNumber = stoi(temp);
+
+			getline(file, temp, '\n');
+			for (int n = 0; n < phaseDependantEventNumber; n++) {
+				getline(file, temp, '\n');
+			}
+
+		}
+
+		file.close();
+		rnd = randomIntinRange(phaseDependantEventEnd - phaseDependantEventNumber + 1, phaseDependantEventEnd);
 
 	}
 	else {
 		rnd = eventindex;
 	}
-
+	file.open("ressources/events.csv", ios::in);
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
 
 			if (/*rnd >= SetEvents::getSetEventStartID()*/0) {
 				getline(file, temp, ';');
 			}
+
 			getline(file, temp, ';');
 			text = temp;
-
 			getline(file, temp, ';');
 			antworten = stoi(temp);
 			for (int i = 0; i <= 2; i++) {
 				getline(file, temp, '#');
-				cout << temp;
 				minWater[i] = stoi(temp);
 				getline(file, temp, ';');
-				cout << "-" << temp << "\n";
 				maxWater[i] = stoi(temp);
 
 				getline(file, temp, '#');
-				cout << temp;
 				minFood[i] = stoi(temp);
 				getline(file, temp, ';');
-				cout << "-" << temp << "\n";
 				maxFood[i] = stoi(temp);
 
 			}
@@ -79,11 +83,10 @@ void Ereignis::newevent() {
 			for (int i = 0; i < 2; i++) {
 				getline(file, temp, ';');
 				nextevent[i] = stoi(temp);
-				cout << temp << "\n";
 			}
 			getline(file, temp, '\n');
 			nextevent[2] = stoi(temp);
-			cout << temp << "\n";
+
 		}
 		else { getline(file, temp, '\n'); }
 
@@ -112,19 +115,21 @@ void Ereignis::processAntwort(int index) {
 			return;
 		}
 		else {
-
 			ifstream file;
 			file.open("ressources/events.csv", ios::in);
 
 			string temp;
 			getline(file, temp, ';');
-			Warteschlange::forceNext(stoi(temp) + nextevent[index - 1] + 2);
+
+			Warteschlange::forceNext(stoi(temp) + nextevent[index - 1] + 1);
 			file.close();
 			newevent();
 		}
 	}
+	else {
+		newevent();
+	}
 
-	
 
 
 }

@@ -15,6 +15,7 @@ private:
 	static int maxWater[3];
 	static int maxFood[3];
 	static int nextevent[3];
+	static short phase;
 
 	static Ressource* water;
 	static Ressource* food;
