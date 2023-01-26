@@ -9,11 +9,11 @@ void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);										//Trigger vo
 void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
 
 int main() {
-	
+
 	Texture bgtxture;
 	bgtxture.loadFromFile("ressources/grafics/background.png");
 	Sprite background(bgtxture);
-	
+
 	Datum date(1, 1, 1999, 1);
 
 	bool g = true, f = true;
@@ -21,7 +21,7 @@ int main() {
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
 
-	int counter = 0;
+	
 
 
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
@@ -30,11 +30,14 @@ int main() {
 	Grafik popup("ses");
 	Audio music;
 
-	EndLose(&window, &music, &txt, &date);
+	int counter = 0;
+	Ereignis::setTxt(&txt);
+	Ereignis::setRessources(&essen, &wasser);
+	Ereignis::newevent(3);
 
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
-		
+
 
 		date.update();
 
@@ -47,9 +50,9 @@ int main() {
 
 
 		if (!txt.display(&window)) {
-			txt.einlesen(Ereignis::newevent(0));
 			date.add(1);
 		}
+
 		//if (Textausgabe::display(&window)) {	//temporäre aufruf der neuen events
 		//	date.add(1);
 
@@ -60,9 +63,9 @@ int main() {
 
 		//popup.darstellen(&window);
 
+
+
 		window.display();
-
-
 		music.update();
 
 	}
