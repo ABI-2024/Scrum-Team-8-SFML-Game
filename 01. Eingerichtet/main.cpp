@@ -30,7 +30,6 @@ int main() {
 	Grafik popup("ses");
 	Audio music;
 
-	EndLose(&window, &music, &txt, &date);
 
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
