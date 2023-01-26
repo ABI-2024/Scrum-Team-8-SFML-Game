@@ -26,11 +26,10 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	window->clear();
 	window->display();
 
-	sleep(seconds(0)); // blackscreen 5 sek
+	sleep(seconds(5)); // blackscreen 5 sek
 
 
 	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik. Trauer
-	audio->update();
 
 	text->setBackground("black.png", Color::White); //Hintergrund Schwarz setzen
 
@@ -89,14 +88,14 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	end.setOrigin(ftext.width / 2, ftext.height / 2);
 	end.setPosition(sf::Vector2f(1280 / 2.0f, 720 / 3.0f));
 
-	window->draw(end);
-	window->display();
-
 	//hier event aufrufen für credits....
 
 
-	sleep(seconds(5));
-
+	while (window->isOpen()) {
+		audio->update();
+		window->draw(end);
+		window->display();
+	}
 
 }
 
@@ -126,13 +125,14 @@ void End(RenderWindow* window, Audio* audio, Textausgabe* text) {
 	end.setOrigin(ftext.width / 2, ftext.height / 2);
 	end.setPosition(sf::Vector2f(1280 / 2.0f, 720 / 3.0f));
 
-	window->draw(end);
-	window->display();
 
 	//hier event aufrufen für credits....
 
-
-	sleep(seconds(5));
+	while (window->isOpen()) {
+		audio->update();
+		window->draw(end);
+		window->display();
+	}
 
 
 }
