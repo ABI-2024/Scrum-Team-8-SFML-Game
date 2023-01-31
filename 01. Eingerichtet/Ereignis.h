@@ -17,6 +17,9 @@ private:
 	static int nextevent[3];
 	static short phase;
 
+	static short specialActionIndex[3];
+	static string specialActionText[3];
+
 	static Ressource* water;
 	static Ressource* food;
 
@@ -29,5 +32,6 @@ public:
 	static void setRessources(Ressource*, Ressource*);
 	static void setTxt(Textausgabe*);
 
+	static void specialAction(short specialActionIndex, string specialActionText);
 
 }; 

@@ -2,6 +2,7 @@
 #include <random>
 #include <fstream> 
 #include <stdlib.h> 
+#include "CSVcontrol.h"
 #include "SetEvents.h"
 
 using namespace std;
@@ -12,7 +13,9 @@ int Ereignis::minWater[3];
 int Ereignis::minFood[3];
 int Ereignis::maxWater[3];
 int Ereignis::maxFood[3];
-short Ereignis::phase = 0;
+int Ereignis::specialEvent[3];
+int Ereignis::specialEventText[3];
+short Ereignis::phase = 1;
 
 int Ereignis::nextevent[3];
 
@@ -23,36 +26,23 @@ Textausgabe* Ereignis::txt;
 int randomIntinRange(int a, int b);
 
 void Ereignis::newevent() {
-	
+
 	ifstream file;
 	string temp;
-	int rnd;
+	int rnd = 0;
 	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
-		file.open("ressources/events.csv", ios::in);
-
-		int phaseDependantEventEnd = 0;
-		int phaseDependantEventNumber = 0;
-		for (int i = 0; i <= phase; i++) {
-			getline(file, temp, ';');
-
-			phaseDependantEventEnd += stoi(temp);
-			phaseDependantEventNumber = stoi(temp);
-
-			getline(file, temp, '\n');
-			for (int n = 0; n < phaseDependantEventNumber; n++) {
-				getline(file, temp, '\n');
-			}
+		for (int i = 0; i < 3; i++) {
+			std::cout << "\n\tMinRandomNumber " << i + 1 << ":" << CSVcontrol::getEventStart(i + 1);
+			std::cout << "\n\tMaxRandomNumber " << i + 1 << ":" << CSVcontrol::getEventStart(i + 1) + CSVcontrol::getEventAmount(i + 1) - 1 << "\t Amount: " << CSVcontrol::getEventAmount(i + 1) << endl;
 
 		}
-
-		file.close();
-		rnd = randomIntinRange(phaseDependantEventEnd - phaseDependantEventNumber + 1, phaseDependantEventEnd);
-
+		rnd = randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
 	}
 	else {
 		rnd = eventindex;
 	}
+	cout << "\n\tCSV-Row: " << rnd;
 	file.open("ressources/events.csv", ios::in);
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
@@ -115,14 +105,11 @@ void Ereignis::processAntwort(int index) {
 			return;
 		}
 		else {
-			ifstream file;
-			file.open("ressources/events.csv", ios::in);
 
-			string temp;
-			getline(file, temp, ';');
 
-			Warteschlange::forceNext(stoi(temp) + nextevent[index - 1] + 1);
-			file.close();
+
+			Warteschlange::forceNext(CSVcontrol::getEventStart(4) + nextevent[index - 1] + 1);
+
 			newevent();
 		}
 	}
