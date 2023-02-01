@@ -22,7 +22,6 @@ private:
 
 	static Ressource* water;
 	static Ressource* food;
-
 	static Textausgabe* txt;
 
 public:
@@ -30,8 +29,7 @@ public:
 	static void newevent();
 	static void processAntwort(int);
 	static void setRessources(Ressource*, Ressource*);
-	static void setTxt(Textausgabe*);
-
+	static void setTxt(Textausgabe* ntxt);
 	static void specialAction(short specialActionIndex, string specialActionText);
-
+	static bool specialActionPossible(short specialActionIndex, string specialActionText);
 }; 

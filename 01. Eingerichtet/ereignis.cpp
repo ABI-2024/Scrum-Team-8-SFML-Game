@@ -13,8 +13,8 @@ int Ereignis::minWater[3];
 int Ereignis::minFood[3];
 int Ereignis::maxWater[3];
 int Ereignis::maxFood[3];
-int Ereignis::specialEvent[3];
-int Ereignis::specialEventText[3];
+short Ereignis::specialActionIndex[3];
+string Ereignis::specialActionText[3];
 short Ereignis::phase = 1;
 
 int Ereignis::nextevent[3];
@@ -44,6 +44,7 @@ void Ereignis::newevent() {
 	}
 	cout << "\n\tCSV-Row: " << rnd;
 	file.open("ressources/events.csv", ios::in);
+	getline(file, temp, '\n');
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
 
@@ -142,4 +143,28 @@ int randomIntinRange(int a, int b) {
 		std::uniform_int_distribution<> distr(a, b); // define the range	
 		return distr(gen);
 	}
+}
+
+
+void Ereignis::specialAction(short specialActionIndex, string specialActionText) {
+	switch (specialActionIndex) {
+	case 1:
+
+		break;
+	case 2:
+		break;
+	}
+	return;
+}
+bool Ereignis::specialActionPossible(short specialActionIndex, string specialActionText) {
+	switch (specialActionIndex) {
+	case 0:
+		return true;
+		break;
+	case 1:		
+		break;
+	case 2:
+		break;
+	}
+	return true;
 }
