@@ -22,6 +22,8 @@ private:
 	//(muss sich unter ressources/grafics befinden mit einer skalierung von 1270 zu 240)
 	Sprite txtbg;
 	Text ausgabe;
+	Font font;
+	Texture txtfeldbg;
 
 	sf::Sound soundeffect;
 	SoundBuffer buffer;
@@ -29,8 +31,6 @@ private:
 	//zu dem Tastatur einlesen und Aufrufen der Folgeevents
 
 	int awnser;
-
-
 
 public:
 	Textausgabe();

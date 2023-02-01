@@ -20,15 +20,12 @@ Textausgabe::Textausgabe() {
 	soundeffect.setBuffer(buffer);
 	soundeffect.setVolume(3);
 
-	Texture* txtfeldbg = new Texture;
-	txtfeldbg->loadFromFile("ressources/grafics/" + txtbackground);
-	txtbg = Sprite(*txtfeldbg);
+	txtfeldbg.loadFromFile("ressources/grafics/" + txtbackground);
+	txtbg = Sprite(txtfeldbg);
 	txtbg.setScale(1, 1);
 	txtbg.setPosition(5, 475);
-	Font* font = new Font;
-	font->loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
-	ausgabe = Text("", *font);
-
+	font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
+	ausgabe = Text("", font);
 	ausgabe.setLetterSpacing(0.5f);
 	ausgabe.setFillColor(Color(100, 50, 30, 255));
 	ausgabe.setPosition(40, 500);
