@@ -14,9 +14,9 @@ public:
 	Grafik(string name);
 	~Grafik();
 
-	void newimage(string name);
+	void newimage(string name); //setzten eines neuen Bildes
 	string getname();
 
-	void darstellen(RenderWindow* window);
+	void darstellen(RenderWindow* window); //darstellung des Bildes
 };
 

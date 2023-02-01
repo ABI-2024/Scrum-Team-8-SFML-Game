@@ -32,6 +32,7 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="CSVcontrol.cpp">
+    <ClCompile Include="End.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

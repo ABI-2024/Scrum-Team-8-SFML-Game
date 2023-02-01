@@ -5,7 +5,12 @@
 using namespace sf;
 using namespace std;
 
+
 void init();
+
+string EndCheck(Ressource essen, Ressource wasser);								//Überprüfung zum Gameover
+void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);										//Trigger vom Endscreen bei Niederlage
+void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
 
 int main() {
 	Texture bgtxture;
@@ -20,8 +25,18 @@ int main() {
 
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
-	Audio music;
+
 	sf::Event ev;
+
+	Textausgabe txt;
+	Grafik popup("ses");
+	Audio music;
+
+	int counter = 0;
+	Ereignis::setTxt(&txt);
+	Ereignis::setRessources(&essen, &wasser);
+	Ereignis::newevent(3);
+
 	//txtausgabe.setResult(100, 200, 300);
 	while (window.isOpen()) {
 		while (window.pollEvent(ev)) {
@@ -39,6 +54,9 @@ int main() {
 
 
 		Textausgabe::display(&window);
+
+		//popup.darstellen(&window);
+
 
 
 

@@ -22,6 +22,7 @@
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="CSVcontrol.cpp" />
     <ClCompile Include="Datum.cpp" />
+    <ClCompile Include="End.cpp" />
     <ClCompile Include="Grafik.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ereignis.cpp" />

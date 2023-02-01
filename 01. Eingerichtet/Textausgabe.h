@@ -42,8 +42,10 @@ public:
 
 	void setExit(leave);
 
-	void setBackground(std::string);	//setzt den Hintergrund des Textfeldesm welches in dem grafics-Ordner hinterlegt werden muss
-	//(Maße: 1270 : 240)
+
+	void setBackground(std::string, Color);	//setzt den Hintergrund des Textfeldesm welches in dem grafics-Ordner hinterlegt werden muss
+	//(Ma�e: 1270 : 240)
+
 
 
 // Einlesen von der Tastatur für neue Events

@@ -31,8 +31,14 @@ Textausgabe::Textausgabe() {
 	ausgabe.setPosition(40, 500);
 }
 
-void Textausgabe::setBackground(std::string bg) {
+void Textausgabe::setBackground(std::string bg, Color colour) {
 	txtbackground = bg;
+	
+	Texture* txtfeldbg = new Texture;
+	txtfeldbg->loadFromFile("ressources/grafics/" + txtbackground);
+	txtbg = Sprite(*txtfeldbg);
+	ausgabe.setFillColor(colour);
+	txtbg.setPosition(5, 475);
 }
 
 void Textausgabe::setExit(leave insert) {					//Der enum gibt an, ob ein Einlesen von Antwortmöglichkeiten auf die Ausgabe folgen soll
