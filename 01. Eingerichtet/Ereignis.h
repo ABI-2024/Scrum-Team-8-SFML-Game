@@ -30,6 +30,6 @@ public:
 	static void processAntwort(int);
 	static void setRessources(Ressource*, Ressource*);
 	static void setTxt(Textausgabe* ntxt);
-	static void specialAction(short specialActionIndex, string specialActionText);
-	static bool specialActionPossible(short specialActionIndex, string specialActionText);
+	static void specialAction(int index);
+	static bool specialActionPossible();
 }; 

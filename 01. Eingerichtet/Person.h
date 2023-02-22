@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Datum.h"
+#include <list>
 enum status : short {
 	idle,
 	dead,
@@ -11,23 +12,27 @@ enum status : short {
 class Person
 {
 private:
+	static list<Person*> characters;
+
 	Datum geburtsDatum;
 	bool is_available;
 	status status;
 	char sex;
 	std::string name;
-	short age;
 	short hunger;
 	short mental_health;
 	short physical_health;
 
 
 public:
-	Person(Datum* bday, short age, char gender, std::string name);
+	Person(Datum* bday, char gender, std::string name);
 	~Person();
+	static list<Person*> getchars();
 	void update();
 	void hurt(int dmg);
+	enum status getStatus();
 	void psyDmg(int dmg);
-	void calAge(Datum* date);
+	string getName();
+	//void calAge(Datum* date);
 };
 

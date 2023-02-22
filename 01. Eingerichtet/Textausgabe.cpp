@@ -4,6 +4,16 @@
 using namespace std;
 using namespace sf;
 
+void Textausgabe::clear() {
+	text = "leer";
+	ausgeg = 0;
+	tics = 0;
+	cont = true;
+	from = 0;
+	maxlines = 0;
+	done = leave_after_enter;
+	awnser = 0;
+}
 Textausgabe::Textausgabe() {
 	text = "leer";
 	ausgeg = 0;
@@ -49,12 +59,13 @@ void Textausgabe::setExit(leave insert) {					//Der enum gibt an, ob ein Einlese
 void Textausgabe::einlesen(std::string insert) {		//ließt den Text in die Textausgabe ein
 	if (insert.length() == 0) {
 		
-		text = "leer";
+		this->text = "leer";
+
 	}
 	else {
 		text = "";
+
 		for (int i = 0; i < insert.length(); i++) {
-			
 			if (insert[i] == '#') {
 				
 				text = text + "\n";
@@ -206,6 +217,7 @@ void Textausgabe::keyboardInsertion() {
 // 
 //standardinput sollte sein: (<auszugebener Text>, <Anzahl der Antworten (0 oder 1 folgt in der jeweiligen Rückgabe des exakten wertes)>)
 void Textausgabe::uniInsertion(string text, int awnsers) {
+
 	einlesen(text);
 	
 
@@ -217,6 +229,7 @@ void Textausgabe::uniInsertion(string text, int awnsers) {
 		done = wait_for_input;
 	}
 	return;
+
 }
 
 Textausgabe::~Textausgabe() {

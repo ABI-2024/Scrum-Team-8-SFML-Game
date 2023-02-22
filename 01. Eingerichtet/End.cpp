@@ -5,19 +5,21 @@
 #include "Datum.h"
 #include "Ressource.h"
 #include "Textausgabe.h"
+#include "Warteschlange.h"
+#include "CSVcontrol.h"
 
 
-string EndCheck(Ressource essen, Ressource wasser) {
-	if (essen.getmenge() < 0) { //prüfen, ob Nahrung alle ist
-		return "Nahrung";		 // ist dies der Fall wird Nahrung bzw. Wasser zurückgegeben
+bool EndCheck(Ressource* essen, Ressource* wasser) {
+	if (essen->getmenge() < 0) { //prüfen, ob Nahrung alle ist
+		return true;		 // ist dies der Fall wird Nahrung bzw. Wasser zurückgegeben
 	}
 
-	else if (wasser.getmenge() < 0) { //prüfen, ob Wasser alle ist
-		return "Wasser";
+	else if (wasser->getmenge() < 0) { //prüfen, ob Wasser alle ist
+		return true;
 	}
 
 	else {						//falls alles in Ordnung ist
-		return "ok";
+		return false;
 	}
 }
 
@@ -26,10 +28,11 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	window->clear();
 	window->display();
 
-	sleep(seconds(5)); // blackscreen 5 sek
+	sleep(seconds(1)); // blackscreen 2 sek
 
 
 	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik. Trauer
+	sleep(seconds(1)); // blackscreen 5 sek
 
 	text->setBackground("black.png", Color::White); //Hintergrund Schwarz setzen
 
@@ -47,7 +50,7 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 		monat = "Februar";
 		break;
 	case 3:
-		monat = "Maerz";
+		monat = "März";
 		break;
 	case 4:
 		monat = "April";
@@ -77,6 +80,9 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 		monat = "Dezember";
 		break;
 
+	default:
+		monat = "Fehler";
+		break;
 	}
 
 	string label = to_string(datum->getTag()) + ". " + monat + " " + to_string(datum->getJahr()); //ausgabe des Datum
@@ -89,11 +95,22 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	end.setPosition(sf::Vector2f(1280 / 2.0f, 720 / 3.0f));
 
 	//hier event aufrufen für credits....
-
-
+	//Warteschlange::forceNext(CSVcontrol::getEventStart(5) + CSVcontrol::getEventAmount(5));
+	text->clear();
+	Warteschlange::forceNext(CSVcontrol::getEventStart(5) + 2 + CSVcontrol::getEventAmount(5));
+	sf::Event ev;
+	Warteschlange::lock();
+	Ereignis::newevent();
 	while (window->isOpen()) {
+		while (window->pollEvent(ev)) {
+			if (ev.Closed) {
+				window->close();
+			}
+		}
 		audio->update();
+		window->clear();
 		window->draw(end);
+		text->display(window);
 		window->display();
 	}
 
