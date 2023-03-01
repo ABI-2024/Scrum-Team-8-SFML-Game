@@ -1,5 +1,6 @@
 #include "Person.h"
 
+list<Person*> Person::characters;
 
 Person::Person(Datum* bday, char gender, std::string name) {
 	geburtsDatum = *bday;

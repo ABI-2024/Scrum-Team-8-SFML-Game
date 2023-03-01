@@ -1,11 +1,5 @@
 #include "Ereignis.h"
-#include <random>
-#include <fstream> 
-#include <stdlib.h> 
-#include "CSVcontrol.h"
-#include "Person.h"
-#include "SetEvents.h"
-#include "Textausgabe.h"
+
 
 using namespace std;
 
@@ -198,7 +192,11 @@ bool Ereignis::specialActionPossible() {
 				}
 			}
 			break;
-		case 2:
+		case 2:		//Person loses mental health
+			break;
+
+
+		case 3:		//Person loses physical health
 			break;
 		}
 	}

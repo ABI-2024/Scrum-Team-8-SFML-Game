@@ -1,9 +1,5 @@
 #include "SetEvents.h"
-#include "Warteschlange.h"
-#include <fstream>
-#include <string>
-#include <iostream>
-#include "CSVcontrol.h"
+
 int* SetEvents::setEventID[2] = { nullptr,nullptr };
 int SetEvents::setEventStartID = 0;
 int SetEvents::amount = 0;

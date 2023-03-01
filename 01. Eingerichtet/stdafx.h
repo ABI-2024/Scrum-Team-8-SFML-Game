@@ -3,9 +3,10 @@
 #include <string>
 #include <iostream>
 #include <SFML/Audio.hpp>
-#include "Textausgabe.h"
 #include "Datum.h"
+#include "Textausgabe.h"
 #include "Ereignis.h"
 #include "Ressource.h"
 #include "Grafik.h"
 #include "Audio.h"
+#include "Person.h"

@@ -1,7 +1,13 @@
 #pragma once
+#include <random>
+#include <fstream> 
+#include <stdlib.h> 
 #include "Textausgabe.h"
 #include "Ressource.h"
 #include "Warteschlange.h"
+#include "CSVcontrol.h"
+#include "Person.h"
+#include "SetEvents.h"
 #include <string>
 class Textausgabe;
 class Ressource;

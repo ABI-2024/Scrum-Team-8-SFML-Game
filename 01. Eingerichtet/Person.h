@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include "Datum.h"
 #include <list>
+#include "Datum.h"
 enum status : short {
 	idle,
 	dead,

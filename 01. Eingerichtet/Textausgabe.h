@@ -1,6 +1,10 @@
 #pragma once
-#include "stdafx.h"
+#include <SFML/Graphics.hpp>
 #include <string>
+#include <iostream>
+#include <SFML/Audio.hpp>
+#include "Ereignis.h"
+
 using namespace std;
 using namespace sf;
 enum leave : char {

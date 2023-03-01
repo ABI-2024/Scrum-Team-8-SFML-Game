@@ -1,5 +1,5 @@
+
 #include "Textausgabe.h"
-#include "stdafx.h"
 
 using namespace std;
 using namespace sf;

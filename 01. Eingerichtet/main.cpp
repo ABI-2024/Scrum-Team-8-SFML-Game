@@ -1,7 +1,16 @@
-#include "stdafx.h"
-#include "Warteschlange.h"
-#include "CSVcontrol.h"
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <iostream>
+#include <SFML/Audio.hpp>
+#include "Datum.h"
+#include "Textausgabe.h"
+#include "Ereignis.h"
+#include "Ressource.h"
+#include "Grafik.h"
+#include "Audio.h"
+#include "Person.h"
 #include "setEvents.h"
+#include "CSVcontrol.h"
 
 using namespace sf;
 using namespace std;
