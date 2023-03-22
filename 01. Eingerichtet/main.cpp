@@ -46,6 +46,15 @@ int main() {
 	Ereignis::setRessources(&essen, &wasser);
 	Warteschlange::addQueue(1);
 	Ereignis::newevent();
+
+
+
+
+
+
+
+
+
 	while (window.isOpen()) {
 		while (window.pollEvent(ev)) {
 			if (ev.Closed) {
@@ -76,7 +85,6 @@ int main() {
 }
 
 void init() {
-
 
 	CSVcontrol::loadConfig();
 	SetEvents::loadFromFile();
