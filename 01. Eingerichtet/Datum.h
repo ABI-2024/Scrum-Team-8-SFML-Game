@@ -18,8 +18,9 @@ private:
 	int wtid;
 	unsigned int calculatable; //eine pure Integer-Version des Datums um leichter Reichnen zu können
 	string wochentag;
-
+	static Datum* date;
 public:
+	static Datum* getDate();
 	Datum();
 	Datum(int, int, int, int);
 	~Datum();

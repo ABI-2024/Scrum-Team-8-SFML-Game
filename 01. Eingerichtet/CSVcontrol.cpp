@@ -19,12 +19,9 @@ void CSVcontrol::loadConfig() {
 	std::string buffer;
 	int counter = 0;
 	file.open("ressources/events.csv", std::ios::in);
-	std::cout << "FileIDS:\n";
 	for (int i = 0; i < 5; i++) {
 		std::getline(file, buffer, ';');
-		std::cout << "Iteration : " << i << "\n";
 		config[i] = std::stoi(buffer);
-		std::cout << config[i] << "\t" << counter + 1 << std::endl;
 		rowStart[i] = counter;
 		counter += 1;
 		std::getline(file, buffer, '\n');

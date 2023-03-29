@@ -22,6 +22,7 @@ private:
 	static int maxFood[3];
 	static int nextevent[3];
 	static short phase;
+	static int lastEvent;
 
 	static short specialActionIndex[3];
 	static string specialActionText[3];

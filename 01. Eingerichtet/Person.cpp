@@ -20,7 +20,9 @@ Person::~Person() {
 enum status Person::getStatus() {
 	return status;
 }
-
+void Person::setStatus(enum status set) {
+	status = set;
+}
 list<Person*> Person::getchars() {
 
 	return characters;
@@ -31,11 +33,13 @@ string Person::getName() {
 }
 
 void Person::update() {
-
+	
 }
+
 void Person::hurt(int dmg) {
 	physical_health -= dmg;
 }
+
 void Person::psyDmg(int dmg) {
 	mental_health -= dmg;
 }

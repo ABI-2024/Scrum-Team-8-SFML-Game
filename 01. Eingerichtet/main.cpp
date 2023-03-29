@@ -28,12 +28,12 @@ int main() {
 	Texture bgtxture;
 	bgtxture.loadFromFile("ressources/grafics/background.png");
 	Sprite background(bgtxture);
-	Datum date(11, 9, 2001, 1);
-	Warteschlange::addQueue(1);
+	Datum date(13, 6, 1936, 1);
+	Warteschlange::addQueue(0);
 
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
-	window.setFramerateLimit(30);
-
+	window.setFramerateLimit(160);
+	
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 1); //initialisierung von Essen - NICHT ÄNDERN!
 
@@ -44,19 +44,20 @@ int main() {
 	int counter = 0;
 	Ereignis::setTxt(&txt);
 	Ereignis::setRessources(&essen, &wasser);
-	Warteschlange::addQueue(1);
+	
 	Ereignis::newevent();
+
 	while (window.isOpen()) {
 		while (window.pollEvent(ev)) {
 			if (ev.Closed) {
 				window.close();
 			}
 		}
-
 		if (EndCheck(&essen, &wasser)) {
 
 			EndLose(&window, &music, &txt, &date);
 		}
+		SetEvents::checkdate(date.getCalculatable());
 		date.update();
 		window.clear();
 		window.draw(background);
