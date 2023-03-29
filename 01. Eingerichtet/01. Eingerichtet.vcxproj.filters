@@ -1,82 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Textausgabe.cpp">
+    <ClCompile Include="Audio.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Ressource.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Grafik.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Ereignis.cpp">
+    <ClCompile Include="CSVcontrol.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Datum.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Audio.cpp">
+    <ClCompile Include="End.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Ereignis.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Grafik.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Person.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Warteschlange.cpp">
+    <ClCompile Include="Ressource.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="SetEvents.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="CSVcontrol.cpp">
-    <ClCompile Include="End.cpp">
+    <ClCompile Include="Textausgabe.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Warteschlange.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Datum.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Audio.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Ereignis.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Grafik.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Ressource.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Textausgabe.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Person.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Warteschlange.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="SetEvents.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="CSVcontrol.h">
-      <Filter>Headerdateien</Filter>
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Datum.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Ereignis.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Grafik.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Ressource.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SetEvents.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Textausgabe.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Warteschlange.h">
+      <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Headerdateien">
-      <UniqueIdentifier>{661e19a3-7968-4ea6-bc42-9ef970d49122}</UniqueIdentifier>
+    <Filter Include="Header">
+      <UniqueIdentifier>{f93eb464-4a9d-4eff-8050-47dedf6a28be}</UniqueIdentifier>
     </Filter>
     <Filter Include="Quelldateien">
-      <UniqueIdentifier>{ebf3ead8-86e9-4424-94f5-11519f397311}</UniqueIdentifier>
+      <UniqueIdentifier>{c756d338-e918-4422-b83d-2797f7ec4c7e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

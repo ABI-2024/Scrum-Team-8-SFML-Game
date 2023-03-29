@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "Ressource.h"
 
 using namespace std;
 using namespace sf;

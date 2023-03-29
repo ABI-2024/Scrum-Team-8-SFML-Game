@@ -1,20 +1,26 @@
-
-4;Anzahl der Antworten;a water;a food;b water;b food;c water;c food;a folgeevents;b folgeevents;c folgeevents
-Hallo Herr Schwaiger,#Diese Textausgabe funktioniert mit jeweils 5 Zeilen###Nach welchen dann nach dem betï¿½tigen der Enter-Taste...#Weiterer Text ausgegeben werden kann, bis alles ausgegeben wurde,#was zu sagen war. Die angezeigten Ressourcen kï¿½nnen, #ebenso wie das Datum, verï¿½ndert werden.#Mit dem betï¿½tigen der 1, 2 oder 3 kann die Antwort gewï¿½hlt werden;3;1#2;1#3;1#4;1#5;1#6;1#7;1;0;1
-Rofl;3;1#2;1#3;1#4;1#5;1#6;1#7;0;0;0
-Rofl - The real shit;3;1#2;1#3;1#4;1#5;1#6;1#7;0;0;0
-Bansai?#1) BANSAAIII!#2) Bansai.#3) Fï¿½r Ehre und Kaiserreich!;3;2#2;2#2;1#1;1#1;2#2;2#2;0;0;2
-2;Phase 2 Events;;;;;;;;;
-Jeremy Fragrence ist King!;3;0#0;0#1;1#1;2#2;3#3;0#0;0;0;0
-Eine ï¿½usserst deutsche Artikulation!;0;0#0;0#0;0#0;0#0;0#0;0#0;0;0;0
-3;Phase 3 Events;;;;;;;;;
-Event Phase 3:#1) Folgeevent 1 folgt;3;0#0;0#1;1#1;2#2;3#3;0#0;0;0;0
-2. Event Phase 3:#1) Folgeevent 2 folgt#2) kein Folgeevent#3) keine mï¿½gliche Antwort;2;0#0;0#0;0#0;0#0;0#0;0#0;2;0;0
-Bansai?#1) BANSAAIII!#2) Bansai.#3) Fï¿½r Ehre und Kaiserreich!;3;2#2;2#2;1#1;1#1;2#2;2#2;0;0;2
-5;Followupevents;;;;;;;;;
-Folgeevent 1;0;0#0;0#1;1#1;2#2;3#3;0#0;0;0;0
-Folgeevent 2;0;0#0;0#0;0#0;0#0;0#0;0#0;0;0;0
-Folgeevent 3;0;2#2;2#2;1#1;1#1;2#2;2#2;0;0;0
-Folgeevent 4;0;0#0;0#1;1#2;2#3;3#4;0#0;0;0;0
-Folgeevent 5;0;0#0;0#2;0#0;0#0;0#0;0#0;0;0;0
-3;setEvents;;;;;;;;;
+4;Anzahl der Antworten;a water;a food;b water;b food;c water;c food;a folgeevents;b folgeevents;c folgeevents;;;;;;;
+An diesem Morgen taucht eine Gruppe von Männern auf, #die behauptet, Vorräte von der Regierung zu bringen #um uns zu unterstützen. #Ich frage mich, ob ich ihnen vertrauen kann.##Soll Ich die Hilfe annehmen? #1) Wegschicken#2) Die Hilfe annehmen #3) Game Over Test;3;1#2;1#3;1#4;1#5;1#6;-100#-200;1;2;3;1;leer;1;leer;1;leer
+Rofl;3;1#2;1#3;1#4;1#5;1#6;1#7;4;5;0;1;leer;1;leer;1;leer
+Rofl - The real shit;3;1#2;1#3;1#4;1#5;1#6;1#7;0;0;0;1;leer;1;leer;1;leer
+Bansai?#1) BANSAAIII!#2) Bansai.#3) Für Ehre und Kaiserreich!;3;2#2;2#2;1#1;1#1;2#2;2#2;0;0;2;1;leer;1;leer;1;leer
+2;Phase 2 Events;;;;;;;;;;;;;;;;
+Jeremy Fragrence ist King!;3;0#0;0#1;1#1;2#2;3#3;0#0;0;0;0;1;leer;1;leer;1;leer
+Eine Äusserst deutsche Artikulation!;0;0#0;0#0;0#0;0#0;0#0;0#0;0;0;0;1;leer;1;leer;1;leer
+3;Phase 3 Events;;;;;;;;;;;;;;;;
+Event Phase 3:#1) Folgeevent 1 folgt;3;0#0;0#1;1#1;2#2;3#3;0#0;0;0;0;1;leer;1;leer;1;leer;
+2. Event Phase 3:#1) Folgeevent 2 folgt#2) kein Folgeevent#3) keine mögliche Antwort;2;0#0;0#0;0#0;0#0;0#0;0#0;2;0;0;1;leer;1;leer;1;leer
+Bansai?#1) BANSAAIII!#2) Bansai.#3) Für Ehre und Kaiserreich!;3;2#2;2#2;1#1;1#1;2#2;2#2;0;0;2;1;leer;1;leer;1;leer
+5;Followupevents;;;;;;;;;;;;;;;;
+Folgeevent 1;0;0#0;0#1;1#1;2#2;3#3;0#0;0;0;0;1;leer;1;leer;1;leer
+Folgeevent 2;0;0#0;0#0;0#0;0#0;0#0;0#0;0;0;0;1;leer;1;leer;1;leer
+Folgeevent 3;0;2#2;2#2;1#1;1#1;2#2;2#2;0;0;0;1;leer;1;leer;1;leer
+Folgeevent 4;0;0#0;0#1;1#2;2#3;3#4;0#0;0;0;0;1;leer;1;leer;1;leer
+Folgeevent 5;0;0#0;0#2;0#0;0#0;0#0;0#0;0;0;0;1;leer;1;leer;1;leer
+5;setEvents;;;;;;;;;;;;;;;;
+19990201;SetEvent 1;0;0#0;0#1;1#1;2#2;3#3;0#0;0;0;0;1;leer;1;leer;1;leer
+19990202;Setevent 2;0;0#0;0#0;0#0;0#0;0#0;0#0;0;0;0;1;leer;1;leer;1;leer
+19990203;Setevent 3;0;2#2;2#2;1#1;1#1;2#2;2#2;0;0;0;1;leer;1;leer;1;leer
+20090212;SetEvent 4;0;0#0;0#1;1#2;2#3;3#4;0#0;0;0;0;1;leer;1;leer;1;leer
+20100212;Setevent 5;0;0#0;0#2;0#0;0#0;0#0;0#0;0;0;0;1;leer;1;leer;1;leer
+Hiernach kommen custom events für fälle wie Ende etc.;d;a;b
+Credits:#Nichts: Marius#Head Developer: Marianne#Head Discord Bobux King: Marius#Speziellen Dank an: Herr Schwaiger;1;0#0;0#1;1#1;2#2;3#3;0#0;-1;-1;-1;1;leer;1;leer;1;leer

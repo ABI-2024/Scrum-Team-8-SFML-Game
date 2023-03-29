@@ -1,7 +1,13 @@
 #pragma once
+#include <random>
+#include <fstream> 
+#include <stdlib.h> 
 #include "Textausgabe.h"
 #include "Ressource.h"
 #include "Warteschlange.h"
+#include "CSVcontrol.h"
+#include "Person.h"
+#include "SetEvents.h"
 #include <string>
 class Textausgabe;
 class Ressource;
@@ -30,6 +36,6 @@ public:
 	static void processAntwort(int);
 	static void setRessources(Ressource*, Ressource*);
 	static void setTxt(Textausgabe* ntxt);
-	static void specialAction(short specialActionIndex, string specialActionText);
-	static bool specialActionPossible(short specialActionIndex, string specialActionText);
+	static void specialAction(int index);
+	static bool specialActionPossible();
 }; 

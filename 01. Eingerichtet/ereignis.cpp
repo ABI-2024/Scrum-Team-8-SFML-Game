@@ -1,9 +1,5 @@
 #include "Ereignis.h"
-#include <random>
-#include <fstream> 
-#include <stdlib.h> 
-#include "CSVcontrol.h"
-#include "SetEvents.h"
+
 
 using namespace std;
 
@@ -21,7 +17,7 @@ int Ereignis::nextevent[3];
 
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
-Textausgabe* Ereignis::txt;
+Textausgabe* Ereignis::txt = nullptr;
 
 int randomIntinRange(int a, int b);
 
@@ -37,18 +33,18 @@ void Ereignis::newevent() {
 			std::cout << "\n\tMaxRandomNumber " << i + 1 << ":" << CSVcontrol::getEventStart(i + 1) + CSVcontrol::getEventAmount(i + 1) - 1 << "\t Amount: " << CSVcontrol::getEventAmount(i + 1) << endl;
 
 		}
-		rnd = randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
+		rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
 	}
 	else {
 		rnd = eventindex;
 	}
 	cout << "\n\tCSV-Row: " << rnd;
 	file.open("ressources/events.csv", ios::in);
-	getline(file, temp, '\n');
+	//getline(file, temp, '\n');
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
 
-			if (/*rnd >= SetEvents::getSetEventStartID()*/0) {
+			if (rnd >= SetEvents::getSetEventStartID() && rnd <= SetEvents::getSetEventStartID()+SetEvents::getSetEventAmount()) {
 				getline(file, temp, ';');
 			}
 
@@ -58,6 +54,7 @@ void Ereignis::newevent() {
 			antworten = stoi(temp);
 			for (int i = 0; i <= 2; i++) {
 				getline(file, temp, '#');
+
 				minWater[i] = stoi(temp);
 				getline(file, temp, ';');
 				maxWater[i] = stoi(temp);
@@ -71,20 +68,40 @@ void Ereignis::newevent() {
 
 
 
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 3; i++) {
 				getline(file, temp, ';');
 				nextevent[i] = stoi(temp);
 			}
-			getline(file, temp, '\n');
-			nextevent[2] = stoi(temp);
+			for (int i = 0; i < 2; i++) {
+				getline(file, temp, ';');
+				std::cout << "\nerror ? :\t" << temp << endl;
+				specialActionIndex[i] = stoi(temp);
+				getline(file, temp, ';');
+				specialActionText[i] = temp;
 
+			}
+			getline(file, temp, ';');
+			specialActionIndex[2] = stoi(temp);
+			getline(file, temp, '\n');
+			specialActionText[2] = temp;
+			/*for (int i = 0; i < 3; i++) {
+				std::cout << "\n" << specialActionText[i] << "\t" << specialActionIndex[i];
+			}*/
 		}
 		else { getline(file, temp, '\n'); }
 
 	}
 
 
-	txt->uniInsertion(text, antworten);
+	std::cout << "cp1 passed\n";
+	if (specialActionPossible() || 1) {
+
+		txt->uniInsertion(text, antworten);
+
+	}
+	else {
+
+	}
 
 	file.close();
 
@@ -105,15 +122,16 @@ void Ereignis::processAntwort(int index) {
 			newevent();
 			return;
 		}
+		else if (nextevent[index - 1] == -1) {
+			return;
+		}
 		else {
 
-
-
-			Warteschlange::forceNext(CSVcontrol::getEventStart(4) + nextevent[index - 1] + 1);
-
+			Warteschlange::forceNext(CSVcontrol::getEventStart(4) + nextevent[index - 1]);
 			newevent();
 		}
 	}
+	
 	else {
 		newevent();
 	}
@@ -146,8 +164,10 @@ int randomIntinRange(int a, int b) {
 }
 
 
-void Ereignis::specialAction(short specialActionIndex, string specialActionText) {
-	switch (specialActionIndex) {
+void Ereignis::specialAction(int index) {
+	switch (specialActionIndex[index]) {
+	case 0:
+		break;
 	case 1:
 
 		break;
@@ -156,15 +176,29 @@ void Ereignis::specialAction(short specialActionIndex, string specialActionText)
 	}
 	return;
 }
-bool Ereignis::specialActionPossible(short specialActionIndex, string specialActionText) {
-	switch (specialActionIndex) {
-	case 0:
-		return true;
-		break;
-	case 1:		
-		break;
-	case 2:
-		break;
+bool Ereignis::specialActionPossible() {
+	bool ret = true;
+	for (int i = 0; i < 3; i++) {
+		switch (specialActionIndex[i]) {
+		case 0:
+			ret = true;
+			break;
+		case 1:		//Person leaves
+			for (Person* iterator : Person::getchars()) {
+				if (iterator->getName() == specialActionText[i]) {
+					if (iterator->getStatus() != idle) {
+						ret = false;
+					}
+				}
+			}
+			break;
+		case 2:		//Person loses mental health
+			break;
+
+
+		case 3:		//Person loses physical health
+			break;
+		}
 	}
 	return true;
 }

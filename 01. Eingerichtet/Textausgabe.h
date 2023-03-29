@@ -1,5 +1,10 @@
 #pragma once
-#include "stdafx.h"
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <iostream>
+#include <SFML/Audio.hpp>
+#include "Ereignis.h"
+
 using namespace std;
 using namespace sf;
 enum leave : char {
@@ -10,7 +15,7 @@ enum leave : char {
 class Textausgabe
 {
 private:
-	string text;		//Die Texte, die ausgegeben werden sollen als  in Zeilen unterteilt
+	std::string text;		//Die Texte, die ausgegeben werden sollen als  in Zeilen unterteilt
 	int ausgeg;			//ein int counter für die Anzahl an ausgegebenen Zeichen
 	int tics;			//ein int counter, der die Tics zwischen der ausgabe regelt und die 
 	//Ausgabegeschwindigkeit indirekt regelt
@@ -33,6 +38,7 @@ private:
 	int awnser;
 
 public:
+	void clear();
 	Textausgabe();
 	~Textausgabe();
 	bool display(RenderWindow*);		//Eine Methode, welche regulär am Ende der main aufgerufen werden 

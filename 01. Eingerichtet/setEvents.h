@@ -1,4 +1,9 @@
 #pragma once
+#include "Warteschlange.h"
+#include <fstream>
+#include <string>
+#include <iostream>
+#include "CSVcontrol.h"
 class SetEvents
 {
 

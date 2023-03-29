@@ -1,5 +1,10 @@
 #pragma once
-#include "stdafx.h"
+#pragma once
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <iostream>
+#include <SFML/Audio.hpp>
+
 using namespace sf;
 using namespace std;
 
