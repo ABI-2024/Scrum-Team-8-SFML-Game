@@ -28,11 +28,12 @@ public:
 	Person(Datum* bday, char gender, std::string name);
 	~Person();
 	static list<Person*> getchars();
-	void update();
+	static void update();
 	void hurt(int dmg);
 	enum status getStatus();
 	void psyDmg(int dmg);
 	string getName();
+	void setStatus(enum status set);
 	//void calAge(Datum* date);
 };
 

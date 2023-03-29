@@ -1,5 +1,5 @@
 #include "Ereignis.h"
-
+#include "Datum.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ int Ereignis::maxFood[3];
 short Ereignis::specialActionIndex[3];
 string Ereignis::specialActionText[3];
 short Ereignis::phase = 1;
-
+int Ereignis::lastEvent = 100;
 int Ereignis::nextevent[3];
 
 Ressource* Ereignis::water;
@@ -28,23 +28,20 @@ void Ereignis::newevent() {
 	int rnd = 0;
 	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
-		for (int i = 0; i < 3; i++) {
-			std::cout << "\n\tMinRandomNumber " << i + 1 << ":" << CSVcontrol::getEventStart(i + 1);
-			std::cout << "\n\tMaxRandomNumber " << i + 1 << ":" << CSVcontrol::getEventStart(i + 1) + CSVcontrol::getEventAmount(i + 1) - 1 << "\t Amount: " << CSVcontrol::getEventAmount(i + 1) << endl;
+	
 
-		}
 		rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
+
 	}
 	else {
 		rnd = eventindex;
 	}
-	cout << "\n\tCSV-Row: " << rnd;
 	file.open("ressources/events.csv", ios::in);
 	//getline(file, temp, '\n');
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
 
-			if (rnd >= SetEvents::getSetEventStartID() && rnd <= SetEvents::getSetEventStartID()+SetEvents::getSetEventAmount()) {
+			if (rnd >= SetEvents::getSetEventStartID() && rnd <= SetEvents::getSetEventStartID() + SetEvents::getSetEventAmount()) {
 				getline(file, temp, ';');
 			}
 
@@ -74,7 +71,6 @@ void Ereignis::newevent() {
 			}
 			for (int i = 0; i < 2; i++) {
 				getline(file, temp, ';');
-				std::cout << "\nerror ? :\t" << temp << endl;
 				specialActionIndex[i] = stoi(temp);
 				getline(file, temp, ';');
 				specialActionText[i] = temp;
@@ -84,17 +80,14 @@ void Ereignis::newevent() {
 			specialActionIndex[2] = stoi(temp);
 			getline(file, temp, '\n');
 			specialActionText[2] = temp;
-			/*for (int i = 0; i < 3; i++) {
-				std::cout << "\n" << specialActionText[i] << "\t" << specialActionIndex[i];
-			}*/
+			
 		}
 		else { getline(file, temp, '\n'); }
 
 	}
 
 
-	std::cout << "cp1 passed\n";
-	if (specialActionPossible() || 1) {
+	if (specialActionPossible()) {
 
 		txt->uniInsertion(text, antworten);
 
@@ -113,12 +106,13 @@ string Ereignis::getText() {
 
 
 void Ereignis::processAntwort(int index) {
-
+	Datum::getDate()->add(1);
 	if (index > 0 && index <= 3) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
 		food->addmenge(randomIntinRange(minFood[index - 1], maxFood[index - 1]));
 
 		if (nextevent[index - 1] == 0) {
+
 			newevent();
 			return;
 		}
@@ -131,7 +125,9 @@ void Ereignis::processAntwort(int index) {
 			newevent();
 		}
 	}
-	
+
+
+
 	else {
 		newevent();
 	}
@@ -165,6 +161,9 @@ int randomIntinRange(int a, int b) {
 
 
 void Ereignis::specialAction(int index) {
+	bool ret = true;
+	int loss;
+	string name;
 	switch (specialActionIndex[index]) {
 	case 0:
 		break;
@@ -172,18 +171,41 @@ void Ereignis::specialAction(int index) {
 
 		break;
 	case 2:
+		bool stillname = true;
+		for (int i = 0; i < specialActionText[index].length(); i++) {
+			if (specialActionText[index][i] == '#') {
+				stillname = false;
+				continue;
+			}
+			if (stillname) {
+				name[i] = specialActionText[index][i];
+			}
+			else {
+				loss = stoi(specialActionText[index].substr(name.length(), specialActionText[index].length()));
+			}
+		}
+		for (Person* iterator : Person::getchars()) {
+			if (iterator->getName() == name) {
+				if (iterator->getStatus() != idle) {
+					//a
+
+				}
+			}
+		}
+
 		break;
 	}
 	return;
 }
 bool Ereignis::specialActionPossible() {
 	bool ret = true;
+	string name;
 	for (int i = 0; i < 3; i++) {
 		switch (specialActionIndex[i]) {
 		case 0:
 			ret = true;
 			break;
-		case 1:		//Person leaves
+		case 1:		//specific Person leaves
 			for (Person* iterator : Person::getchars()) {
 				if (iterator->getName() == specialActionText[i]) {
 					if (iterator->getStatus() != idle) {
@@ -192,11 +214,36 @@ bool Ereignis::specialActionPossible() {
 				}
 			}
 			break;
-		case 2:		//Person loses mental health
-			break;
+		case 2:		//specific Person loses mental health
+		{
+			bool stillname = true;
 
+			for (int n = 0; n < specialActionText[n].length(); n++) {
+				if (specialActionText[i][n] == '#') {
+					stillname = false;
+					continue;
+				}
+				if (stillname) {
+					name[n] = specialActionText[i][n];
+				}
+
+			}
+
+			for (Person* iterator : Person::getchars()) {
+				if (iterator->getName() == name) {
+					if (iterator->getStatus() != idle) {
+						ret = false;
+					}
+					break;
+				}
+			}
+
+
+			break;
+		}
 
 		case 3:		//Person loses physical health
+
 			break;
 		}
 	}
