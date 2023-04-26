@@ -26,7 +26,7 @@ Textausgabe::Textausgabe() {
 
 	awnser = 0;
 
-	buffer.loadFromFile("ressources/audio/typesound.wav");
+	buffer.loadFromFile("ressources/audio/typesound.ogg");
 	soundeffect.setBuffer(buffer);
 	soundeffect.setVolume(3);
 

@@ -11,7 +11,7 @@ int Ereignis::maxWater[3];
 int Ereignis::maxFood[3];
 short Ereignis::specialActionIndex[3];
 string Ereignis::specialActionText[3];
-short Ereignis::phase = 1;
+short Ereignis::phase = 2;
 
 int Ereignis::nextevent[3];
 
