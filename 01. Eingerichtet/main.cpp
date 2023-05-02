@@ -39,6 +39,7 @@ int main() {
 	sf::Event ev;
 		
 
+
 	Textausgabe txt;
 	Audio music;
 	int counter = 0;
@@ -67,7 +68,7 @@ int main() {
 		wasser.darstellen(&window);
 
 
-		txt.display(&window);
+		//txt.display(&window);
 
 		window.display();
 		music.update();
