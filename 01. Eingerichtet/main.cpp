@@ -66,7 +66,7 @@ int main() {
 
 
 		txt.display(&window);
-
+		music.lsregler(&window);
 		window.display();
 		music.update();
 

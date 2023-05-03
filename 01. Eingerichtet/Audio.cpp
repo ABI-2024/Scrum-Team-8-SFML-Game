@@ -1,6 +1,8 @@
 #include "Audio.h"
 #include <random>
 
+using namespace sf;
+
 #define maxsongs 3		//maximale Anzahl an Liedern
 
 Audio::Audio() {		//Standardkonstruktor
@@ -79,4 +81,15 @@ void Audio::setVolume(float volume) { //volume ist der multiplikator der Lautstä
 
 	this->music->setVolume(25 * volume);
 	return;
+}
+
+void Audio::lsregler(RenderWindow* window) {
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		Vector2f bims = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+		if (bims.y < 100 and bims.y > 90) {
+			cout << bims.y << endl;
+		}
+
+	}
 }

@@ -26,5 +26,6 @@ public:
 	void skipSong();
 	//void setIntensity(int iIntensity);
 	void setVolume(float volume);
+	void lsregler(RenderWindow* window);
 };
 
