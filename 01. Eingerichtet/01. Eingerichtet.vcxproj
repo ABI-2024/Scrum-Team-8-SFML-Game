@@ -24,6 +24,7 @@
     <ClCompile Include="Datum.cpp" />
     <ClCompile Include="End.cpp" />
     <ClCompile Include="Grafik.cpp" />
+    <ClCompile Include="Hintergrund.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ereignis.cpp" />
     <ClCompile Include="Person.cpp" />

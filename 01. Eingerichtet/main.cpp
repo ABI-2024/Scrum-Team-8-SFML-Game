@@ -18,6 +18,8 @@ using namespace std;
 
 void init();
 
+void hintergrund(RenderWindow*);												//Hintergrund und Animationen
+
 bool EndCheck(Ressource* essen, Ressource* wasser);								//Überprüfung zum Gameover
 void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);										//Trigger vom Endscreen bei Niederlage
 void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
@@ -25,10 +27,7 @@ void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem 
 int main() {
 	init();
 
-	Texture bgtxture;
-	bgtxture.loadFromFile("ressources/grafics/background.png");
-	Sprite background(bgtxture);
-	Datum date(11, 9, 2001, 1);
+	Datum date(11, 6, 1934, 1);
 
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
@@ -60,15 +59,17 @@ int main() {
 
 			EndLose(&window, &music, &txt, &date);
 		}
+
 		date.update();
 		window.clear();
-		window.draw(background);
+
+		hintergrund(&window);
+
 		date.display(&window);
 		essen.darstellen(&window);
 		wasser.darstellen(&window);
 
-
-		//txt.display(&window);
+		txt.display(&window);
 
 		window.display();
 		music.update();
