@@ -10,7 +10,7 @@ Audio::Audio() {		//Standardkonstruktor
 	inChange = false;
 	last = 0;
 	//intensity = 1;
-	music->setVolume(25.f);
+	vlmwum = 25.f;
 	vlm = 1;
 	changeFile = "leer";
 }
@@ -28,7 +28,7 @@ void Audio::update() {
 	}
 	else {					//verringert die Lautstärke um einen fließenderes Gefühl bei dem Übergang zu gewährleisten
 		if (vlm < 12) {
-			music->setVolume(music->getVolume() * vlm / (vlm + 0.15f));		//wird jedes mal um 15% verringert, d.h. erst 15%, dann 30% etc von der ausgangslautstärke
+			vlmwum = music->getVolume() * vlm / (vlm + 0.15f);		//wird jedes mal um 15% verringert, d.h. erst 15%, dann 30% etc von der ausgangslautstärke
 			vlm += 0.15f;
 
 		}
@@ -39,7 +39,7 @@ void Audio::update() {
 			}
 			inChange = false;
 			changeFile = "leer";
-			music->setVolume(music->getVolume() * vlm);
+			vlmwum = music->getVolume() * vlm;
 			vlm = 1;
 			music->play();
 		}
@@ -79,17 +79,42 @@ void Audio::skipSong() {			//Überspringt das aktuelle Lied und startet ein neues
 //}
 void Audio::setVolume(float volume) { //volume ist der multiplikator der Lautstärke. d.h. 1 == 100% der std. Lautstärke -> max = 400% / 4
 
-	this->music->setVolume(25 * volume);
+	vlmwum =25 * volume*this->volume;
 	return;
 }
 
 void Audio::lsregler(RenderWindow* window) {
+	int mousex = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x;
+	int mousey = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y;
+
+	Sprite bar;
+	Texture bar2;
+	bar2.loadFromFile("ressources/grafics/lsbar.png");
+	bar.setTexture(bar2);
+	Sprite pin;
+	Texture pin2;
+	pin2.loadFromFile("ressources/grafics/lspin.png");
+	pin.setTexture(pin2);
+	bar.setPosition(1100, 20);
+	bar.setScale(5, 5);
+	pin.setPosition(pinx, piny);
+	pin.setScale(4, 4);
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		Vector2f bims = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
-		if (bims.y < 100 and bims.y > 90) {
-			cout << bims.y << endl;
+
+		if ((mousey < 35   and mousey > 15 and mousex < 1200 and mousex > 1100)or mousepressed == true) {
+			if (mousex < 1100) mousex = 1100;
+			if (mousex > 1200) mousex = 1200;
+			volume = (mousex - 1100.f) / 25;
+			cout << volume << endl;
+			pinx = mousex - 10;
+			mousepressed = true;
 		}
 
 	}
+	else { mousepressed = false; }
+	this->music->setVolume(vlmwum * volume);
+	window->draw(bar);
+	window->draw(pin);
+
 }

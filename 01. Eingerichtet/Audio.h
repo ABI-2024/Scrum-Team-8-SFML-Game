@@ -15,6 +15,11 @@ private:
 	bool inChange;			//bool für den check ob gerade ein Song gewechselt werden soll
 	float vlm;				//multiplikator für das Volumen um dieses erst herunter zu setzen
 	std::string changeFile;		//der Song, zu dem gewechselt werden soll
+	float volume = 1; // lautstärkeregler
+	float vlmwum;
+	int pinx = 1050;
+	int piny = 10;
+	bool mousepressed = false;
 
 public:
 	Audio();
