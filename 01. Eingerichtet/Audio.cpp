@@ -116,5 +116,4 @@ void Audio::lsregler(RenderWindow* window) {
 	this->music->setVolume(vlmwum * volume);
 	window->draw(bar);
 	window->draw(pin);
-
 }
