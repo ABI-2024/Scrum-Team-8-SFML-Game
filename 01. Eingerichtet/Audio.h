@@ -17,7 +17,7 @@ private:
 	std::string changeFile;		//der Song, zu dem gewechselt werden soll
 	float volume = 1; // lautstärkeregler
 	float vlmwum;
-	int pinx = 1150;
+	int pinx = 1125;
 	int piny = 10;
 	bool mousepressed = false;
 

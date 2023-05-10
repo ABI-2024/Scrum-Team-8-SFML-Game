@@ -106,7 +106,6 @@ void Audio::lsregler(RenderWindow* window) {
 			if (mousex < 1100) mousex = 1100;
 			if (mousex > 1200) mousex = 1200;
 			volume = (mousex - 1100.f) / 25;
-			cout << volume << endl;
 			pinx = mousex - 10;
 			mousepressed = true;
 		}
