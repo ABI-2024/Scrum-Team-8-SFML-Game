@@ -28,8 +28,8 @@ int Person::getPresentCharactarAmount() {
 	return i;
 }
 void Person::loadChars() {
-	family.push_back(new Person(new Datum(5, 10,1920,2), 'f', "Akari")); //female main character
 	family.push_back(new Person(new Datum(5, 10, 1928, 2), 'm', "Kenzo")); //brother
+	family.push_back(new Person(new Datum(5, 10,1920,2), 'f', "Akari")); //female main character
 	family.push_back(new Person(new Datum(5, 10, 1892, 2), 'f', "Sakura")); //mother
 	family.push_back(new Person(new Datum(5, 10, 1920, 2), 'm', "Kenji")); //father
 	family.push_back(new Person(new Datum(5, 10, 1920, 2), 'f', "Himari")); //grandmother
@@ -77,16 +77,18 @@ void Person::loadVisualDisplay(int row) {
 
 	txture.loadFromFile("ressources/grafics/Family/" + name + ".png");
 	icon.setTexture(txture);
-	icon.setPosition(Vector2f(1170, 20 + 80 * (row)));
+	icon.setPosition(Vector2f(1100, 20 + 80 * (row)));
 	icon.scale(Vector2f(0.16f, 0.16f));
+	statusicon.setScale(Vector2f(0.16f, 0.16f));
+	statusicon.setPosition(icon.getPosition().x - 6, icon.getPosition().y);
+	statusicon.setColor(Color(255, 255, 255, 192));
 }
 
 void Person::render(RenderWindow* window) {
 	window->draw(icon);
-	Texture statustexture;
+	
 	statustexture.loadFromFile("ressources/grafics/Family/status" + to_string(status) + ".png");
 	
-	Sprite statusicon(statustexture);
-	statusicon.setPosition(icon.getPosition().x -20, icon.getPosition().y);
-
+	statusicon.setTexture(statustexture);
+	window->draw(statusicon);
 }

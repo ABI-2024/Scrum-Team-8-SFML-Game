@@ -23,7 +23,8 @@ private:
 	short hunger;
 	short mental_health;
 	short physical_health;
-
+	Texture statustexture;
+	Sprite statusicon;
 
 public:
 	Person(Datum* bday, char gender, std::string name);

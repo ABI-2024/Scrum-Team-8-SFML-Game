@@ -31,7 +31,7 @@ int main() {
 	bgtxture.loadFromFile("ressources/grafics/background.png");
 	Sprite background(bgtxture);
 	Datum* date = new Datum(13, 6, 1936, 1);
-
+	std::cout << "should: " << CSVcontrol::getEventStart(1) << " with : " << CSVcontrol::getEventStart(1) + CSVcontrol::getEventAmount(1) - 1 << endl;
 
 	Warteschlange::addQueue(0);
 
@@ -49,6 +49,7 @@ int main() {
 	int counter = 0;
 	Ereignis::setTxt(&txt);
 	Ereignis::setRessources(&essen, &wasser);
+	SetEvents::checkdate(date->getCalculatable());
 	Ereignis::newevent();
 	Datum::setWorldDate(date);
 	while (window.isOpen()) {
@@ -64,12 +65,11 @@ int main() {
 		SetEvents::checkdate(date->getCalculatable());
 
 
-
 		if (!paused) {
 			if (date->getAdder() > 0) {				//Ein neuer Tag bricht an
 				paused = true;
-				wasser.addmenge(-1 * date->getAdder());
-				essen.addmenge(-1 * date->getAdder());
+				wasser.addmenge(-1 * Person::getPresentCharactarAmount());
+				essen.addmenge(-1 * Person::getPresentCharactarAmount());
 			}
 
 			
@@ -129,15 +129,16 @@ void dayTransmission(RenderWindow* window, int* transmissionphase) {
 
 	window->draw(cover);
 
-	if(*transmissionphase > 255) {
+	if(*transmissionphase > 128) {
 		Font font;
 		font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
 
 		Text ausgabe(tmp->getWT() + ", den " + to_string(tmp->getTag()) + "." + to_string(tmp->getMonat()) + "." + to_string(tmp->getJahr()), font);
-		ausgabe.setCharacterSize(20);
+		ausgabe.setCharacterSize(40);
+		ausgabe.setPosition(sf::Vector2f(425, 720 / 3.0f));
+
 		ausgabe.setLetterSpacing(0.3f);
 		ausgabe.setFillColor(Color::White);
-		ausgabe.setPosition(500, 15);
 
 		window->draw(ausgabe);
 	}
