@@ -11,6 +11,7 @@
 #include "Person.h"
 #include "setEvents.h"
 #include "CSVcontrol.h"
+#include "hintergrund.h"
 
 using namespace sf;
 using namespace std;
@@ -19,7 +20,6 @@ int rando(int a, int b);
 
 void init();
 
-void hintergrund(RenderWindow*);												//Hintergrund und Animationen
 
 void Zufallsgenerator();														//Einsetzen der Warteschlange
 bool EndCheck(Ressource* essen, Ressource* wasser);								//Überprüfung zum Gameover
@@ -33,6 +33,8 @@ int main() {
 
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
+
+	hintergrund hintergrundbase("background");
 
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 100); //initialisierung von Essen - NICHT ÄNDERN!
@@ -64,10 +66,12 @@ int main() {
 			EndLose(&window, &music, &txt, &date);
 		}
 
+
 		date.update();
 		window.clear();
 
-		hintergrund(&window);
+		hintergrundbase.update_hintergrund();
+		hintergrundbase.darstellen(&window);
 
 		date.display(&window);
 		essen.darstellen(&window);

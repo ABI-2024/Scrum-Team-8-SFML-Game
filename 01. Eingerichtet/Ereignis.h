@@ -14,6 +14,8 @@ class Ressource;
 class Ereignis {
 
 private:
+	static int currentevent;
+
 	static string text;
 	static int antworten;
 	static int minWater[3];
@@ -31,6 +33,7 @@ private:
 	static Textausgabe* txt;
 
 public:
+	static int getcurrentevent();
 	static string getText();
 	static void newevent();
 	static void processAntwort(int);

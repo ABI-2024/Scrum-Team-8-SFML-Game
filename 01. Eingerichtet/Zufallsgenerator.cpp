@@ -7,30 +7,60 @@ int rando(int a, int b);
 
 void Zufallsgenerator() {
 	int zahl = 0;
-	int counter = 0; //erstellen der Variablen
-	bool check[15];
+	int counter; //erstellen der Variablen
+	bool check[20];
+	int phase1 = 16;
+	int phase2 = 15;
+	int phase3 = 15;
 
-	for (int i = 0; i < 3; i++) {
+	fill_n(check, phase1, true); //zurücksetzen der Variablen nach jedem Durchlauf
+	counter = 0;
 
-		fill_n(check, 15, true); //zurücksetzen der Variablen nach jedem Durchlauf
-		counter = 0;
+	while (counter < phase1) {
 
-		while (counter < 15) {
+		zahl = rando(1, phase1);  //generieren einer Zufallszahl
 
-			zahl = rando(1, 15);  //generieren einer Zufallszahl
+		if (check[zahl - 1]) { //Überprüfung ob die Zahl bereits benutzt wurde
 
-			if (check[zahl - 1]) { //Überprüfung ob die Zahl bereits benutzt wurde
-
-				check[zahl - 1] = false;
-				Warteschlange::addQueue(zahl + i * 16); //Einfügen in die Warteschlange
-				counter++;
-			}
-
+			check[zahl - 1] = false;
+			Warteschlange::addQueue(zahl); //Einfügen in die Warteschlange
+			counter++;
 		}
+
+	}
+	
+	fill_n(check, phase2, true); //zurücksetzen der Variablen nach jedem Durchlauf
+	counter = 0;
+
+	while (counter < phase2) {
+
+		zahl = rando(1, phase2);  //generieren einer Zufallszahl
+
+		if (check[zahl - 1]) { //Überprüfung ob die Zahl bereits benutzt wurde
+
+			check[zahl - 1] = false;
+			Warteschlange::addQueue(zahl + phase1 + 1); //Einfügen in die Warteschlange
+			counter++;
+		}
+
 	}
 
 
+	fill_n(check, phase3, true); //zurücksetzen der Variablen nach jedem Durchlauf
+	counter = 0;
 
+	while (counter < phase3) {
+
+		zahl = rando(1, phase3);  //generieren einer Zufallszahl
+
+		if (check[zahl - 1]) { //Überprüfung ob die Zahl bereits benutzt wurde
+
+			check[zahl - 1] = false;
+			Warteschlange::addQueue(zahl + phase1 + phase2 + 2); //Einfügen in die Warteschlange
+			counter++;
+		}
+
+	}
 
 }
 

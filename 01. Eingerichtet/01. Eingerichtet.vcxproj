@@ -24,7 +24,7 @@
     <ClCompile Include="Datum.cpp" />
     <ClCompile Include="End.cpp" />
     <ClCompile Include="Grafik.cpp" />
-    <ClCompile Include="Hintergrund.cpp" />
+    <ClCompile Include="hintergrund.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ereignis.cpp" />
     <ClCompile Include="Person.cpp" />
@@ -39,6 +39,7 @@
     <ClInclude Include="Datum.h" />
     <ClInclude Include="Ereignis.h" />
     <ClInclude Include="Grafik.h" />
+    <ClInclude Include="hintergrund.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="SetEvents.h" />
     <ClInclude Include="stdafx.h" />

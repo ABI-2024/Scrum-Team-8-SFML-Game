@@ -37,7 +37,7 @@
     <ClCompile Include="Warteschlange.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Hintergrund.cpp">
+    <ClCompile Include="hintergrund.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Zufallsgenerator.cpp">
@@ -76,6 +76,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="Warteschlange.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="hintergrund.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>
