@@ -23,6 +23,7 @@ private:
 	static int nextevent[3];
 	static short phase;
 	static int lastEvent;
+	static int dateChange[3];
 
 	static short specialActionIndex[3];
 	static string specialActionText[3];
@@ -39,4 +40,5 @@ public:
 	static void setTxt(Textausgabe* ntxt);
 	static void specialAction(int index);
 	static bool specialActionPossible();
+	static int getPhase();
 }; 

@@ -14,12 +14,17 @@ string Ereignis::specialActionText[3];
 short Ereignis::phase = 1;
 int Ereignis::lastEvent = 100;
 int Ereignis::nextevent[3];
+int Ereignis::dateChange[3];
 
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt = nullptr;
 
 int randomIntinRange(int a, int b);
+
+int Ereignis::getPhase() {
+	return phase;
+}
 
 void Ereignis::newevent() {
 
@@ -78,9 +83,14 @@ void Ereignis::newevent() {
 			}
 			getline(file, temp, ';');
 			specialActionIndex[2] = stoi(temp);
-			getline(file, temp, '\n');
+			getline(file, temp, ';');
 			specialActionText[2] = temp;
-			
+			getline(file, temp, ';');
+			dateChange[0] = stoi(temp);
+			getline(file, temp, ';');
+			dateChange[1] = stoi(temp);
+			getline(file, temp, '\n');
+			dateChange[2] = stoi(temp);
 		}
 		else { getline(file, temp, '\n'); }
 
@@ -106,7 +116,7 @@ string Ereignis::getText() {
 
 
 void Ereignis::processAntwort(int index) {
-	Datum::getDate()->add(1);
+	Datum::getDate()->add(dateChange[index-1]);
 	if (index > 0 && index <= 3) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
 		food->addmenge(randomIntinRange(minFood[index - 1], maxFood[index - 1]));
@@ -144,6 +154,7 @@ void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
 void Ereignis::setTxt(Textausgabe* ntxt) {
 	txt = ntxt;
 }
+
 
 int randomIntinRange(int a, int b) {
 
@@ -184,7 +195,7 @@ void Ereignis::specialAction(int index) {
 				loss = stoi(specialActionText[index].substr(name.length(), specialActionText[index].length()));
 			}
 		}
-		for (Person* iterator : Person::getchars()) {
+		for (Person* iterator : Person::getFamily()) {
 			if (iterator->getName() == name) {
 				if (iterator->getStatus() != idle) {
 					//a
@@ -206,7 +217,7 @@ bool Ereignis::specialActionPossible() {
 			ret = true;
 			break;
 		case 1:		//specific Person leaves
-			for (Person* iterator : Person::getchars()) {
+			for (Person* iterator : Person::getFamily()) {
 				if (iterator->getName() == specialActionText[i]) {
 					if (iterator->getStatus() != idle) {
 						ret = false;
@@ -229,7 +240,7 @@ bool Ereignis::specialActionPossible() {
 
 			}
 
-			for (Person* iterator : Person::getchars()) {
+			for (Person* iterator : Person::getFamily()) {
 				if (iterator->getName() == name) {
 					if (iterator->getStatus() != idle) {
 						ret = false;
@@ -245,6 +256,12 @@ bool Ereignis::specialActionPossible() {
 		case 3:		//Person loses physical health
 
 			break;
+
+		case 4:		//advances one phase further
+			if (phase < 3) {
+				phase += 1;
+			}
+
 		}
 	}
 	return true;

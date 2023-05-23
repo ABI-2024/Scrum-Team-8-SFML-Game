@@ -4,6 +4,7 @@
 using namespace std;
 using namespace sf;
 Datum* Datum::date;
+
 Datum::Datum() {
 	tag = -1;
 	monat = -1;
@@ -16,8 +17,11 @@ Datum::Datum() {
 Datum* Datum::getDate() {
 	return date;
 }
+
+void Datum::setWorldDate(Datum* idate) {
+	date = idate;
+}
 Datum::Datum(int itag, int imonat, int ijahr, int iwtid) {		//Parameterkonstruktor mit allen Werten umgetragen in das Objekt
-	date = this;
 	tag = itag;
 	monat = imonat;
 	jahr = ijahr;
@@ -33,6 +37,9 @@ Datum::~Datum() {
 void Datum::add(int adder) {		//schreibt die Anzahl der Tage in den adder, ohne diese direkt hinzuzufügen, um das Datum erst nach Ende eines Ereignisses aktualisieren zu können, falls nötig
 	this->adder += adder;
 	return;
+}
+int Datum::getAdder() {
+	return adder;
 }
 void Datum::update() {				//verrechnet den adder mit dem effektiven Datum und überträgt die Tage auch in Monate und Jahre
 	wtid = (wtid + adder) % 7;
