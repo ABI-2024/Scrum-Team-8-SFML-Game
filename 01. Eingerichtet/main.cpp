@@ -1,4 +1,3 @@
-#include <random>
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
@@ -22,7 +21,7 @@ void init();
 
 void hintergrund(RenderWindow*);												//Hintergrund und Animationen
 
-void Zufallsgenerator();
+void Zufallsgenerator();														//Einsetzen der Warteschlange
 bool EndCheck(Ressource* essen, Ressource* wasser);								//Überprüfung zum Gameover
 void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);										//Trigger vom Endscreen bei Niederlage
 void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
@@ -40,7 +39,7 @@ int main() {
 
 	sf::Event ev;
 		
-
+	
 	Textausgabe txt;
 	Audio music;
 	int counter = 0;
@@ -90,45 +89,3 @@ void init() {
 	SetEvents::loadFromFile();
 }
 
-void Zufallsgenerator() {
-	int zahl = 0;
-	int counter = 0;
-	bool check[15];
-
-	for (int i = 0; i < 3; i++) {
-
-		fill_n(check, 15, true);
-		counter = 0;
-
-		while (counter < 15) {
-
-			zahl = rando(1, 15);
-
-			if (check[zahl - 1]) {
-
-				check[zahl - 1] = false;
-				Warteschlange::addQueue(zahl + i * 16);
-				counter++;
-			}
-
-		}
-	}
-	
-
-
-	
-}
-
-int rando(int a, int b) {
-
-	std::random_device rd; // obtain a random number from hardware
-	std::mt19937 gen(rd()); // seed the generator
-	if (a > b) {
-		std::uniform_int_distribution<> distr(b, a); // define the range
-		return distr(gen);
-	}
-	else {
-		std::uniform_int_distribution<> distr(a, b); // define the range	
-		return distr(gen);
-	}
-}

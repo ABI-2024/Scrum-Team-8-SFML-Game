@@ -31,6 +31,7 @@
     <ClCompile Include="SetEvents.cpp" />
     <ClCompile Include="Textausgabe.cpp" />
     <ClCompile Include="Warteschlange.cpp" />
+    <ClCompile Include="Zufallsgenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
