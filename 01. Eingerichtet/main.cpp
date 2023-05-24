@@ -34,10 +34,12 @@ int main() {
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(30);
 
-	hintergrund hintergrundbase("background");
+	hintergrund hintergrundbase("background", 1);
+	hintergrund specialeffect("default", 2);
 
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
 	Ressource essen("Essen", 100); //initialisierung von Essen - NICHT ÄNDERN!
+
 
 	sf::Event ev;
 		
@@ -70,8 +72,10 @@ int main() {
 		date.update();
 		window.clear();
 
-		hintergrundbase.update_hintergrund();
+		hintergrundbase.update_hintergrund(&music);
+		specialeffect.update_hintergrund(&music);
 		hintergrundbase.darstellen(&window);
+		specialeffect.darstellen(&window);
 
 		date.display(&window);
 		essen.darstellen(&window);
