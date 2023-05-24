@@ -48,11 +48,11 @@ int main() {
 	Ereignis::newevent();
 	while (window.isOpen()) {
 		while (window.pollEvent(ev)) {
-			if (ev.Closed) {
+			if (ev.Closed or ev.type == sf::Event::Closed) {
 				window.close();
 			}
 		}
-
+		
 		if (EndCheck(&essen, &wasser)) {
 
 			EndLose(&window, &music, &txt, &date);
