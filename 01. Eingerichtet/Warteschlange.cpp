@@ -39,8 +39,7 @@ void Warteschlange::forceNext(int next) { //in work r8 now
 	int Warteschlange::getFirst() {
 		int tmp = warteschlange[0];
 		for (int i = 0; i < 9; i++) {
-		}
-		for (int i = 0; i < 9; i++) {
+			
 			warteschlange[i] = warteschlange[i + 1];
 		}
 		warteschlange[9] = 0;

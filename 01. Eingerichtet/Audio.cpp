@@ -1,7 +1,8 @@
 #include "Audio.h"
+#include "Ereignis.h"
 #include <random>
 
-#define maxsongs 3		//maximale Anzahl an Liedern
+#define maxsongs 6		//maximale Anzahl an Liedern
 
 Audio::Audio() {		//Standardkonstruktor
 	music = new Music();
@@ -20,6 +21,7 @@ Audio::~Audio() {
 Music* Audio::getMusicObject() {		//eine rückgabe des music-pointers, die in der Regel nicht benötigt werden sollte
 	return music;
 }
+
 void Audio::update() {
 	if (!inChange) {		//schaut ob eine Songänderung aktuell stattfindet, wenn nicht wird das Radio laufen gelassen
 		this->songRadio();
@@ -58,7 +60,7 @@ void Audio::songRadio() {			//setzt einen Zufälligen Song als nächstes, solange 
 
 		tmp = distr(gen);
 		if (tmp != last) {
-			if (!music->openFromFile("ressources/audio/music" + to_string(tmp) + ".ogg")) {
+			if (!music->openFromFile("ressources/audio/musik/phase " + to_string(Ereignis::getPhase()) + "/music" + to_string(tmp) + ".ogg")) {
 				return;
 			}
 			last = tmp;
