@@ -1,4 +1,5 @@
 #include "Ereignis.h"
+
 #include "Datum.h"
 
 using namespace std;
@@ -12,7 +13,9 @@ int Ereignis::maxFood[3];
 short Ereignis::specialActionIndex[3];
 string Ereignis::specialActionText[3];
 short Ereignis::phase = 1;
+
 int Ereignis::lastEvent = 100;
+
 int Ereignis::nextevent[3];
 int Ereignis::dateChange[3];
 
@@ -21,6 +24,7 @@ Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt = nullptr;
 
 int randomIntinRange(int a, int b);
+
 
 int Ereignis::getPhase() {
 	return phase;
@@ -33,14 +37,13 @@ void Ereignis::newevent() {
 	int rnd = 0;
 	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
-
-		std::cout << "randomint(" << CSVcontrol::getEventStart(phase) << ", " << CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1 << ")\n";
-		rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
+rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
 
 	}
 	else {
 		rnd = eventindex;
 	}
+
 	file.open("ressources/events.csv", ios::in);
 	//getline(file, temp, '\n');
 	std::cout << "\nEvent: " << rnd;
@@ -48,6 +51,7 @@ void Ereignis::newevent() {
 		if (i == rnd) {
 
 			if (rnd >= SetEvents::getSetEventStartID() && rnd <= SetEvents::getSetEventStartID() + SetEvents::getSetEventAmount()) {
+
 				getline(file, temp, ';');
 			}
 
@@ -77,6 +81,7 @@ void Ereignis::newevent() {
 			}
 			for (int i = 0; i < 2; i++) {
 				getline(file, temp, ';');
+
 				specialActionIndex[i] = stoi(temp);
 				getline(file, temp, ';');
 				specialActionText[i] = temp;
@@ -84,6 +89,7 @@ void Ereignis::newevent() {
 			}
 			getline(file, temp, ';');
 			specialActionIndex[2] = stoi(temp);
+
 			getline(file, temp, ';');
 			specialActionText[2] = temp;
 			getline(file, temp, ';');
@@ -92,13 +98,16 @@ void Ereignis::newevent() {
 			dateChange[1] = stoi(temp);
 			getline(file, temp, '\n');
 			dateChange[2] = stoi(temp);
+
 		}
 		else { getline(file, temp, '\n'); }
 
 	}
 
 
+
 	if (specialActionPossible()) {
+
 
 		txt->uniInsertion(text, antworten);
 
@@ -117,6 +126,7 @@ string Ereignis::getText() {
 
 
 void Ereignis::processAntwort(int index) {
+
 	Datum::getDate()->add(dateChange[index - 1]);
 	if (index > 0 && index <= 3) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
@@ -172,6 +182,7 @@ int randomIntinRange(int a, int b) {
 
 
 void Ereignis::specialAction(int index) {
+
 	bool ret = true;
 	int loss;
 	string name;
@@ -179,6 +190,7 @@ void Ereignis::specialAction(int index) {
 	case 0:
 		break;
 	case 1:
+
 		if (phase < 3) {
 			phase += 1;
 		}
@@ -210,12 +222,14 @@ void Ereignis::specialAction(int index) {
 }
 bool Ereignis::specialActionPossible() {
 	bool ret = true;
+
 	string name;
 	for (int i = 0; i < 3; i++) {
 		switch (specialActionIndex[i]) {
 		case 0:
 			ret = true;
 			break;
+
 		case 1:			//advances one phase further --> anyway possible, bei 3 bleibt 3
 			ret = true;
 			break;

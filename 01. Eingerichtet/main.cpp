@@ -54,10 +54,11 @@ int main() {
 	Datum::setWorldDate(date);
 	while (window.isOpen()) {
 		while (window.pollEvent(ev)) {
-			if (ev.Closed) {
+			if (ev.Closed or ev.type == sf::Event::Closed) {
 				window.close();
 			}
 		}
+
 		if (EndCheck(&essen, &wasser)) {
 
 			EndLose(&window, &music, &txt, date);
@@ -81,6 +82,7 @@ int main() {
 			essen.darstellen(&window);
 			wasser.darstellen(&window);
 			Person::displayFamily(&window);
+		music.lsregler(&window);
 
 			txt.display(&window);
 		}
@@ -93,6 +95,7 @@ int main() {
 			}
 
 		}
+
 		window.display();
 		music.update();
 
