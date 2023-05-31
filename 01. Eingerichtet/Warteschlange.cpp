@@ -38,11 +38,8 @@ void Warteschlange::forceNext(int next) { //in work r8 now
 
 	int Warteschlange::getFirst() {
 		int tmp = warteschlange[0];
-		std::cout << "Warteschlange:\n";
 		for (int i = 0; i < 9; i++) {
-			std::cout << warteschlange[i] << std::endl;
-		}
-		for (int i = 0; i < 9; i++) {
+			
 			warteschlange[i] = warteschlange[i + 1];
 		}
 		warteschlange[9] = 0;

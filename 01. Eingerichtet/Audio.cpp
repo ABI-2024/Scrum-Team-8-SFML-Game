@@ -1,9 +1,12 @@
 #include "Audio.h"
+#include "Ereignis.h"
 #include <random>
 
 using namespace sf;
 
-#define maxsongs 3		//maximale Anzahl an Liedern
+
+#define maxsongs 6		//maximale Anzahl an Liedern
+
 
 Audio::Audio() {		//Standardkonstruktor
 	music = new Music();
@@ -19,20 +22,21 @@ Audio::~Audio() {
 	delete music;
 }
 
-Music* Audio::getMusicObject() {		//eine rückgabe des music-pointers, die in der Regel nicht benötigt werden sollte
+Music* Audio::getMusicObject() {		//eine rÃ¼ckgabe des music-pointers, die in der Regel nicht benÃ¶tigt werden sollte
 	return music;
 }
+
 void Audio::update() {
-	if (!inChange) {		//schaut ob eine Songänderung aktuell stattfindet, wenn nicht wird das Radio laufen gelassen
+	if (!inChange) {		//schaut ob eine SongÃ¤nderung aktuell stattfindet, wenn nicht wird das Radio laufen gelassen
 		this->songRadio();
 	}
-	else {					//verringert die Lautstärke um einen fließenderes Gefühl bei dem Übergang zu gewährleisten
+	else {					//verringert die LautstÃ¤rke um einen flieÃŸenderes GefÃ¼hl bei dem Ãœbergang zu gewÃ¤hrleisten
 		if (vlm < 12) {
-			vlmwum = music->getVolume() * vlm / (vlm + 0.15f);		//wird jedes mal um 15% verringert, d.h. erst 15%, dann 30% etc von der ausgangslautstärke
+			vlmwum = music->getVolume() * vlm / (vlm + 0.15f);		//wird jedes mal um 15% verringert, d.h. erst 15%, dann 30% etc von der ausgangslautstÃ¤rke
 			vlm += 0.15f;
 
 		}
-		else {				//wenn es bei 1200% Reduktion angekommen ist, wird die Lautstärke zurückgesetzt und der neue Song gestartet
+		else {				//wenn es bei 1200% Reduktion angekommen ist, wird die LautstÃ¤rke zurÃ¼ckgesetzt und der neue Song gestartet
 			if (!music->openFromFile(changeFile)) {
 				cout << "Fehler >> Audiodatei nicht vorhanden\n";
 				return;
@@ -45,11 +49,11 @@ void Audio::update() {
 		}
 	}
 }
-void Audio::changeSong(string filename) {	//initiiert die Änderung des Liedes zu dem übergebenen Lied
-	inChange = true;						//um Eventspezifische Musik zu ermöglichen
+void Audio::changeSong(string filename) {	//initiiert die Ã„nderung des Liedes zu dem Ã¼bergebenen Lied
+	inChange = true;						//um Eventspezifische Musik zu ermÃ¶glichen
 	changeFile = filename;
 }
-void Audio::songRadio() {			//setzt einen Zufälligen Song als nächstes, solange keiner spielt
+void Audio::songRadio() {			//setzt einen ZufÃ¤lligen Song als nÃ¤chstes, solange keiner spielt
 	//Music checker
 	if (music->getStatus() != Music::Playing) {
 		music->stop();
@@ -60,7 +64,7 @@ void Audio::songRadio() {			//setzt einen Zufälligen Song als nächstes, solange 
 
 		tmp = distr(gen);
 		if (tmp != last) {
-			if (!music->openFromFile("ressources/audio/music" + to_string(tmp) + ".ogg")) {
+			if (!music->openFromFile("ressources/audio/musik/phase " + to_string(Ereignis::getPhase()) + "/music" + to_string(tmp) + ".ogg")) {
 				return;
 			}
 			last = tmp;
@@ -68,7 +72,7 @@ void Audio::songRadio() {			//setzt einen Zufälligen Song als nächstes, solange 
 		}
 	}
 }
-void Audio::skipSong() {			//Überspringt das aktuelle Lied und startet ein neues auf Basis des Radios
+void Audio::skipSong() {			//Ãœberspringt das aktuelle Lied und startet ein neues auf Basis des Radios
 	music->stop();					//Funtioniert, da die songRadio - Methode nach einem "Playing" Status sucht,
 }									//hier ist jedoch nur ein stop vorhanden
 
@@ -77,7 +81,7 @@ void Audio::skipSong() {			//Überspringt das aktuelle Lied und startet ein neues
 //	last = 0;
 //	this->nextSong();
 //}
-void Audio::setVolume(float volume) { //volume ist der multiplikator der Lautstärke. d.h. 1 == 100% der std. Lautstärke -> max = 400% / 4
+void Audio::setVolume(float volume) { //volume ist der multiplikator der LautstÃ¤rke. d.h. 1 == 100% der std. LautstÃ¤rke -> max = 400% / 4
 
 	vlmwum =25 * volume*this->volume;
 	return;
