@@ -18,14 +18,17 @@ private:
 	int wtid;
 	unsigned int calculatable; //eine pure Integer-Version des Datums um leichter Reichnen zu können
 	string wochentag;
-
+	static Datum* date;
 public:
+	static Datum* getDate();
+	static void setWorldDate(Datum* idate);
 	Datum();
-	Datum(int, int, int, int);
+	Datum(int itag, int imonat, int ijahr, int iwtid);
 	~Datum();
 	void display(sf::RenderWindow*);
 	void add(int);
 	void update();
+	int getAdder();
 	void updateWochentag();
 	string getWT();
 	unsigned int getCalculatable();

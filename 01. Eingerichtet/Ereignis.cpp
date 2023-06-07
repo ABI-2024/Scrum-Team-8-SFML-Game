@@ -1,6 +1,9 @@
 #include "Ereignis.h"
 
 
+#include "Datum.h"
+
+
 using namespace std;
 
 int Ereignis::currentevent;
@@ -16,14 +19,23 @@ string Ereignis::specialActionText[3];
 short Ereignis::phase = 1;
 
 
+int Ereignis::lastEvent = 100;
+
 
 int Ereignis::nextevent[3];
+int Ereignis::dateChange[3];
 
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt = nullptr;
 
 int randomIntinRange(int a, int b);
+
+
+
+int Ereignis::getPhase() {
+	return phase;
+}
 
 void Ereignis::newevent() {
 
@@ -32,17 +44,14 @@ void Ereignis::newevent() {
 	int rnd = 0;
 	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
-		for (int i = 0; i < 3; i++) {
-			std::cout << "\n\tMinRandomNumber " << i + 1 << ":" << CSVcontrol::getEventStart(i + 1);
-			std::cout << "\n\tMaxRandomNumber " << i + 1 << ":" << CSVcontrol::getEventStart(i + 1) + CSVcontrol::getEventAmount(i + 1) - 1 << "\t Amount: " << CSVcontrol::getEventAmount(i + 1) << endl;
 
-		}
+
 		rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
 	}
 	else {
 		rnd = eventindex;
 	}
-	cout << "\n\tCSV-Row: " << rnd;
+
 
 	currentevent = rnd;
 
@@ -52,6 +61,7 @@ void Ereignis::newevent() {
 		if (i == rnd) {
 
 			if (rnd >= SetEvents::getSetEventStartID() && rnd <= SetEvents::getSetEventStartID()+SetEvents::getSetEventAmount()) {
+
 				getline(file, temp, ';');
 			}
 
@@ -81,7 +91,8 @@ void Ereignis::newevent() {
 			}
 			for (int i = 0; i < 2; i++) {
 				getline(file, temp, ';');
-				std::cout << "\nerror ? :\t" << temp << endl;
+
+
 				specialActionIndex[i] = stoi(temp);
 				getline(file, temp, ';');
 				specialActionText[i] = temp;
@@ -89,19 +100,28 @@ void Ereignis::newevent() {
 			}
 			getline(file, temp, ';');
 			specialActionIndex[2] = stoi(temp);
-			getline(file, temp, '\n');
+
+			getline(file, temp, ';');
 			specialActionText[2] = temp;
-			/*for (int i = 0; i < 3; i++) {
-				std::cout << "\n" << specialActionText[i] << "\t" << specialActionIndex[i];
-			}*/
+			getline(file, temp, ';');
+			dateChange[0] = stoi(temp);
+			getline(file, temp, ';');
+			dateChange[1] = stoi(temp);
+			getline(file, temp, '\n');
+			dateChange[2] = stoi(temp);
+
+
 		}
 		else { getline(file, temp, '\n'); }
 
 	}
 
 
-	std::cout << "cp1 passed\n";
-	if (specialActionPossible() || 1) {
+
+
+	if (specialActionPossible()) {
+
+
 
 		txt->uniInsertion(text, antworten);
 
@@ -121,11 +141,14 @@ string Ereignis::getText() {
 
 void Ereignis::processAntwort(int index) {
 
+
+	Datum::getDate()->add(dateChange[index - 1]);
 	if (index > 0 && index <= 3) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
 		food->addmenge(randomIntinRange(minFood[index - 1], maxFood[index - 1]));
-
+		specialAction(index - 1);
 		if (nextevent[index - 1] == 0) {
+
 			newevent();
 			return;
 		}
@@ -138,10 +161,13 @@ void Ereignis::processAntwort(int index) {
 			newevent();
 		}
 	}
-	
+
+
+
 	else {
 		newevent();
 	}
+
 
 
 
@@ -155,6 +181,7 @@ void Ereignis::setRessources(Ressource* nfood, Ressource* nwater) {
 void Ereignis::setTxt(Textausgabe* ntxt) {
 	txt = ntxt;
 }
+
 
 int randomIntinRange(int a, int b) {
 
@@ -172,44 +199,89 @@ int randomIntinRange(int a, int b) {
 
 
 void Ereignis::specialAction(int index) {
+
+	bool ret = true;
+	int loss;
+	string name;
+
 	switch (specialActionIndex[index]) {
 	case 0:
 		break;
 	case 1:
 
+
+		if (phase < 3) {
+			phase += 1;
+		}
 		break;
+		
 	case 2:
+		for (Person* iterator : Person::getFamily()) {
+			if (iterator->getName() == specialActionText[index]) {
+				if (iterator->getStatus() == idle) {
+					iterator->setStatus(enlisted);
+				}
+			}
+		}
+			
+		break;
+	case 3:
+		for (Person* iterator : Person::getFamily()) {
+			if (iterator->getName() == specialActionText[index]) {
+				if (iterator->getStatus() != dead) {
+					iterator->setStatus(dead);
+				}
+			}
+		}
+
+
 		break;
 	}
 	return;
 }
 bool Ereignis::specialActionPossible() {
 	bool ret = true;
+
+
+	string name;
+
 	for (int i = 0; i < 3; i++) {
 		switch (specialActionIndex[i]) {
 		case 0:
 			ret = true;
 			break;
-		case 1:		//Person leaves
-			for (Person* iterator : Person::getchars()) {
+
+
+		case 1:			//advances one phase further --> anyway possible, bei 3 bleibt 3
+			ret = true;
+			break;
+		case 2:			//person wird eingezogen
+			for (Person* iterator : Person::getFamily()) {
 				if (iterator->getName() == specialActionText[i]) {
 					if (iterator->getStatus() != idle) {
 						ret = false;
+						break;
 					}
 				}
 			}
-			break;
-		case 2:		//Person loses mental health
+
+		case 3:			//person stirbt
+			for (Person* iterator : Person::getFamily()) {
+				if (iterator->getName() == specialActionText[i]) {
+					if (iterator->getStatus() == dead) {
+						ret = false;
+						break;
+					}
+				}
+			}
+
 			break;
 
-
-		case 3:		//Person loses physical health
+		case 4:
 			break;
 		}
+	
 	}
 	return true;
-}
 
-int Ereignis::getcurrentevent(){
-	return currentevent;
 }

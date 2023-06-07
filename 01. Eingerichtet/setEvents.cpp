@@ -10,7 +10,6 @@ void SetEvents::loadFromFile() {
 	file.open("ressources/events.csv", std::ios::in);
 	setEventStartID = CSVcontrol::getEventStart(5);
 	amount = CSVcontrol::getEventAmount(5);
-	std::cout << "\namount etc: " << amount << " d " << setEventStartID;
 	
 	setEventID[0] = new int[amount];
 	setEventID[1] = new int[amount];
@@ -19,7 +18,7 @@ void SetEvents::loadFromFile() {
 
 		std::getline(file, buffer, '\n');
 	}
-	for (int i = 0; i < CSVcontrol::getEventAmount(5); i++) {
+	for (int i = 0; i < amount; i++) {
 		std::getline(file, buffer, ';');
 		setEventID[0][i] = std::stoi(buffer);
 		std::getline(file, buffer, ';');
@@ -27,13 +26,13 @@ void SetEvents::loadFromFile() {
 		std::getline(file, buffer, '\n');
 
 	}
+
 }
 
 
 void SetEvents::checkdate(int calculatableDate) {
-
-	if (setEventID[currentEvent][0] <= calculatableDate) {
-		Warteschlange::addQueue(setEventID[1][0]);
+	if (setEventID[0][currentEvent] <= calculatableDate) {
+		Warteschlange::addQueue(setEventID[1][currentEvent]);
 		currentEvent += 1;
 	}
 	else {
@@ -41,6 +40,7 @@ void SetEvents::checkdate(int calculatableDate) {
 	}
 
 }
+
 int SetEvents::getSetEventStartID() {
 	return setEventStartID;
 }
