@@ -1,12 +1,12 @@
 #include "Warteschlange.h"
 #include <iostream>
 
-int Warteschlange::warteschlange[10] = { 0,0,0,0,0,0,0,0,0,0 };
+int Warteschlange::warteschlange[50] = { 0 };
 bool Warteschlange::secure = false;
 
 void Warteschlange::addQueue(int add) {
 
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < 49; i++) {
 		if (warteschlange[i] == 0) {
 			warteschlange[i] = add;
 			break;
@@ -17,7 +17,7 @@ void Warteschlange::forceNext(int next) { //in work r8 now
 	if (!secure) {
 		int tmp = 0;
 
-		for (int i = -1; i < 9; i++) {
+		for (int i = -1; i < 49; i++) {
 			if (warteschlange[i + 1] == 0) {
 				warteschlange[i + 1] = next;
 				break;
@@ -38,11 +38,16 @@ void Warteschlange::forceNext(int next) { //in work r8 now
 
 	int Warteschlange::getFirst() {
 		int tmp = warteschlange[0];
-		for (int i = 0; i < 9; i++) {
-			
+
+		std::cout << "Warteschlange:\n";
+		for (int i = 0; i < 49; i++) {
+			std::cout << warteschlange[i] << std::endl;
+		}
+		for (int i = 0; i < 49; i++) {
+
 			warteschlange[i] = warteschlange[i + 1];
 		}
-		warteschlange[9] = 0;
+		warteschlange[49] = 0;
 		return tmp;
 	}
 
@@ -56,7 +61,7 @@ void Warteschlange::forceNext(int next) { //in work r8 now
 	}
 
 	void Warteschlange::queueAfter(int index, int event) {
-		for (int i = index - 1; i < 9; i++) {
+		for (int i = index - 1; i < 49; i++) {
 			if (warteschlange[i] == 0) {
 				warteschlange[i] = event;
 				break;

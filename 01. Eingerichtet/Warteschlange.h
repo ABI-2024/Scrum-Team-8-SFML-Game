@@ -2,7 +2,7 @@
 class Warteschlange
 {
 private:
-	static int warteschlange[10];
+	static int warteschlange[50];
 	static bool secure;
 public:
 	static int getFirst();

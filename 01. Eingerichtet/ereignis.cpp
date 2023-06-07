@@ -3,6 +3,8 @@
 
 using namespace std;
 
+int Ereignis::currentevent;
+
 string Ereignis::text;
 int Ereignis::antworten;
 int Ereignis::minWater[3];
@@ -12,7 +14,9 @@ int Ereignis::maxFood[3];
 short Ereignis::specialActionIndex[3];
 string Ereignis::specialActionText[3];
 short Ereignis::phase = 1;
+
 int Ereignis::lastEvent = 100;
+
 int Ereignis::nextevent[3];
 int Ereignis::dateChange[3];
 
@@ -41,6 +45,10 @@ void Ereignis::newevent() {
 	else {
 		rnd = eventindex;
 	}
+
+	currentevent = rnd;
+
+
 	file.open("ressources/events.csv", ios::in);
 	//getline(file, temp, '\n');
 	std::cout << "\nEvent: " << rnd;
@@ -247,4 +255,8 @@ bool Ereignis::specialActionPossible() {
 	
 	}
 	return true;
+}
+
+int Ereignis::getcurrentevent(){
+	return currentevent;
 }

@@ -24,12 +24,14 @@
     <ClCompile Include="Datum.cpp" />
     <ClCompile Include="End.cpp" />
     <ClCompile Include="Grafik.cpp" />
+    <ClCompile Include="hintergrund.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Ereignis.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="SetEvents.cpp" />
     <ClCompile Include="Textausgabe.cpp" />
     <ClCompile Include="Warteschlange.cpp" />
+    <ClCompile Include="Zufallsgenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
@@ -37,6 +39,7 @@
     <ClInclude Include="Datum.h" />
     <ClInclude Include="Ereignis.h" />
     <ClInclude Include="Grafik.h" />
+    <ClInclude Include="hintergrund.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="SetEvents.h" />
     <ClInclude Include="stdafx.h" />
@@ -72,13 +75,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

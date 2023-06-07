@@ -1,8 +1,12 @@
 #include "Ereignis.h"
 
+
 #include "Datum.h"
 
+
 using namespace std;
+
+int Ereignis::currentevent;
 
 string Ereignis::text;
 int Ereignis::antworten;
@@ -14,7 +18,9 @@ short Ereignis::specialActionIndex[3];
 string Ereignis::specialActionText[3];
 short Ereignis::phase = 1;
 
+
 int Ereignis::lastEvent = 100;
+
 
 int Ereignis::nextevent[3];
 int Ereignis::dateChange[3];
@@ -24,6 +30,7 @@ Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt = nullptr;
 
 int randomIntinRange(int a, int b);
+
 
 
 int Ereignis::getPhase() {
@@ -37,20 +44,23 @@ void Ereignis::newevent() {
 	int rnd = 0;
 	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
-rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
 
+
+		rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
 	}
 	else {
 		rnd = eventindex;
 	}
 
+
+	currentevent = rnd;
+
 	file.open("ressources/events.csv", ios::in);
 	//getline(file, temp, '\n');
-	std::cout << "\nEvent: " << rnd;
 	for (int i = 0; !file.eof(); i++) {
 		if (i == rnd) {
 
-			if (rnd >= SetEvents::getSetEventStartID() && rnd <= SetEvents::getSetEventStartID() + SetEvents::getSetEventAmount()) {
+			if (rnd >= SetEvents::getSetEventStartID() && rnd <= SetEvents::getSetEventStartID()+SetEvents::getSetEventAmount()) {
 
 				getline(file, temp, ';');
 			}
@@ -82,6 +92,7 @@ rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEven
 			for (int i = 0; i < 2; i++) {
 				getline(file, temp, ';');
 
+
 				specialActionIndex[i] = stoi(temp);
 				getline(file, temp, ';');
 				specialActionText[i] = temp;
@@ -99,6 +110,7 @@ rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEven
 			getline(file, temp, '\n');
 			dateChange[2] = stoi(temp);
 
+
 		}
 		else { getline(file, temp, '\n'); }
 
@@ -106,7 +118,9 @@ rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEven
 
 
 
+
 	if (specialActionPossible()) {
+
 
 
 		txt->uniInsertion(text, antworten);
@@ -127,6 +141,7 @@ string Ereignis::getText() {
 
 void Ereignis::processAntwort(int index) {
 
+
 	Datum::getDate()->add(dateChange[index - 1]);
 	if (index > 0 && index <= 3) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
@@ -141,6 +156,7 @@ void Ereignis::processAntwort(int index) {
 			return;
 		}
 		else {
+
 			Warteschlange::forceNext(CSVcontrol::getEventStart(4) + nextevent[index - 1]);
 			newevent();
 		}
@@ -151,6 +167,7 @@ void Ereignis::processAntwort(int index) {
 	else {
 		newevent();
 	}
+
 
 
 
@@ -186,10 +203,12 @@ void Ereignis::specialAction(int index) {
 	bool ret = true;
 	int loss;
 	string name;
+
 	switch (specialActionIndex[index]) {
 	case 0:
 		break;
 	case 1:
+
 
 		if (phase < 3) {
 			phase += 1;
@@ -223,12 +242,15 @@ void Ereignis::specialAction(int index) {
 bool Ereignis::specialActionPossible() {
 	bool ret = true;
 
+
 	string name;
+
 	for (int i = 0; i < 3; i++) {
 		switch (specialActionIndex[i]) {
 		case 0:
 			ret = true;
 			break;
+
 
 		case 1:			//advances one phase further --> anyway possible, bei 3 bleibt 3
 			ret = true;
@@ -261,4 +283,5 @@ bool Ereignis::specialActionPossible() {
 	
 	}
 	return true;
+
 }

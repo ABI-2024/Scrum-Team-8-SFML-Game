@@ -11,13 +11,17 @@
 #include "Person.h"
 #include "setEvents.h"
 #include "CSVcontrol.h"
+#include "hintergrund.h"
 
 using namespace sf;
 using namespace std;
 
+int rando(int a, int b);
 
 void init();
 
+
+void Zufallsgenerator();														//Einsetzen der Warteschlange
 bool EndCheck(Ressource* essen, Ressource* wasser);								//Überprüfung zum Gameover
 void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);										//Trigger vom Endscreen bei Niederlage
 void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
@@ -25,6 +29,7 @@ void dayTransmission(RenderWindow*, int* transmissionphase);
 
 int main() {
 	init();
+
 	int transmissionphase = 1.f;
 	bool paused = false;
 	Texture bgtxture;
@@ -35,23 +40,37 @@ int main() {
 
 	Warteschlange::addQueue(0);
 
+
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(160);
 
+	hintergrund hintergrundbase("background", 1);
+	hintergrund specialeffect("default", 2);
+
 	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
+
 	Ressource essen("Essen", 10); //initialisierung von Essen - NICHT ÄNDERN!
 
 	Person::loadChars();
 	sf::Event ev;
 
+
+	sf::Event ev;
+		
+	
 	Textausgabe txt;
 	Audio music;
 	int counter = 0;
 	Ereignis::setTxt(&txt);
 	Ereignis::setRessources(&essen, &wasser);
+
+
+	Zufallsgenerator();
+
 	SetEvents::checkdate(date->getCalculatable());
 	Ereignis::newevent();
 	Datum::setWorldDate(date);
+
 	while (window.isOpen()) {
 		while (window.pollEvent(ev)) {
 			if (ev.Closed or ev.type == sf::Event::Closed) {
@@ -75,7 +94,15 @@ int main() {
 
 			
 		}
+
+
 		window.clear();
+
+		hintergrundbase.update_hintergrund(&music);
+		specialeffect.update_hintergrund(&music);
+		hintergrundbase.darstellen(&window);
+		specialeffect.darstellen(&window);
+
 		window.draw(background);
 		date->display(&window);
 		if (!paused) {
@@ -96,6 +123,7 @@ int main() {
 
 		}
 
+
 		window.display();
 		music.update();
 
@@ -106,10 +134,10 @@ int main() {
 
 void init() {
 
-
 	CSVcontrol::loadConfig();
 	SetEvents::loadFromFile();
 }
+
 
 void dayTransmission(RenderWindow* window, int* transmissionphase) {
 
@@ -150,3 +178,4 @@ void dayTransmission(RenderWindow* window, int* transmissionphase) {
 	}
 
 }
+
