@@ -1,6 +1,8 @@
 #include <random>
 #include "Warteschlange.h"
 
+#include "CSVcontrol.h"
+
 using namespace std;
 
 int rando(int a, int b);
@@ -9,9 +11,9 @@ void Zufallsgenerator() {
 	int zahl = 0;
 	int counter; //erstellen der Variablen
 	bool check[20];
-	int phase1 = 16;
-	int phase2 = 15;
-	int phase3 = 15;
+	int phase1 = CSVcontrol::getEventAmount(1);
+	int phase2 = CSVcontrol::getEventAmount(2);
+	int phase3 = CSVcontrol::getEventAmount(3);
 
 	fill_n(check, phase1, true); //zurücksetzen der Variablen nach jedem Durchlauf
 	counter = 0;

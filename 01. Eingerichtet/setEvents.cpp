@@ -32,7 +32,7 @@ void SetEvents::loadFromFile() {
 
 void SetEvents::checkdate(int calculatableDate) {
 	if (setEventID[0][currentEvent] <= calculatableDate) {
-		Warteschlange::addQueue(setEventID[1][currentEvent]);
+		Warteschlange::forceNext(setEventID[1][currentEvent]);
 		currentEvent += 1;
 	}
 	else {

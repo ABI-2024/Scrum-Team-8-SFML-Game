@@ -52,10 +52,7 @@ int main() {
 	Ressource essen("Essen", 10); //initialisierung von Essen - NICHT ÄNDERN!
 
 	Person::loadChars();
-	sf::Event ev;
-
-
-	sf::Event ev;
+	sf::Event ev;		
 		
 	
 	Textausgabe txt;

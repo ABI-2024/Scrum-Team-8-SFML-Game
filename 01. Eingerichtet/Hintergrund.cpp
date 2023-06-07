@@ -1,15 +1,79 @@
-#include <SFML/Graphics.hpp>
-#include <string>
-#include <iostream>
+#include "hintergrund.h"
+#include "Ereignis.h"
+#include "Audio.h"
 
-using namespace sf;
-using namespace std;
+hintergrund::hintergrund(string name, int id) { //Konstruktor und Destruktor
+	this->name = name;
 
-void hintergrund(RenderWindow* window) {
+	bild.loadFromFile("ressources/grafics/" + name + ".png"); //laden des Bildes
 
-	Texture bgtxture;
-	bgtxture.loadFromFile("ressources/grafics/background.png");
-	Sprite background(bgtxture);
+	popup.setTexture(bild);
 
-	window->draw(background);
+	popup.setPosition(Vector2f(0, 0)); //Positionierung und setzten
+
+	current = 1;
+
+	this->id = id;
+}
+
+hintergrund::~hintergrund() {
+
+}
+
+void hintergrund::newimage(string name) { //get und set Methoden
+	this->name = name;
+
+	bild.loadFromFile("ressources/grafics/" + name + ".png"); //laden des Bildes
+
+	popup.setTexture(bild);
+
+	popup.setPosition(Vector2f(0, 0)); //Positionierung und setzten
+}
+
+string hintergrund::getname() {
+	return name;
+}
+
+void hintergrund::darstellen(RenderWindow* window) { //anzeigen des Popups
+
+	window->draw(popup);
+
+	if (current == 41 && id == 2) {
+		popup.move(0, -3);
+	}
+
+}
+
+void hintergrund::update_hintergrund(Audio* music) {
+	
+	if (Ereignis::getcurrentevent() != current) {
+
+		switch (Ereignis::getcurrentevent()) {
+
+		case 16:
+			current = 16;
+			if (id == 1) {
+				this->newimage("background2");
+			}
+			
+			break;
+
+		case 41:
+			current = 41;
+			if (id == 2) {
+				this->newimage("Bomber");
+				popup.setPosition(0, 2000);
+				music->changeSong("ressources/audio/bomb.ogg");
+				
+			}
+
+			break;
+
+		}
+
+
+
+	}
+
+	
 }

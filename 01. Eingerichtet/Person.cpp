@@ -77,7 +77,7 @@ void Person::loadVisualDisplay(int row) {
 
 	txture.loadFromFile("ressources/grafics/Family/" + name + ".png");
 	icon.setTexture(txture);
-	icon.setPosition(Vector2f(1100, 20 + 80 * (row)));
+	icon.setPosition(Vector2f(1100, 50 + 80 * (row)));
 	icon.scale(Vector2f(0.16f, 0.16f));
 	statusicon.setScale(Vector2f(0.16f, 0.16f));
 	statusicon.setPosition(icon.getPosition().x - 6, icon.getPosition().y);
