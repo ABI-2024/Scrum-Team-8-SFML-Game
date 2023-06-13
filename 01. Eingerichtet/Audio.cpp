@@ -24,7 +24,6 @@ Audio::Audio() {		//Standardkonstruktor
 	pin.setTexture(pin2);
 	bar.setPosition(1100, 20);
 	bar.setScale(5, 5);
-	pin.setPosition(pinx, piny);
 	pin.setScale(4, 4);
 }
 
@@ -101,6 +100,7 @@ void Audio::lsregler(RenderWindow* window) {
 	int mousex = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x;
 	int mousey = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y;
 
+	pin.setPosition(pinx, piny);
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 

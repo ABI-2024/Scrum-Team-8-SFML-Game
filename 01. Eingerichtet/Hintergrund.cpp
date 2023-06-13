@@ -51,23 +51,35 @@ void hintergrund::update_hintergrund(Audio* music) {
 		switch (Ereignis::getcurrentevent()) {
 
 		case 16:
-			current = 16;
-			if (id == 1) {
-				this->newimage("background2");
+
+			if (current != 16) {
+
+				current = 16;
+				if (id == 1) {
+					this->newimage("background2");
+				}
+
+				break;
+
 			}
-			
-			break;
+
 
 		case 41:
-			current = 41;
-			if (id == 2) {
-				this->newimage("Bomber");
-				popup.setPosition(0, 1700);
-				music->changeSong("ressources/audio/bomb.ogg");
-				
-			}
 
-			break;
+			if (current != 41) {
+
+				current = 41;
+
+				if (id == 2) {
+					this->newimage("Bomber");
+					popup.setPosition(0, 1700);
+					music->changeSong("ressources/audio/bomb.ogg");
+
+				}
+
+				break;
+			}
+			
 
 		}
 
