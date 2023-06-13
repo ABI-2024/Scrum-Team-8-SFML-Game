@@ -9,7 +9,10 @@ int rando(int a, int b);
 
 void Zufallsgenerator() {
 	Warteschlange::addQueue(16);
-	Warteschlange::addQueue(41);
+	Warteschlange::addQueue(20);
+	Warteschlange::addQueue(21);
+	Warteschlange::addQueue(33);
+	Warteschlange::addQueue(38);
 
 	int zahl = 0;
 	int counter; //erstellen der Variablen

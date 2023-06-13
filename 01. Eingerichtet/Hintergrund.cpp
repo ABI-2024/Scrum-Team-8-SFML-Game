@@ -38,8 +38,9 @@ void hintergrund::darstellen(RenderWindow* window) { //anzeigen des Popups
 
 	window->draw(popup);
 
-	if (current == 41 && id == 2) {
+	if (current == 38 && id == 2) {
 		popup.move(0, -4);
+		if (false) window->setPosition(sf::Vector2i(100 + rand() % 25, 100 + rand() % 25));
 	}
 
 }
@@ -48,38 +49,101 @@ void hintergrund::update_hintergrund(Audio* music) {
 	
 	if (Ereignis::getcurrentevent() != current) {
 
-		switch (Ereignis::getcurrentevent()) {
+		switch (Ereignis::getcurrentevent()) { // triggern eines Special Effects nach der zurzeitigen Event ID
 
 		case 16:
 
-			if (current != 16) {
+			current = 16;
+			if (id == 1) {
+				this->newimage("background2");
 
-				current = 16;
-				if (id == 1) {
-					this->newimage("background2");
-				}
+				buffer.loadFromFile("ressources/audio/baum.ogg");
 
-				break;
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
 
 			}
 
-
-		case 41:
-
-			if (current != 41) {
-
-				current = 41;
-
-				if (id == 2) {
-					this->newimage("Bomber");
-					popup.setPosition(0, 1700);
-					music->changeSong("ressources/audio/bomb.ogg");
-
-				}
-
 				break;
-			}
+
 			
+
+
+		case 38:
+
+
+			current = 38;
+
+			if (id == 2) {
+				this->newimage("Bomber");
+				popup.setPosition(0, 1600);
+				music->changeSong("ressources/audio/bomb.ogg");
+
+			}
+
+			if (id == 5) {
+				this->newimage("Krater");
+			}
+
+			break;
+			
+			
+		case 20:
+
+			current = 20;
+
+			if (id == 3) {
+
+				this->newimage("Zelte");
+
+				buffer.loadFromFile("ressources/audio/zelte.ogg");
+
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
+
+			}
+
+			break;
+
+		case 21:
+
+			current = 21;
+
+			if (id == 4) {
+
+				this->newimage("Panzer");
+
+				buffer.loadFromFile("ressources/audio/panzer.ogg");
+
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
+			}
+
+			break;
+
+		case 33:
+
+			current = 33;
+
+			if (id == 6) {
+
+				this->newimage("Flak");
+
+				buffer.loadFromFile("ressources/audio/flak.ogg");
+
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
+			}
+
+			break;
 
 		}
 

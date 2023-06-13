@@ -42,11 +42,15 @@ int main() {
 	window.setFramerateLimit(160);
 
 	hintergrund hintergrundbase("background", 1);
-	hintergrund specialeffect("default", 2);
+	hintergrund bomber("default", 2);
+	hintergrund zelt("default", 3);
+	hintergrund panzer("default", 4);
+	hintergrund krater("default", 5);
+	hintergrund flak("default", 6);
 
-	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
+	Ressource wasser("Wasser", 99); //initialisierung von Wasser - NICHT ÄNDERN!
 
-	Ressource essen("Essen", 10); //initialisierung von Essen - NICHT ÄNDERN!
+	Ressource essen("Essen", 99); //initialisierung von Essen - NICHT ÄNDERN!
 
 	Person::loadChars();
 	sf::Event ev;		
@@ -94,14 +98,18 @@ int main() {
 
 
 		hintergrundbase.darstellen(&window);
-		specialeffect.darstellen(&window);
+		bomber.darstellen(&window);
+		zelt.darstellen(&window);
+		panzer.darstellen(&window);
+		krater.darstellen(&window);
+		flak.darstellen(&window);
 
 		date->display(&window);
 		if (!paused) {
 			essen.darstellen(&window);
 			wasser.darstellen(&window);
 			Person::displayFamily(&window);
-		music.lsregler(&window);
+			music.lsregler(&window);
 
 			txt.display(&window);
 		}
@@ -113,11 +121,15 @@ int main() {
 				transmissionphase = 1;
 
 				hintergrundbase.update_hintergrund(&music);
-				specialeffect.update_hintergrund(&music);
+				bomber.update_hintergrund(&music);
+				zelt.update_hintergrund(&music);
+				panzer.update_hintergrund(&music);
+				krater.update_hintergrund(&music);
+				flak.update_hintergrund(&music);
 			}
 
 		}
-
+		
 
 		window.display();
 		music.update();

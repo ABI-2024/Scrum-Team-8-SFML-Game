@@ -31,7 +31,7 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	sleep(seconds(1)); // blackscreen 2 sek
 
 
-	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik. Trauer
+	audio->changeSong("ressources/audio/amerika.ogg"); //einsetzen von Musik. Trauer
 	sleep(seconds(1)); // blackscreen 5 sek
 
 	text->setBackground("black.png", Color::White); //Hintergrund Schwarz setzen
@@ -127,7 +127,7 @@ void End(RenderWindow* window, Audio* audio, Textausgabe* text) {
 	sleep(seconds(5)); //blackscreen 5 sek
 
 
-	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik, die den amerikanischen Sieg vermitte
+	audio->changeSong("ressources/audio/amerika.ogg"); //einsetzen von Musik, die den amerikanischen Sieg vermitte
 	audio->update();
 
 	text->setBackground("black.png", Color::White); //Hintergrund Schwarz setzen

@@ -18,6 +18,9 @@ private:
 	Texture bild;
 	int current;
 
+	SoundBuffer buffer;
+	Sound sound;
+
 public:
 	hintergrund(string name, int id);
 	~hintergrund();
