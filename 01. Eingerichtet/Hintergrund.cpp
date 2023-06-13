@@ -39,7 +39,7 @@ void hintergrund::darstellen(RenderWindow* window) { //anzeigen des Popups
 	window->draw(popup);
 
 	if (current == 41 && id == 2) {
-		popup.move(0, -3);
+		popup.move(0, -4);
 	}
 
 }
@@ -62,7 +62,7 @@ void hintergrund::update_hintergrund(Audio* music) {
 			current = 41;
 			if (id == 2) {
 				this->newimage("Bomber");
-				popup.setPosition(0, 2000);
+				popup.setPosition(0, 1700);
 				music->changeSong("ressources/audio/bomb.ogg");
 				
 			}

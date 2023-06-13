@@ -32,9 +32,6 @@ int main() {
 
 	int transmissionphase = 1.f;
 	bool paused = false;
-	Texture bgtxture;
-	bgtxture.loadFromFile("ressources/grafics/background.png");
-	Sprite background(bgtxture);
 	Datum* date = new Datum(13, 6, 1936, 1);
 	std::cout << "should: " << CSVcontrol::getEventStart(1) << " with : " << CSVcontrol::getEventStart(1) + CSVcontrol::getEventAmount(1) - 1 << endl;
 
@@ -95,12 +92,10 @@ int main() {
 
 		window.clear();
 
-		hintergrundbase.update_hintergrund(&music);
-		specialeffect.update_hintergrund(&music);
+
 		hintergrundbase.darstellen(&window);
 		specialeffect.darstellen(&window);
 
-		window.draw(background);
 		date->display(&window);
 		if (!paused) {
 			essen.darstellen(&window);
@@ -116,6 +111,9 @@ int main() {
 			if (transmissionphase > 600) {
 				paused = false;
 				transmissionphase = 1;
+
+				hintergrundbase.update_hintergrund(&music);
+				specialeffect.update_hintergrund(&music);
 			}
 
 		}
@@ -173,6 +171,7 @@ void dayTransmission(RenderWindow* window, int* transmissionphase) {
 	if (*transmissionphase == 360) {
 		tmp->update();
 	}
+
 
 }
 

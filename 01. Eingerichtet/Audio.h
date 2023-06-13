@@ -21,6 +21,11 @@ private:
 	int piny = 10;
 	bool mousepressed = false;
 
+	Sprite bar;
+	Texture bar2;
+	Sprite pin;
+	Texture pin2;
+
 public:
 	Audio();
 	~Audio();

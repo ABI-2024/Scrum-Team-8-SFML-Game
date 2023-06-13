@@ -1,4 +1,4 @@
-15;Anzahl der Antworten;a water;a food;b water;b food;c water;c food;a folgeevents;b folgeevents;c folgeevents;;;;;;;;;;
+16;Anzahl der Antworten;a water;a food;b water;b food;c water;c food;a folgeevents;b folgeevents;c folgeevents;;;;;;;;;;
 Seit beginn des Verteidigungskriegs werden Rationen verteilt.#Heute waren wir an der Reihe welche zu bekommen;1;3#4;3#4;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
 Seit beginn des Verteidigungskriegs werden Rationen verteilt.#Heute waren wir an der Reihe welche zu bekommen;1;3#4;3#4;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
 Soldaten haben heute ein Lazaret bei uns in der Nähe aufgebaut.#Sie verlangen einige Nahrungsmittel.#Wenn das Reich Ressourcen braucht müssen wir helfen!;1;0#0;-1#-3;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
@@ -14,6 +14,7 @@ Während eines Spaziergangs haben wir eine#weinende Gestalt in Gestrüp entdeckt.#
 Ein Reisender kam heute Mittag bei uns vorbei und#bat um etwas Nahrung und Wasser.#Er versprach uns seine Schuld heute noch zu begleichen.#Er müsse nur kurz einkaufen gehen##Sollen wir ihn den gefallen tun?#1. 1 von beidem überlassen#2. er solle bei einem anderen betteln!#3. Ihn freundlich abweisen;3;0#0;0#0;0#0;0#0;0#0;0#0;4;5;6;0;leer;0;leer;0;leer;0;0;0;
 Einige Männer stehen vor unserer Tür.#Die Regierung habe sie geschickt.#Sie verlangen eintritt, da sie einige#Formalitäten klären müssen.##Sollen wir ihnen Vertrauen?#1. Sie könne gerne hineinkommen#2. Keinesfalls, das sind bestimmt Betrüger;2;0#0;0#0;0#0;0#0;0#0;0#0;7;8;0;0;leer;0;leer;0;leer;0;0;1;
 Einige Männer in Uniformen stehen vor unserer Tür.#Die Regierung habe sie geschickt.#Sie verlangen eintritt, da sie einige#Formalitäten klären müssen.##Sollen wir ihnen Vertrauen?#1. Sie könne gerne hineinkommen#2. Keinesfalls, das sind bestimmt Betrüger;2;0#0;0#0;0#0;0#0;0#0;0#0;9;10;0;0;leer;0;leer;0;leer;0;0;1;
+Die Regierung hat in unserem Dorf#Viele Bäume fällen lassen##Wofür das wohl gut sein soll?;1;0#0;0#0;0#0;0#0;0#0;0#0;0;0;0;1;leer;1;leer;1;leer;1;1;1;
 15;Phase 2 Events;;;;;;;;;;;;;;;;;;;
 Seit beginn des Verteidigungskriegs werden Rationen verteilt.#Heute waren wir an der Reihe welche zu bekommen;1;3#4;3#4;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
 Seit beginn des Verteidigungskriegs werden Rationen verteilt.#Heute waren wir an der Reihe welche zu bekommen;1;3#4;3#4;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
@@ -38,7 +39,7 @@ Eine Flakstellung wurde bei uns aufgebaut.#Sie soll uns gegen Bombenangriffe bes
 Unglaublich!#Heute wurden wir von örtlicher Verwaltung enteignet.#Wichtige Ressourcen sollen für die Rationen umverteilt werden.#Es war ein Befehl von der Obersten Heeresführung.#Da muss man gehorchen.;1;-2#-2;-2#-2;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
 Auf dem Heimweg wurde am Marktplatz wieder etwas angeboten.#In der Menge haben wir noch gerade so noch etwas bekommen.;1;0#0;1#2;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
 Heute waren wir auf dem Marktplatz einkaufen#Es kaum etwas Angeboten.#Immerhin haben wir noch Rüben und Reis kaufen können.;1;2#3;2#3;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
-Was ist das? Die Sirene!#Ein Brandbombenangriff der Amerikaner!#Der Wohnblock steht in Flammen! Was soll ich nur tun?#1. Das Feuer löschen#2. Wertsachen retten#3. die Feuerwehr rufen;3;0#0;0#0;0#0;0#0;0#0;0#0;1;2;13;0;leer;0;leer;0;leer;0;0;0;
+Was ist das? Die Sirene!#Ein Brandbombenangriff der Amerikaner!####Der Wohnblock steht in Flammen! Was soll ich nur tun?#1. Das Feuer löschen#2. Wertsachen retten#3. die Feuerwehr rufen;3;0#0;0#0;0#0;0#0;0#0;0#0;1;2;13;0;leer;0;leer;0;leer;0;0;0;
 Die Regierung hat uns dazu aufgerufen durchzuhalten.#Heute gab es 2000 Yen zum Decken von Grundbedürfnissen.#Was sollen wir uns nur damit kaufen?#1.Lebensmittel#2. Wasser#3. etwas von beidem;3;0#0;1#3;1#3;0#0;1#2;1#2;0;0;0;0;leer;0;leer;0;leer;1;1;1;
 Ich war Wasser aus der Quelle Flussaufwärts holen.#Es ist zwar anstrengender als aus dem Brunnen zu holen.#Ist aber viel erfrischender!#Ich konnte aber nicht so viel mitnehemen, da die chemischen Überreste der zerbombten Fabrik den Fluss verschmutzt.#Ich musste viel weiter Flussaufwärts laufen!;1;1#2;0#0;0#0;0#0;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;
 Ein fremder Händler ist heute vor#unserer Haustür erschienen.#Er bietet den Tausch von 2 Wasser gegen 1 Nahrung#oder Umgekehrt.#Sollen wir sein Angebot annehmen?#1. Nahrung für Wasser tauschen#2. Wasser für Nahrung tauschen#3. Lieber nicht handeln;3;1#1;-2#-2;-2#-2;1#1;0#0;0#0;0;0;0;0;leer;0;leer;0;leer;1;1;1;

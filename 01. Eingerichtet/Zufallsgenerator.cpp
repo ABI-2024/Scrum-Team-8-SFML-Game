@@ -8,6 +8,9 @@ using namespace std;
 int rando(int a, int b);
 
 void Zufallsgenerator() {
+	Warteschlange::addQueue(16);
+	Warteschlange::addQueue(41);
+
 	int zahl = 0;
 	int counter; //erstellen der Variablen
 	bool check[20];
