@@ -98,11 +98,11 @@ int main() {
 
 
 		hintergrundbase.darstellen(&window);
-		bomber.darstellen(&window);
 		zelt.darstellen(&window);
 		panzer.darstellen(&window);
 		krater.darstellen(&window);
 		flak.darstellen(&window);
+		bomber.darstellen(&window);
 
 		date->display(&window);
 		if (!paused) {
