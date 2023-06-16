@@ -182,7 +182,7 @@ void zeitung(RenderWindow* window, string name) {
 	window->display();
 
 	while (true) {
-		if (Keyboard::isKeyPressed(Keyboard::Space)) {
+		if (Keyboard::isKeyPressed(Keyboard::Enter)) {
 			break;
 		}
 	}

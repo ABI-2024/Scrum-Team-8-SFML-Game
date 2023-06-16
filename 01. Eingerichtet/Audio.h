@@ -26,10 +26,6 @@ private:
 	Sprite pin;
 	Texture pin2;
 
-	Sprite bar;
-	Texture bar2;
-	Sprite pin;
-	Texture pin2;
 
 public:
 	Audio();							//Konstruktor
