@@ -2,6 +2,8 @@
 #include "Ereignis.h"
 #include "Audio.h"
 
+void zeitung(RenderWindow* window, string name);
+
 hintergrund::hintergrund(string name, int id) { //Konstruktor und Destruktor
 	this->name = name;
 
@@ -38,33 +40,121 @@ void hintergrund::darstellen(RenderWindow* window) { //anzeigen des Popups
 
 	window->draw(popup);
 
-	if (current == 41 && id == 2) {
-		popup.move(0, -3);
+	if (current == 38 && id == 2) {
+		popup.move(0, -4);
+		if (false) window->setPosition(sf::Vector2i(100 + rand() % 25, 100 + rand() % 25));
 	}
 
 }
 
-void hintergrund::update_hintergrund(Audio* music) {
+void hintergrund::update_hintergrund(Audio* music, RenderWindow* window) {
 	
 	if (Ereignis::getcurrentevent() != current) {
 
-		switch (Ereignis::getcurrentevent()) {
+		switch (Ereignis::getcurrentevent()) { // triggern eines Special Effects nach der zurzeitigen Event ID
 
 		case 16:
+
 			current = 16;
 			if (id == 1) {
-				this->newimage("background2");
+
+				zeitung(window, "baumnews");
+
+				this->newimage("background2"); //jeweilige Bildänderung
+
+				buffer.loadFromFile("ressources/audio/baum.ogg"); //jeweilger Soundeffekt
+
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
+
 			}
+
+				break;
+
 			
+
+
+		case 38:
+
+
+			current = 38;
+
+			if (id == 2) {
+
+				zeitung(window, "bombernews");
+
+				this->newimage("Bomber");
+				popup.setPosition(0, 1600);
+				music->changeSong("ressources/audio/bomb.ogg");
+
+			}
+
+			if (id == 5) {
+				this->newimage("Krater");
+			}
+
+			break;
+			
+			
+		case 20:
+
+			current = 20;
+
+			if (id == 3) {
+
+				zeitung(window, "zeltnews");
+
+				this->newimage("Zelte");
+
+				buffer.loadFromFile("ressources/audio/zelte.ogg");
+
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
+
+			}
+
 			break;
 
-		case 41:
-			current = 41;
-			if (id == 2) {
-				this->newimage("Bomber");
-				popup.setPosition(0, 2000);
-				music->changeSong("ressources/audio/bomb.ogg");
-				
+		case 21:
+
+			current = 21;
+
+			if (id == 4) {
+
+				zeitung(window, "panzernews");
+
+				this->newimage("Panzer");
+
+				buffer.loadFromFile("ressources/audio/panzer.ogg");
+
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
+			}
+
+			break;
+
+		case 33:
+
+			current = 33;
+
+			if (id == 6) {
+
+				zeitung(window, "flaknews");
+
+				this->newimage("Flak");
+
+				buffer.loadFromFile("ressources/audio/flak.ogg");
+
+				sound.setBuffer(buffer);
+				sound.setVolume(100);
+
+				sound.play();
 			}
 
 			break;
@@ -76,4 +166,24 @@ void hintergrund::update_hintergrund(Audio* music) {
 	}
 
 	
+}
+
+
+void zeitung(RenderWindow* window, string name) {
+	Sprite news;
+	Texture article;
+
+	article.loadFromFile("ressources/grafics/" + name + ".png");
+	news.setTexture(article);
+
+	news.setPosition(Vector2f(370, 100));
+	window->clear();
+	window->draw(news);
+	window->display();
+
+	while (true) {
+		if (Keyboard::isKeyPressed(Keyboard::Space)) {
+			break;
+		}
+	}
 }

@@ -22,11 +22,11 @@ void End::init(RenderWindow* iwindow, Audio* iaudio, Textausgabe* itext, Datum* 
 }
 
 bool EndCheck(Ressource* essen, Ressource* wasser) { //schaut nach Hungertod
-	if (essen->getmenge() < 0) { //prüfen, ob Nahrung alle ist
-		return true;		 // ist dies der Fall wird Nahrung bzw. Wasser zurückgegeben
+	if (essen->getmenge() < 0) { //prÃ¼fen, ob Nahrung alle ist
+		return true;		 // ist dies der Fall wird Nahrung bzw. Wasser zurÃ¼ckgegeben
 	}
 
-	else if (wasser->getmenge() < 0) { //prüfen, ob Wasser alle ist
+	else if (wasser->getmenge() < 0) { //prÃ¼fen, ob Wasser alle ist
 		return true;
 	}
 
@@ -43,7 +43,7 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	sleep(seconds(1)); // blackscreen 2 sek
 
 
-	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik. Trauer
+	audio->changeSong("ressources/audio/amerika.ogg"); //einsetzen von Musik. Trauer
 	sleep(seconds(1)); // blackscreen 5 sek
 
 	text->setBackground("black.png", Color::White); //Hintergrund Schwarz setzen
@@ -62,7 +62,7 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 		monat = "Februar";
 		break;
 	case 3:
-		monat = "März";
+		monat = "MÃ¤rz";
 		break;
 	case 4:
 		monat = "April";
@@ -106,7 +106,7 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	end.setOrigin(ftext.width / 2, ftext.height / 2);
 	end.setPosition(sf::Vector2f(1280 / 2.0f, 720 / 3.0f));
 
-	//hier event aufrufen für credits....
+	//hier event aufrufen fÃ¼r credits....
 	//Warteschlange::forceNext(CSVcontrol::getEventStart(5) + CSVcontrol::getEventAmount(5));
 	text->clear();
 	Warteschlange::forceNext(2 +CSVcontrol::getEventStart(5)  + CSVcontrol::getEventAmount(5));
@@ -147,6 +147,10 @@ void End::endwin() {
 
 	string monat; //bestimmen des Datums und konvertierung in ausgebbaren Format
 
+
+	audio->changeSong("ressources/audio/amerika.ogg"); //einsetzen von Musik, die den amerikanischen Sieg vermitte
+	audio->update();
+
 	switch (datum->getMonat())
 	{
 	case 1:
@@ -156,7 +160,7 @@ void End::endwin() {
 		monat = "Februar";
 		break;
 	case 3:
-		monat = "März";
+		monat = "MÃ¤rz";
 		break;
 	case 4:
 		monat = "April";
@@ -200,7 +204,7 @@ void End::endwin() {
 	end.setOrigin(ftext.width / 2, ftext.height / 2);
 	end.setPosition(sf::Vector2f(1280 / 2.0f, 720 / 3.0f));
 
-	//hier event aufrufen für credits....
+	//hier event aufrufen fÃ¼r credits....
 	//Warteschlange::forceNext(CSVcontrol::getEventStart(5) + CSVcontrol::getEventAmount(5));
 	text->clear();
 	Warteschlange::forceNext(3 + CSVcontrol::getEventStart(5) + CSVcontrol::getEventAmount(5));
@@ -252,7 +256,7 @@ void End::alliesWin() {
 		monat = "Februar";
 		break;
 	case 3:
-		monat = "März";
+		monat = "MÃ¤rz";
 		break;
 	case 4:
 		monat = "April";
@@ -297,7 +301,7 @@ void End::alliesWin() {
 	end.setPosition(sf::Vector2f(1280 / 2.0f, 720 / 2.5f));
 	end.setFillColor(Color::Black);
 	end.setOutlineColor(Color::White);
-	//hier event aufrufen für credits....
+	//hier event aufrufen fÃ¼r credits....
 	//Warteschlange::forceNext(CSVcontrol::getEventStart(5) + CSVcontrol::getEventAmount(5));
 	text->clear();
 	Warteschlange::forceNext(4 + CSVcontrol::getEventStart(5) + CSVcontrol::getEventAmount(5));

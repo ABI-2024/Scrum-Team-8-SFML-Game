@@ -19,7 +19,7 @@ Audio::Audio() {		//Standardkonstruktor
 
 	bar2.loadFromFile("ressources/grafics/lsbar.png");
 	bar.setTexture(bar2);
-	
+
 	pin2.loadFromFile("ressources/grafics/lspin.png");
 	pin.setTexture(pin2);
 	bar.setPosition(1100, 20);
@@ -100,9 +100,9 @@ void Audio::lsregler(RenderWindow* window) {
 	int mousex = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x;
 	int mousey = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y;
 
-	
+
 	pin.setPosition(pinx, piny);
-	
+
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 

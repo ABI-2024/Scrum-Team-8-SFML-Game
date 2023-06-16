@@ -34,9 +34,6 @@ int main() {
 
 	int transmissionphase = 1.f;
 	bool paused = false;
-	Texture bgtxture;
-	bgtxture.loadFromFile("ressources/grafics/background.png");
-	Sprite background(bgtxture);
 	Datum* date = new Datum(13, 6, 1936, 1);
 	std::cout << "should: " << CSVcontrol::getEventStart(1) << " with : " << CSVcontrol::getEventStart(1) + CSVcontrol::getEventAmount(1) - 1 << endl;
 
@@ -46,11 +43,17 @@ int main() {
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
 	window.setFramerateLimit(60);
 	hintergrund hintergrundbase("background", 1);
-	hintergrund specialeffect("default", 2);
+	hintergrund bomber("default", 2);
+	hintergrund zelt("default", 3);
+	hintergrund panzer("default", 4);
+	hintergrund krater("default", 5);
+	hintergrund flak("default", 6);
 
-	Ressource wasser("Wasser", 200); //initialisierung von Wasser - NICHT ÄNDERN!
 
-	Ressource essen("Essen", 100); //initialisierung von Essen - NICHT ÄNDERN!
+	Ressource wasser("Wasser", 99); //initialisierung von Wasser - NICHT ÄNDERN!
+
+	Ressource essen("Essen", 99); //initialisierung von Essen - NICHT ÄNDERN!
+
 
 	Person::loadChars();
 	sf::Event ev;
@@ -97,12 +100,14 @@ int main() {
 
 		window.clear();
 
-		hintergrundbase.update_hintergrund(&music);
-		specialeffect.update_hintergrund(&music);
-		hintergrundbase.darstellen(&window);
-		specialeffect.darstellen(&window);
 
-		window.draw(background);
+		hintergrundbase.darstellen(&window);
+		zelt.darstellen(&window);
+		panzer.darstellen(&window);
+		krater.darstellen(&window);
+		flak.darstellen(&window);
+		bomber.darstellen(&window);
+
 		date->display(&window);
 		if (!paused) {
 			essen.darstellen(&window);
@@ -118,10 +123,17 @@ int main() {
 			if (transmissionphase > 270) {
 				paused = false;
 				transmissionphase = 1;
+
+				hintergrundbase.update_hintergrund(&music, &window);
+				bomber.update_hintergrund(&music, &window);
+				zelt.update_hintergrund(&music, &window);
+				panzer.update_hintergrund(&music, &window);
+				krater.update_hintergrund(&music, &window);
+				flak.update_hintergrund(&music, &window);
 			}
 
 		}
-
+		
 
 		window.display();
 		music.update();
@@ -176,6 +188,7 @@ void dayTransmission(RenderWindow* window, int* transmissionphase) {
 	if (*transmissionphase == 200) {
 		tmp->update();
 	}
+
 
 }
 

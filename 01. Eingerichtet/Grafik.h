@@ -19,7 +19,7 @@ public:
 	Grafik(string name);
 	~Grafik();
 
-	void newimage(string name); //setzten eines neuen Bildes
+	void newimage(string name); //setzten eines neuen Bildes name gleich name der Bild Datei
 	string getname();
 
 	void darstellen(RenderWindow* window); //darstellung des Bildes
