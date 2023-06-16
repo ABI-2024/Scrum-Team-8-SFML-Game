@@ -16,6 +16,15 @@ Audio::Audio() {		//Standardkonstruktor
 	vlmwum = 25.f;
 	vlm = 1;
 	changeFile = "leer";
+
+	bar2.loadFromFile("ressources/grafics/lsbar.png");
+	bar.setTexture(bar2);
+	
+	pin2.loadFromFile("ressources/grafics/lspin.png");
+	pin.setTexture(pin2);
+	bar.setPosition(1100, 20);
+	bar.setScale(5, 5);
+	pin.setScale(4, 4);
 }
 
 Audio::~Audio() {
@@ -91,18 +100,9 @@ void Audio::lsregler(RenderWindow* window) {
 	int mousex = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).x;
 	int mousey = window->mapPixelToCoords(sf::Mouse::getPosition(*window)).y;
 
-	Sprite bar;
-	Texture bar2;
-	bar2.loadFromFile("ressources/grafics/lsbar.png");
-	bar.setTexture(bar2);
-	Sprite pin;
-	Texture pin2;
-	pin2.loadFromFile("ressources/grafics/lspin.png");
-	pin.setTexture(pin2);
-	bar.setPosition(1100, 20);
-	bar.setScale(5, 5);
+	
 	pin.setPosition(pinx, piny);
-	pin.setScale(4, 4);
+	
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 
