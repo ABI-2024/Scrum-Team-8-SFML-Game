@@ -2,6 +2,8 @@
 #include "Ereignis.h"
 #include "Audio.h"
 
+void zeitung(RenderWindow* window, string name);
+
 hintergrund::hintergrund(string name, int id) { //Konstruktor und Destruktor
 	this->name = name;
 
@@ -45,7 +47,7 @@ void hintergrund::darstellen(RenderWindow* window) { //anzeigen des Popups
 
 }
 
-void hintergrund::update_hintergrund(Audio* music) {
+void hintergrund::update_hintergrund(Audio* music, RenderWindow* window) {
 	
 	if (Ereignis::getcurrentevent() != current) {
 
@@ -55,9 +57,12 @@ void hintergrund::update_hintergrund(Audio* music) {
 
 			current = 16;
 			if (id == 1) {
-				this->newimage("background2");
 
-				buffer.loadFromFile("ressources/audio/baum.ogg");
+				zeitung(window, "baumnews");
+
+				this->newimage("background2"); //jeweilige Bildänderung
+
+				buffer.loadFromFile("ressources/audio/baum.ogg"); //jeweilger Soundeffekt
 
 				sound.setBuffer(buffer);
 				sound.setVolume(100);
@@ -77,6 +82,9 @@ void hintergrund::update_hintergrund(Audio* music) {
 			current = 38;
 
 			if (id == 2) {
+
+				zeitung(window, "bombernews");
+
 				this->newimage("Bomber");
 				popup.setPosition(0, 1600);
 				music->changeSong("ressources/audio/bomb.ogg");
@@ -95,6 +103,8 @@ void hintergrund::update_hintergrund(Audio* music) {
 			current = 20;
 
 			if (id == 3) {
+
+				zeitung(window, "zeltnews");
 
 				this->newimage("Zelte");
 
@@ -115,6 +125,8 @@ void hintergrund::update_hintergrund(Audio* music) {
 
 			if (id == 4) {
 
+				zeitung(window, "panzernews");
+
 				this->newimage("Panzer");
 
 				buffer.loadFromFile("ressources/audio/panzer.ogg");
@@ -132,6 +144,8 @@ void hintergrund::update_hintergrund(Audio* music) {
 			current = 33;
 
 			if (id == 6) {
+
+				zeitung(window, "flaknews");
 
 				this->newimage("Flak");
 
@@ -152,4 +166,24 @@ void hintergrund::update_hintergrund(Audio* music) {
 	}
 
 	
+}
+
+
+void zeitung(RenderWindow* window, string name) {
+	Sprite news;
+	Texture article;
+
+	article.loadFromFile("ressources/grafics/" + name + ".png");
+	news.setTexture(article);
+
+	news.setPosition(Vector2f(370, 100));
+	window->clear();
+	window->draw(news);
+	window->display();
+
+	while (true) {
+		if (Keyboard::isKeyPressed(Keyboard::Space)) {
+			break;
+		}
+	}
 }
