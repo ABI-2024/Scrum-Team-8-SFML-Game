@@ -76,10 +76,10 @@ void hintergrund::update_hintergrund(Audio* music, RenderWindow* window) {
 			
 
 
-		case 38:
+		case 39:
 
 
-			current = 38;
+			current = 39;
 
 			if (id == 2) {
 

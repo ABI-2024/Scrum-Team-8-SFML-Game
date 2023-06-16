@@ -28,7 +28,7 @@ void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);						//Trigger vom En
 void End(RenderWindow*, Audio*, Textausgabe*);									//Trigger vom Normalem Endscreen
 void dayTransmission(RenderWindow*, int* transmissionphase);					// Macht einen Übergang von tag zu tag
 
-int main() {
+int WinMain() {
 
 	init();
 
@@ -50,9 +50,9 @@ int main() {
 	hintergrund flak("default", 6);
 
 
-	Ressource wasser("Wasser", 99); //initialisierung von Wasser - NICHT ÄNDERN!
+	Ressource wasser("Wasser", 25); //initialisierung von Wasser - NICHT ÄNDERN!
 
-	Ressource essen("Essen", 99); //initialisierung von Essen - NICHT ÄNDERN!
+	Ressource essen("Essen", 25); //initialisierung von Essen - NICHT ÄNDERN!
 
 
 	Person::loadChars();
@@ -90,8 +90,8 @@ int main() {
 		if (!paused) {
 			if (date->getAdder() > 0) {				//Ein neuer Tag bricht an
 				paused = true;
-				wasser.addmenge(-1 * Person::getPresentCharactarAmount() + 1);
-				essen.addmenge(-1 * Person::getPresentCharactarAmount() + 1);
+				wasser.addmenge(-1);
+				essen.addmenge(-1);
 			}
 
 
