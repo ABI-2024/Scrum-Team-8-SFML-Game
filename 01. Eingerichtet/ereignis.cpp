@@ -1,5 +1,6 @@
 #include "Ereignis.h"
 #include "Datum.h"
+#include "End.h"
 
 using namespace std;
 
@@ -17,13 +18,14 @@ short Ereignis::phase = 1;
 
 int Ereignis::lastEvent = 100;
 
-int Ereignis::nextevent[3];
+int Ereignis::nextevent[3][5];
 int Ereignis::dateChange[3];
 
 Ressource* Ereignis::water;
 Ressource* Ereignis::food;
 Textausgabe* Ereignis::txt = nullptr;
-
+void allies();
+void endwin();
 int randomIntinRange(int a, int b);
 
 int Ereignis::getPhase() {
@@ -37,10 +39,12 @@ void Ereignis::newevent() {
 	int rnd = 0;
 	int eventindex = Warteschlange::getFirst();
 	if (eventindex == 0) {
-
+	
+		End::endwin();
+		/*
 		std::cout << "randomint(" << CSVcontrol::getEventStart(phase) << ", " << CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1 << ")\n";
 		rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);
-
+		*/
 	}
 	else {
 		rnd = eventindex;
@@ -80,8 +84,16 @@ void Ereignis::newevent() {
 
 
 			for (int i = 0; i < 3; i++) {
+				getline(file, temp, '#');
+				nextevent[i][0] = stoi(temp);
+				getline(file, temp, '#');
+				nextevent[i][1] = stoi(temp);
+				getline(file, temp, '#');
+				nextevent[i][2] = stoi(temp);
+				getline(file, temp, '#');
+				nextevent[i][3] = stoi(temp);
 				getline(file, temp, ';');
-				nextevent[i] = stoi(temp);
+				nextevent[i][4] = stoi(temp);
 			}
 			for (int i = 0; i < 2; i++) {
 				getline(file, temp, ';');
@@ -130,16 +142,17 @@ void Ereignis::processAntwort(int index) {
 		water->addmenge(randomIntinRange(minWater[index - 1], maxWater[index - 1]));
 		food->addmenge(randomIntinRange(minFood[index - 1], maxFood[index - 1]));
 		specialAction(index - 1);
-		if (nextevent[index - 1] == 0) {
+		int followevent = nextevent[index - 1][randomIntinRange(0, 4)];
+		if (followevent == 0) {
 
 			newevent();
 			return;
 		}
-		else if (nextevent[index - 1] == -1) {
+		else if (followevent == -1) {
 			return;
 		}
 		else {
-			Warteschlange::forceNext(CSVcontrol::getEventStart(4) + nextevent[index - 1]);
+			Warteschlange::forceNext(CSVcontrol::getEventStart(4) + followevent);
 			newevent();
 		}
 	}
@@ -181,7 +194,6 @@ int randomIntinRange(int a, int b) {
 
 void Ereignis::specialAction(int index) {
 	bool ret = true;
-	int loss;
 	string name;
 	switch (specialActionIndex[index]) {
 	case 0:
@@ -213,9 +225,22 @@ void Ereignis::specialAction(int index) {
 
 
 		break;
+
+	case 4: //added das benannte Event am Ende
+		Warteschlange::addQueue(CSVcontrol::getEventStart(4) + stoi(specialActionText[index]));
+		
+		break;
+
+	case 5:
+		End::close();
+		break;
+	case 6:
+		End::alliesWin();
+		break;
 	}
 	return;
 }
+
 bool Ereignis::specialActionPossible() {
 	bool ret = true;
 	string name;

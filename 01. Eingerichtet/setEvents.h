@@ -13,9 +13,9 @@ private:
 	static int amount;
 	static int currentEvent;
 public:
-	static void loadFromFile();
-	static void checkdate(int calculatableDate);
-	static int getSetEventStartID();
-	static int getSetEventAmount();
-	static int getEnd();
+	static void loadFromFile();		//lädt die SetEvents in das Programm
+	static void checkdate(int calculatableDate);	//checkt ob ein Event ausgeführt werden muss bei dem Datum
+	static int getSetEventStartID();//wann die setevent zeilen beginnen
+	static int getSetEventAmount();	
+	static int getEnd();			//wann die setevent zeilen enden
 };

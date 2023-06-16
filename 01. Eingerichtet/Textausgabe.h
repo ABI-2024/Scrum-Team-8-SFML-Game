@@ -38,7 +38,7 @@ private:
 	int awnser;
 
 public:
-	void clear();
+	void clear();						//leert den Text buffer
 	Textausgabe();
 	~Textausgabe();
 	bool display(RenderWindow*);		//Eine Methode, welche regulär am Ende der main aufgerufen werden 
@@ -48,22 +48,18 @@ public:
 
 	void setExit(leave);
 
-
+	Sound getTippingSound();
 	void setBackground(std::string, Color);	//setzt den Hintergrund des Textfeldesm welches in dem grafics-Ordner hinterlegt werden muss
-	//(Ma�e: 1270 : 240)
+	
 
 
 
-// Einlesen von der Tastatur für neue Events
-
-
+	// Einlesen von der Tastatur für neue Events
 	void keyboardInsertion();
 
 
 	//Simple allwertige einlesefunktion für Ereignisse mit Folge
-	//resultC = 0, wenn keine dritte Antwortmöglichkeit existiert
-	//followup = 0, wenn keines, = 1 wenn eines erfolgt;
-
+	
 	void uniInsertion(string text, int awnsers);
 
 

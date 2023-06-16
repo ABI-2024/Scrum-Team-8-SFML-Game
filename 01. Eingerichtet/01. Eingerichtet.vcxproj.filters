@@ -10,9 +10,6 @@
     <ClCompile Include="Datum.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="End.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Ereignis.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -41,6 +38,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Zufallsgenerator.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="End.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,6 +81,12 @@
     <ClInclude Include="hintergrund.h">
       <Filter>Header</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="End.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">
@@ -89,5 +95,11 @@
     <Filter Include="Quelldateien">
       <UniqueIdentifier>{c756d338-e918-4422-b83d-2797f7ec4c7e}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hold_on.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ressources\grafics\icon.ico" />
   </ItemGroup>
 </Project>

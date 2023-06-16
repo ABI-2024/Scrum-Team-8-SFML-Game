@@ -237,3 +237,11 @@ Textausgabe::~Textausgabe() {
 
 	return;
 }
+
+
+
+Sound Textausgabe::getTippingSound() {
+
+
+	return soundeffect;
+}

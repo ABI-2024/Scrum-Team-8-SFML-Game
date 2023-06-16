@@ -12,22 +12,24 @@
 #include "setEvents.h"
 #include "CSVcontrol.h"
 #include "hintergrund.h"
+#include "End.h"
 
 using namespace sf;
 using namespace std;
 
-int rando(int a, int b);
+int rando(int a, int b); //gibt eine zufällige zahl bon a bis b zurück
 
-void init();
+void init();			//initialisiert fremde Klassen
 
 
 void Zufallsgenerator();														//Einsetzen der Warteschlange
 bool EndCheck(Ressource* essen, Ressource* wasser);								//Überprüfung zum Gameover
-void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);										//Trigger vom Endscreen bei Niederlage
-void End(RenderWindow*, Audio*, Textausgabe*);											//Trigger vom Normalem Endscreen
-void dayTransmission(RenderWindow*, int* transmissionphase);
+void EndLose(RenderWindow*, Audio*, Textausgabe*, Datum*);						//Trigger vom Endscreen bei Niederlage
+void End(RenderWindow*, Audio*, Textausgabe*);									//Trigger vom Normalem Endscreen
+void dayTransmission(RenderWindow*, int* transmissionphase);					// Macht einen Übergang von tag zu tag
 
 int main() {
+
 	init();
 
 	int transmissionphase = 1.f;
@@ -42,19 +44,18 @@ int main() {
 
 
 	RenderWindow window(VideoMode(1280, 720), "Hold On!");
-	window.setFramerateLimit(160);
-
+	window.setFramerateLimit(60);
 	hintergrund hintergrundbase("background", 1);
 	hintergrund specialeffect("default", 2);
 
-	Ressource wasser("Wasser", 20); //initialisierung von Wasser - NICHT ÄNDERN!
+	Ressource wasser("Wasser", 200); //initialisierung von Wasser - NICHT ÄNDERN!
 
-	Ressource essen("Essen", 10); //initialisierung von Essen - NICHT ÄNDERN!
+	Ressource essen("Essen", 100); //initialisierung von Essen - NICHT ÄNDERN!
 
 	Person::loadChars();
-	sf::Event ev;		
-		
-	
+	sf::Event ev;
+
+
 	Textausgabe txt;
 	Audio music;
 	int counter = 0;
@@ -67,8 +68,9 @@ int main() {
 	SetEvents::checkdate(date->getCalculatable());
 	Ereignis::newevent();
 	Datum::setWorldDate(date);
-
+	End::init(&window, &music, &txt, date);
 	while (window.isOpen()) {
+
 		while (window.pollEvent(ev)) {
 			if (ev.Closed or ev.type == sf::Event::Closed) {
 				window.close();
@@ -85,11 +87,11 @@ int main() {
 		if (!paused) {
 			if (date->getAdder() > 0) {				//Ein neuer Tag bricht an
 				paused = true;
-				wasser.addmenge(-1 * Person::getPresentCharactarAmount());
-				essen.addmenge(-1 * Person::getPresentCharactarAmount());
+				wasser.addmenge(-1 * Person::getPresentCharactarAmount() + 1);
+				essen.addmenge(-1 * Person::getPresentCharactarAmount() + 1);
 			}
 
-			
+
 		}
 
 
@@ -106,14 +108,14 @@ int main() {
 			essen.darstellen(&window);
 			wasser.darstellen(&window);
 			Person::displayFamily(&window);
-		music.lsregler(&window);
+			music.lsregler(&window);
 
 			txt.display(&window);
 		}
 		else {
 #
 			dayTransmission(&window, &transmissionphase);
-			if (transmissionphase > 600) {
+			if (transmissionphase > 270) {
 				paused = false;
 				transmissionphase = 1;
 			}
@@ -127,6 +129,7 @@ int main() {
 
 
 	}
+	return 1;
 }
 
 void init() {
@@ -136,7 +139,7 @@ void init() {
 }
 
 
-void dayTransmission(RenderWindow* window, int* transmissionphase) {
+void dayTransmission(RenderWindow* window, int* transmissionphase) { 
 
 	Texture bgtxture;
 	bgtxture.loadFromFile("ressources/grafics/black.png");
@@ -152,12 +155,12 @@ void dayTransmission(RenderWindow* window, int* transmissionphase) {
 	cover.setPosition(0, 0);
 	cover.setColor(Color(255, 255, 255, 255 / (255 / (multiplier))));
 	cover.setScale(10, 10);
-	
+
 	*transmissionphase += 1;
 
 	window->draw(cover);
 
-	if(*transmissionphase > 128) {
+	if (*transmissionphase > 128) {
 		Font font;
 		font.loadFromFile("ressources/fonts/Silkscreen-Regular.ttf");
 
@@ -170,7 +173,7 @@ void dayTransmission(RenderWindow* window, int* transmissionphase) {
 
 		window->draw(ausgabe);
 	}
-	if (*transmissionphase == 360) {
+	if (*transmissionphase == 200) {
 		tmp->update();
 	}
 
