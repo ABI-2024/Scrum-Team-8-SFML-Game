@@ -37,10 +37,12 @@
     <ClInclude Include="Audio.h" />
     <ClInclude Include="CSVcontrol.h" />
     <ClInclude Include="Datum.h" />
+    <ClInclude Include="End.h" />
     <ClInclude Include="Ereignis.h" />
     <ClInclude Include="Grafik.h" />
     <ClInclude Include="hintergrund.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SetEvents.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Textausgabe.h" />
@@ -49,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ressource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hold_on.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ressources\grafics\icon.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

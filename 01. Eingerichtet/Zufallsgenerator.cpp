@@ -23,7 +23,7 @@ void Zufallsgenerator() {
 
 	fill_n(check, phase1, true); //zurücksetzen der Variablen nach jedem Durchlauf
 	counter = 0;
-
+	Warteschlange::addQueue(43);
 	while (counter < phase1) {
 
 		zahl = rando(1, phase1);  //generieren einer Zufallszahl
