@@ -12,7 +12,7 @@ void Zufallsgenerator() {
 	//Warteschlange::addQueue(20);
 	//Warteschlange::addQueue(21);
 	//Warteschlange::addQueue(33);
-	Warteschlange::addQueue(38);
+	//Warteschlange::addQueue(38);
 
 	int zahl = 0;
 	int counter; //erstellen der Variablen

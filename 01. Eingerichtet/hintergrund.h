@@ -30,6 +30,6 @@ public:
 
 	void darstellen(RenderWindow* window); //darstellung des Bildes. Das Fenster aus der main wird übergeben
 
-	void update_hintergrund(Audio* music);	//aktualisierung des Hintergrunds. Music objekt aus der main wird übergeben
+	void update_hintergrund(Audio* music, RenderWindow* window);	//aktualisierung des Hintergrunds. Music objekt aus der main wird übergeben
 };
 

@@ -120,12 +120,12 @@ int main() {
 				paused = false;
 				transmissionphase = 1;
 
-				hintergrundbase.update_hintergrund(&music);
-				bomber.update_hintergrund(&music);
-				zelt.update_hintergrund(&music);
-				panzer.update_hintergrund(&music);
-				krater.update_hintergrund(&music);
-				flak.update_hintergrund(&music);
+				hintergrundbase.update_hintergrund(&music, &window);
+				bomber.update_hintergrund(&music, &window);
+				zelt.update_hintergrund(&music, &window);
+				panzer.update_hintergrund(&music, &window);
+				krater.update_hintergrund(&music, &window);
+				flak.update_hintergrund(&music, &window);
 			}
 
 		}
