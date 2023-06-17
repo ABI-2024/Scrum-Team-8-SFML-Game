@@ -114,7 +114,7 @@ void EndLose(RenderWindow* window, Audio* audio, Textausgabe* text, Datum* datum
 	Ereignis::newevent();
 	while (window->isOpen() ) {
 		while (window->pollEvent(ev)) {
-			if (ev.Closed) {
+			if (ev.Closed or ev.type == sf::Event::Closed) {
 				window->close();
 			}
 		}
@@ -147,9 +147,6 @@ void End::endwin() {
 
 	string monat; //bestimmen des Datums und konvertierung in ausgebbaren Format
 
-
-	audio->changeSong("ressources/audio/amerika.ogg"); //einsetzen von Musik, die den amerikanischen Sieg vermitte
-	audio->update();
 
 	switch (datum->getMonat())
 	{
@@ -212,7 +209,7 @@ void End::endwin() {
 	Ereignis::newevent();
 	while (window->isOpen() ) {
 		while (window->pollEvent(ev)) {
-			if (ev.Closed) {
+			if (ev.Closed or ev.type == sf::Event::Closed) {
 				window->close();
 			}
 		}
@@ -232,7 +229,7 @@ void End::alliesWin() {
 	window->clear();
 	window->display();
 
-	audio->changeSong("ressources/audio/amerika.wav"); //einsetzen von Musik. Trauer
+	audio->changeSong("ressources/audio/amerika.ogg"); //einsetzen von Musik. Trauer
 
 
 	sleep(seconds(1)); // blackscreen 5 sek
@@ -309,7 +306,7 @@ void End::alliesWin() {
 	Ereignis::newevent();
 	while (window->isOpen()) {
 		while (window->pollEvent(ev)) {
-			if (ev.Closed) {
+			if (ev.Closed or ev.type == sf::Event::Closed) {
 				window->close();
 			}
 		}

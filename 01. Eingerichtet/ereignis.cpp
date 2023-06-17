@@ -37,10 +37,25 @@ void Ereignis::newevent() {
 	ifstream file;
 	string temp;
 	int rnd = 0;
-	int eventindex = Warteschlange::getFirst();
+	int eventindex = 0;
+	repeat:
+	eventindex= Warteschlange::getFirst();
+	if (eventindex < -1) {
+		goto repeat;
+	}
 	if (eventindex == 0) {
-	
-		End::endwin();
+		eventindex = Warteschlange::getFirst();
+		if (eventindex == 0) {
+			eventindex = Warteschlange::getFirst();
+			if (eventindex == 0) {
+				eventindex = Warteschlange::getFirst();
+				if (eventindex == 0) {
+					End::endwin();
+				}
+			}
+		
+		}
+		
 		/*
 		std::cout << "randomint(" << CSVcontrol::getEventStart(phase) << ", " << CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1 << ")\n";
 		rnd = 1 + randomIntinRange(CSVcontrol::getEventStart(phase), CSVcontrol::getEventStart(phase) + CSVcontrol::getEventAmount(phase) - 1);

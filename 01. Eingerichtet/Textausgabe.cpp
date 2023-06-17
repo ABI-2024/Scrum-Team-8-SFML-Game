@@ -86,20 +86,20 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 	else {
 
 		if (cont) {
-			//if (Keyboard::isKeyPressed(Keyboard::Space)) {				//schaut, ob die Leertaste gedrückt ist und skippt, wenn nötig die langsame Textausgabe
+			if (Keyboard::isKeyPressed(Keyboard::Space)) {				//schaut, ob die Leertaste gedrückt ist und skippt, wenn nötig die langsame Textausgabe
 
-			//	while (ausgeg <= text.length()) {
-			//		if (text[ausgeg] == '\n') {
+				while (ausgeg <= text.length()) {
+					if (text[ausgeg] == '\n') {
 
-			//			maxlines++;
+						maxlines++;
 
-			//			break;
-			//		}
-			//		ausgeg++;
-			//	}
-			//	ausgeg++;
-			//}
-			//else {														//Die normale Animation, wenn es keinen schnelldurchlauf gibt
+						break;
+					}
+					ausgeg++;
+				}
+				ausgeg++;
+			}
+			else {														//Die normale Animation, wenn es keinen schnelldurchlauf gibt
 				tics++;
 				if (tics >= 1) {
 
@@ -111,7 +111,7 @@ bool Textausgabe::display(RenderWindow* window) {		//Ausgabe des Textfeldes samt
 
 					ausgeg++;
 				}
-			//}
+			}
 		}
 		if (ausgeg >= text.length()) {	//Ende der Ausgabe
 

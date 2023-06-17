@@ -78,6 +78,7 @@ int WinMain() {
 				window.close();
 			}
 		}
+		//EndLose(&window, &music, &txt, date);
 
 		if (EndCheck(&essen, &wasser)) {
 
