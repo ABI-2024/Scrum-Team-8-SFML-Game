@@ -35,8 +35,7 @@ int WinMain() {
 	int transmissionphase = 1.f;
 	bool paused = false;
 	Datum* date = new Datum(13, 6, 1936, 1);
-	std::cout << "should: " << CSVcontrol::getEventStart(1) << " with : " << CSVcontrol::getEventStart(1) + CSVcontrol::getEventAmount(1) - 1 << endl;
-
+	
 	Warteschlange::addQueue(0);
 
 

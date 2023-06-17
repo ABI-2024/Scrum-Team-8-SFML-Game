@@ -40,9 +40,9 @@ void hintergrund::darstellen(RenderWindow* window) { //anzeigen des Popups
 
 	window->draw(popup);
 
-	if (current == 38 && id == 2) {
+	if (current == 39 && id == 2) {
 		popup.move(0, -4);
-		if (false) window->setPosition(sf::Vector2i(100 + rand() % 25, 100 + rand() % 25));
+		//if (false) window->setPosition(sf::Vector2i(100 + rand() % 25, 100 + rand() % 25));
 	}
 
 }
@@ -139,9 +139,9 @@ void hintergrund::update_hintergrund(Audio* music, RenderWindow* window) {
 
 			break;
 
-		case 33:
+		case 34:
 
-			current = 33;
+			current = 34;
 
 			if (id == 6) {
 
